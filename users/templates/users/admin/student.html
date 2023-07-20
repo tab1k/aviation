@@ -1,0 +1,131 @@
+{% extends 'users/admin/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap">
+  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'admin/css/student.css' %}" rel="stylesheet">{% endblock %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="all_page">
+
+        {% block content %}
+        <div class="content">
+
+      <!-- search-input -->
+
+      <div class="content-header">
+
+        <h2>Студенты</h2>
+        <form action="{% url 'users:admin:search_students' %}" method="get">
+
+          <div class="search-footer">
+            <input name="q" placeholder="Поиск...">
+            <button>Поиск</button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Выпадающие списки -->
+
+      <div class="container">
+        <div class="expandables">
+          <div class="expandable">
+            <div class="expandable-header">
+              <select name="" id="">
+                <option value="">Все студенты</option>
+                <option value="">1 поток</option>
+                <option value="">2 поток</option>
+                <option value="">3 поток</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="expandable">
+            <select onchange="window.location.href = this.options[this.selectedIndex].value">
+              <option value="">Действия</option>
+              <option value="">Импортировать из csv</option>
+              <option value="{% url 'users:admin:add_student' %}">Добавить студента</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="move_button">Перейти</div>
+      </div>
+
+      <!-- Главная -->
+
+      <main>
+        <div class="students__content">
+          <div class="students__titles">
+            <div class="students__title">Отображаемое имя</div>
+            <div class="students__title students__title-id">ID студента</div>
+          </div>
+          <div id="studentsContainer">
+          {% for student in students %}
+          <div class="students__item show">
+            <div class="students__table">
+              <div class="students__name">{{ student.first_name }} {{ student.last_name }}</div>
+              <div class="students__id">{{ student.id }}</div>
+            </div>
+
+            <div class="students__links">
+              <div class="students__links-item">
+                <a href="moduleAdmin.html" class="students__links-link">{{ student.stream }} поток</a>
+              </div>
+              <div class="students__links-item">
+                <a href="{% url 'users:admin:profile:profile_view' student.pk %}" class="students__links-link">Личный кабинет</a>
+              </div>
+              <div class="students__links-item">
+                <a href="achievement.html" class="students__links-link">Успеваемость</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          </div>
+        </div>
+      </main>
+      <button id="showMoreButton" class="show-more">ПОКАЗАТЬ ЕЩЁ</button>
+    {% endblock %}
+
+    </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script src="{% static 'admin/js/showMore.js' %}"></script>
+<script>
+  const expandableHeaders = document.querySelectorAll(".expandable-header");
+  const img = document.querySelectorAll('right-img')
+
+  expandableHeaders.forEach((header) => {
+    header.addEventListener("click", () => {
+      const expandable = header.parentNode;
+      expandable.classList.toggle("open");
+    });
+  });
+</script>
+<script>
+  function openPopup() {
+    document.getElementById("popup").style.display = "block";
+
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+</script>
+</html>

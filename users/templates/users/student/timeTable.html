@@ -1,0 +1,87 @@
+{% extends 'users/student/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Мое расписание</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap">
+  <link rel="stylesheet" type="text/css" href="{% static 'jsCalendar.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+  {% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'admin/css/timeTableAdmin.css' %}">
+  {% endblock %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- jsCalendar v1.4.3 Javascript and CSS from unpkg cdn -->
+  <script src="https://unpkg.com/simple-jscalendar@1.4.3/source/jsCalendar.min.js"
+    integrity="sha384-JqNLUzAxpw7zEu6rKS/TNPZ5ayCWPUY601zaig7cUEVfL+pBoLcDiIEkWHjl07Ot"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/simple-jscalendar@1.4.3/source/jsCalendar.min.css"
+    integrity="sha384-+OB2CadpqXIt7AheMhNaVI99xKH8j8b+bHC8P5m2tkpFopGBklD3IRvYjPekeWIJ" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="all_page">
+
+    {% block content %}
+    <div class="content">
+
+      <!-- search-input -->
+      <div class="content-header">
+        <h2>Мое расписание</h2>
+        <form>
+          <div class="search-footer">
+            <input placeholder="Поиск...">
+            <button>Поиск</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="time-table">
+        <table class="schedule">
+          <thead>
+            <tr>
+                <th class="schedule-header schedule-main">
+                    <span>День</span>
+                    <span class="schedule-time">Время</span>
+                </th>
+                {% for day in weekdays %}
+                    <th class="schedule-header">{{ day.1 }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for schedule in schedules %}
+            <tr>
+                <td class="schedule-item">
+                    <span class="schedule-time_start">{{ schedule.start_time|time:"H:i" }}</span>
+                    <span class="schedule-time_end">{{ schedule.end_time|time:"H:i" }}</span>
+                </td>
+                {% for day in weekdays %}
+                    <td class="schedule-item">
+                        {% if day.0 in schedule.weekdays %}
+                            {{ schedule.course.name }}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+  <!-- jsCalendar script -->
+  <script src="{% static 'admin/js/timetable.js' %}"></script>
+  <script type="text/javascript" src="jsCalendar.js"></script>
+  <script src="{% static 'admin/js/side-bar.js' %}"></script>
+</body>
+
+</html>

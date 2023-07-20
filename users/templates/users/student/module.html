@@ -1,0 +1,77 @@
+{% extends 'users/student/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block css %}<link rel="stylesheet" href="{% static 'student/css/module.css' %}">{% endblock %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="all_page">
+    <!-- SIDE BAR-->
+
+    <!-- -->
+    {% block content %}
+        <div class="content">
+
+
+       <div class="my-courses">
+            <h3>Модули</h3>
+
+            <div class="modules">
+                {% for module in modules %}
+                <div class="course">
+
+                  <a  href="{% url 'users:student:courses:lessons_by_module' module.id %}"><p class="module-name" ><b>Модуль 0 Введение</b></p></a>
+                  <p>7 уроков</p>
+
+                  <div class="buttons">
+
+                    <a  href="{% url 'users:student:courses:lessons_by_module' module.id %}"><button class="go">Перейти</button></a>
+
+                  </div>
+
+                </div>
+                {% endfor %}
+                <div class="course">
+
+                  <a  href="lessons.html"><p class="module-name" ><b>Модуль 0 Введение</b></p></a>
+                  <p>7 уроков</p>
+
+                  <div class="buttons">
+
+                    <a  href="lessons.html"><button class="go">Перейти</button></a>
+
+                    <div class="end">
+                      <p>Завершенно</p>
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="9" r="9" fill="white"/>
+                        <path d="M3.60573 11.4846C3.27119 11.3335 3.12253 10.9397 3.27369 10.6052C3.42484 10.2707 3.81857 10.122 4.1531 10.2732L8.59553 12.2804C8.93007 12.4315 9.07873 12.8253 8.92758 13.1598C8.77642 13.4943 8.3827 13.643 8.04816 13.4918L3.60573 11.4846Z" fill="#1C3D6F"/>
+                        <path d="M12.6648 4.10999C12.9017 3.72887 13.4027 3.61196 13.7838 3.84885C14.1649 4.08574 14.2818 4.58673 14.045 4.96784L8.97309 13.1276L7.59296 12.2697L12.6648 4.10999Z" fill="#1C3D6F"/>
+                        </svg>
+                    </div>
+                  </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+        </div>
+    {% endblock %}
+    
+  <script src="js/side-bar.js"></script>
+</body>
+</html>

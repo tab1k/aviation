@@ -1,0 +1,54 @@
+{% extends 'users/admin/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block css %}<link rel="stylesheet" href="{% static 'student/css/module.css' %}">{% endblock %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="all_page">
+
+    {% block content %}
+        <div class="content">
+       <div class="my-courses">
+            <h3>Модули</h3>
+
+            <div class="modules">
+                {% for module in modules %}
+                <div class="course">
+
+                  <a  href="{% url 'users:student:courses:lessons_by_module' module.id %}"><p class="module-name" ><b>{{ module.title|truncatechars:16 }}</b></p></a>
+                  <p>7 уроков</p>
+
+                  <div class="buttons">
+
+                    <a  href="{% url 'users:student:courses:lessons_by_module' module.id %}"><button class="go">Перейти</button></a>
+
+                  </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}
+
+    </div>
+    
+  <script src="{% static 'admin/js/side-bar.js' %}"></script>
+</body>
+</html>
+
+

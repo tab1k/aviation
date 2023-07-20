@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+{% extends 'users/admin/base.html' %}
+{% load static %}
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block css %}<link rel="stylesheet" href="{% static 'admin/css/testAdmin.css' %}">{% endblock %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="all_page">
+    <!-- SIDE BAR-->
+
+    <!-- -->
+    {% block content %}
+        <div class="content">
+
+      <!-- search-input -->
+
+      <!-- my courses -->
+
+      <div class="courses">
+
+        <div class="quiz">
+
+          <h2 class="my-courses-h2">Тест</h2>
+
+          <!-- theme lesson -->
+
+          <ol>
+            <div class="theme">
+
+              <li>What is Lorem Ipsum?</li>
+
+              <!-- test -->
+
+              <div class="test">
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="theme">
+
+              <li>What is Lorem Ipsum?</li>
+
+              <!-- test -->
+
+              <div class="test">
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var2" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var2" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var2" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var2" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="theme">
+
+              <li>What is Lorem Ipsum?</li>
+
+              <!-- test -->
+
+              <div class="test">
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var3" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var3" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var3" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+                <div class="variant">
+                  <label class="checkbox">
+                    <input name="var3" type="radio">
+                  </label>
+                  <p> <b>Pokemon</b> </p>
+                </div>
+
+              </div>
+
+            </div>
+          </ol>
+
+          <div class="nextBtn">
+            <a href="videoAdmin.html"><img id="back" src="{% static 'admin/img/back.png' %}" alt="">
+            </a>
+            <a href="#" class="essay">Сдать эссе
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- <div class="chat">
+
+        <div class="comment">
+          <div class="ava">
+            <img src="img/comment-ava.jpg" alt="">
+          </div>
+          <div class="comment-text">
+            <p>A fast 50mm like f1.8 would help with <br> the bokeh. I’ve been using primes as they <br> tend to get a
+              bit sharper images.</p>
+          </div>
+        </div>
+
+        <div class="reply">
+          <form action="">
+            <input type="text" class="reply-input" placeholder="Комментарии">
+            <button class="send"><img src="img/send.svg" alt=""></button>
+          </form>
+        </div>
+
+      </div> -->
+    </div>
+    {% endblock %}
+    
+</div>
+  
+
+<script src="js/side-bar.js"></script>
+</body>
+
+</html>

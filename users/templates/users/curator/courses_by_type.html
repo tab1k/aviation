@@ -1,0 +1,71 @@
+{% extends 'users/curator/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>{% block page_title %} Мои курсы {% endblock %}</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap">
+  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'admin/css/mainAfterSignUpAdmin.css' %}" rel="stylesheet" />{% endblock %}
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="all_page">
+    <!-- SIDE BAR-->
+
+    <!-- END SIDE_BAR-->
+
+    {% block content %}
+            <div class="content">
+
+                <div class="training_sectors">
+
+                <h2 class="training_sectors_h2">Курсы по типу  - ❗️{{ course_type }}❗️</h2>
+
+                <!-- training_sectors_images -->
+                <div class="training_sectors_images training_slider_cources">
+                {% for c in courses %}
+                <a href="{% url 'users:student:courses:modules' c.pk %}">
+                  <div class="training_sectors_indusrial">
+                    <div class="aviation-img rel">
+                      <div class="course-info">
+                        <div class="course-type">
+                          <h3>{{ c.title|truncatechars:10 }}</h3>
+                        </div>
+                        <button class="course-minutes">
+                          {{ c.duration }} min
+                        </button>
+                      </div>
+                      <img src="{% static 'admin/img/Mask Group.png' %}" alt="">
+                      <div class="aviation-text-industry">
+                        <p>{{ c.description|truncatechars:80 }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                {% endfor %}
+                </div>
+
+              </div>
+            </div>
+                  </div>
+              </div>
+              </div>
+
+              </div>
+              </div>
+              </div>
+        {% endblock %}
+
+  </div>
+
+  <script src="{% static 'admin/js/side-bar.js' %}"></script>
+</body>
+
+</html>

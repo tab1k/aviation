@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .error-image {
+            width: 300px;
+            max-width: 80%;
+            margin-bottom: 20px;
+        }
+
+        .error-heading {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .error-text {
+            font-size: 20px;
+            color: #555;
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .home-link {
+            font-size: 20px;
+            color: #fff;
+            background-color: #22549E;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .home-link:hover {
+            background-color: #1ca21c;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .error-image {
+                width: 200px;
+            }
+
+            .error-heading {
+                font-size: 24px;
+            }
+
+            .error-text {
+                font-size: 16px;
+            }
+
+            .home-link {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="" alt="404 Not Found" class="error-image">
+        <h1 class="error-heading">Ошибка 404</h1>
+        <p class="error-text">Запрошенный ресурс не найден на этом сервере.</p>
+        <a href="/" class="">Вернуться на главную</a>
+    </div>
+</body>
+</html>

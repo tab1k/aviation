@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% extends 'users/admin/base.html' %}
+{% load static %}
+{% load embed_video_tags %}
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'admin/css/videoAdmin.css' %}">{% endblock %}
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="all_page">
+    <!-- SIDE BAR-->
+
+    <!-- -->
+    {% block content %}
+        <div class="content">
+
+      <div class="back">
+        <a href="coursesAfterSignUp.html"><b>Мои курсы></b></a><a href="module.html"><b>Модули></b></a><a
+          href="#"><b>Урок 2</b></a>
+      </div>
+
+      <div class="buttons">
+        <button class="prev">Предыдущий</button>
+        <button class="next">Следущий урок</button>
+      </div>
+
+      <!-- my courses -->
+
+      <div class="courses">
+
+        <!-- video -->
+
+        <div class="video">
+
+          <!-- theme lesson -->
+
+          <div class="theme">
+
+            <p>{{ lesson.title }}</p>
+            <p>{{ lesson.description }}</p>
+
+          </div>
+
+          <!-- .video_course -->
+
+          <div class="video_course">
+            {% video lesson.video width="800" height="450" %}
+            <div class="buttonNext">
+                <button><a href="{% url 'users:admin:courses:tests:tests' %}">Пройти тест</a></button>
+                <a href="#"><img src="img/next-button.svg" alt=""></a>
+            </div>
+          </div>
+
+
+
+
+          <!-- chat -->
+
+          <div class="chat">
+
+            <div class="comment">
+              <div class="ava">
+                <img src="{% static 'admin/img/comment-ava.jpg' %}" alt="">
+              </div>
+              <div class="comment-text">
+                <p>A fast 50mm like f1.8 would help with <br> the bokeh. I’ve been using primes as they <br> tend to get
+                  a bit sharper images.</p>
+              </div>
+            </div>
+
+            <div class="reply">
+              <form action="">
+                <input type="text" class="reply-input" placeholder="Комментарии">
+                <button class="send"><img src="{% static 'admin/img/send.svg' %}" alt=""></button>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div></div>
+    {% endblock %}
+
+    <script src="{% static 'admin/js/side-bar.js' %}"></script>
+
+</body>
+
+</html>

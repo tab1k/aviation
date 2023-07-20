@@ -1,0 +1,905 @@
+/* BODY */
+
+body {
+    background-color: #22549E;
+    margin: 0;
+    padding: 0;
+}
+
+
+*{
+	font-family: 'Rubik', sans-serif !important;
+  }
+  
+/* ----------------------------------------- */
+
+.courses_sectors_images{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 3%;
+  }
+  
+  .courses_sectors_images img{
+    width: 100%;
+    border-radius: 20px;
+    background-color: inherit;
+  }
+
+  .training_sectors_images img{
+    border-radius: 35px;
+  }
+  
+  .training_sectors_images img:hover{
+    box-shadow: 5px 5px 4px 3px rgba(0,0,0,0.14);
+    transition: 500ms;
+  }
+  
+  .courses_sectors_images img:hover{
+    box-shadow: 3px 4px 5px 5px rgba(0,0,0,0.14);
+    transition: 500ms;
+  }
+/* ALL PAGE */
+
+.all_page {
+    width: 100%;
+    display: flex;
+}
+
+.all_page .side_bar {
+    width: 20%;
+    margin: 20px 0px 20px 20px;
+}
+
+.all_page .content {
+    background-color: white;
+    border-radius: 20px;
+    height: 100%;
+    width: 77%;
+    margin: 20px;
+}
+
+.courses {
+}
+
+.video {
+    width: 60%;
+}
+
+
+/* ----------------------------------------- */
+
+/* SIDE BAR */
+
+.side_bar {
+    text-align: center;
+
+}
+
+/* SIDE BAR - LOGO */
+
+a {
+    color: white;
+    font-family: Roboto;
+    text-decoration: none;
+}
+
+.side_bar_logo_settings {
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+}
+
+.side_bar_logo_text {
+    margin-left: 5%;
+    font-size: 24px;
+    font-weight: medium;
+}
+
+/* SIDE BAR - LINKS */
+
+.side_bar_links {
+    margin-top: 30%;
+    margin-left: 10%;
+}
+
+.side_bar_img {
+    margin-left: 5%;
+}
+
+.side_bar_text {
+    margin-left: 5%;
+    font-size: 100%;
+}
+
+.side_bar_courses {
+    display: flex;
+    align-items: center;
+}
+
+.side_bar_general p a {
+    color: #FB6D3A;
+}
+
+.side_bar_student {
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.side_bar_answers {
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.support-img {
+    margin-top: 25%;
+    align-items: center;
+    justify-content: center;
+}
+
+.support-img img {
+    width: 60%;
+    height: 100%;
+}
+
+.side_bar_timeTable {
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.side_bar_settings {
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.side_bar_general {
+    display: flex;
+    align-items: center;
+    margin-top: 2%;
+    width: 110%;
+    border-radius: 20px 0 0 20px;
+}
+
+/* SEARCH INPUT */
+
+
+/* this is a recreation of twitter search in css */
+.content-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.form {
+    --input-text-color: #1b9bee;
+    --input-bg-color: #F6F6F5;
+    --focus-input-bg-color: transparent;
+    --text-color: #949faa;
+    --active-color: #1b9bee;
+    --width-of-input: 100%;
+    --inline-padding-of-input: 1.2em;
+    --gap: 0.9rem;
+}
+
+/* form style */
+.form {
+    font-size: 0.9rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: var(--width-of-input);
+    position: relative;
+    isolation: isolate;
+    width: 90%;
+    height: 37px;
+}
+
+/* a fancy bg for showing background and border when focus. */
+.fancy-bg {
+    position: absolute;
+    width: 100%;
+    inset: 0;
+    background: var(--input-bg-color);
+    border-radius: 30px;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+/* label styling */
+label {
+    width: 100%;
+    padding: 0.8em;
+    height: 40px;
+    padding-inline: var(--inline-padding-of-input);
+    display: flex;
+    align-items: center;
+}
+
+.search,
+.close-btn {
+    position: absolute;
+}
+
+/* styling search-icon */
+.search {
+    fill: var(--text-color);
+    left: var(--inline-padding-of-input);
+}
+
+/* svg -- size */
+
+
+/* styling of close button */
+.close-btn {
+    border: none;
+    right: var(--inline-padding-of-input);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 0.1em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--active-color);
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* styling of input */
+.input {
+    color: var(--input-text-color);
+    width: 100%;
+    margin-inline: min(2em, calc(var(--inline-padding-of-input) + var(--gap)));
+    background: none;
+    border: none;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--text-color)
+}
+
+/* input background change in focus */
+.input:focus~.fancy-bg {
+    border: 1px solid var(--active-color);
+    background: var(--focus-input-bg-color);
+}
+
+/* search icon color change in focus */
+.input:focus~.search {
+    fill: var(--active-color);
+}
+
+/* showing close button when typing */
+.input:valid~.close-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* this is for the default background in input,when selecting autofill options -- you can remove this code if you do not want to override the browser style.  */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+}
+
+/* notification-img-style */
+
+.notification-img {
+    margin-left: 1%;
+}
+
+/* users-img */
+
+.user-img {
+    margin-left: 1%;
+}
+
+.my-courses-h2 {
+    margin-top: 7%;
+    margin-left: 5%;
+}
+
+/* <!-- theme lesson --> */
+
+.theme {
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+/* video_course */
+
+.video_course {
+    margin-left: 5%;
+}
+
+/* video-style */
+
+embed {
+    height: 350px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #022B69;
+    box-shadow: 4px 4px 13px -1px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    margin-bottom: 5%;
+}
+
+/* video button test */
+
+.video_course button {
+    width: 145px;
+    height: 35px;
+    border: none;
+    background: #1F4989;
+    border-radius: 7px;
+    color: #fff;
+}
+
+.buttonNext {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+    align-items: center;
+}
+
+.buttonNext a img {
+    width: 90%;
+}
+
+.buttons button {
+    background: #1F4989;
+    border-radius: 30px;
+    border: none;
+    color: #fff;
+    width: 150px;
+    height: 35px;
+    margin: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.back {
+    display: flex;
+    align-items: center;
+
+    margin: 20px;
+}
+
+.back a {
+    color: #0067F5;
+}
+
+.send img {
+    user-select: none;
+    /* Запретить выделение текста и изображений */
+    -moz-user-select: none;
+    /* Для поддержки в Firefox */
+    -webkit-user-drag: none;
+    /* Для поддержки в браузерах на основе WebKit */
+    -webkit-user-select: none;
+    /* Для поддержки в браузерах на основе WebKit */
+    -ms-user-select: none;
+    /* Для поддержки в Internet Explorer/Edge */
+}
+
+.send {
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+}
+
+.reply-input {
+    outline: none;
+    background: #FFFFFF;
+    border: 1px solid #0094FF;
+    border-radius: 14px;
+    width: 90%;
+    height: 35px;
+    padding-left: 5px;
+}
+
+.reply form {
+    display: flex;
+    align-items: center;
+
+    margin-top: 5%;
+}
+
+.chat {
+    border: 1px solid #D0D0D0;
+    border-radius: 20px;
+    height: 200px;
+    overflow: auto;
+    margin-left: 30px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+}
+
+.comment-text {
+    color: #8E1DE8;
+    margin-left: 10px;
+}
+
+.comment {
+    display: flex;
+    margin: 20px;
+}
+
+.reply {
+    padding-left: 30px;
+}
+
+.leave-button button{
+    width: 120px;
+    height: 35px;
+    color: #FFFFFF;
+    background-color: red;
+    border: none;
+    border-radius: 10px;
+    margin-top: 25px;
+  }
+
+.red {
+    color: #FF5757;
+}
+
+.sidebar-logo {
+    margin-bottom: 30px;
+}
+
+.sidebar-logo p {
+    margin-left: 30px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 85px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #22549E;
+    border-right: 1px solid #003c97;
+    transition: 0.5s;
+    overflow-x: hidden;
+    padding-top: 60px;
+    white-space: nowrap;
+    display: none;
+}
+
+.sidebar a:last-child {
+    margin-top: 10px;
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    display: block;
+}
+
+.sidebar svg {
+    margin-bottom: -5px;
+}
+
+.orange {
+    color: #FB6D3A;
+}
+
+main .sidebar {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    margin-left: 50px;
+}
+
+
+/* BURGER MENU */
+
+.burger-content {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: white;
+    transition: all 1s;
+    top: 0;
+}
+
+.ham {
+    display: none;
+    position: fixed;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    right: 10px;
+    z-index: 99;
+}
+
+.hamRotate.active {
+    transform: rotate(45deg);
+}
+
+.hamRotate180.active {
+    transform: rotate(180deg);
+}
+
+.line {
+    fill: none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: #d0d0d0;
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+
+.ham6 .top {
+    stroke-dasharray: 40 172;
+  }
+  .ham6 .middle {
+    stroke-dasharray: 40 111;
+  }
+  .ham6 .bottom {
+    stroke-dasharray: 40 172;
+  }
+  .ham6.active .top {
+    stroke-dashoffset: -132px;
+  }
+  .ham6.active .middle {
+    stroke-dashoffset: -71px;
+  }
+  .ham6.active .bottom {
+    stroke-dashoffset: -132px;
+  }
+
+.burger-content .burger-content-element:first-child,
+.burger-content-element-leave:last-child {
+    margin-top: 20%;
+}
+
+.burger-content-element {
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+    margin-top: 8px;
+}
+
+.burger-content-element p a {
+    margin-left: 10px;
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.burger-content-element-leave {
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+}
+
+.burger-content-element-leave p a {
+    margin-left: 10px;
+    font-size: 18px;
+    color: #FF5757;
+    text-decoration: none;
+}
+
+/* Albina edit */
+
+.buttons button {
+    width: auto;
+    height: auto;
+}
+
+.nav-button {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 10px 17px 10px 20px;
+    transition-duration: .25s;
+}
+
+.nav-button i {
+    transition-duration: .25s;
+}
+
+.next:hover i {
+    margin-left: 5px;
+    margin-right: -5px;
+}
+
+.prev:hover i {
+    margin-left: -5px;
+    margin-right: 5px;
+}
+
+
+.courses {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.theme {
+    margin-bottom: 15px;
+}
+
+.theme__lesson {
+    margin: 0;
+    font-weight: 400;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-bottom: 3px;
+}
+
+.theme__lesson span {
+    font-weight: 600;
+}
+
+.theme__name {
+    margin: 0;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.theme__name span {
+    color: #1d4be1;
+}
+
+.video_course embed {
+    box-shadow: 10px 10px 30px 0 #0000008c;
+    border: none;
+}
+
+.test__link {
+    width: 145px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: #1F4989;
+    border-radius: 7px;
+    color: #fff;
+    font-size: 14px;
+    transition-duration: .25s;
+}
+
+.next__course {
+    background: #eee;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    color: #818181;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .4s;
+}
+
+.next__course:hover {
+    transform: translateX(5px);
+}
+
+.next__course i {
+    font-size: 26px;
+}
+
+.test__link:hover {
+    background-color: hsl(216, 63%, 25%);
+}
+
+.buttonNext a img {
+    width: 50px;
+}
+
+.reply-input {
+    padding-left: 12px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.reply-input::placeholder {
+    color: #005ae2;
+}
+
+.comment-text {
+    margin: 0 auto;
+}
+
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+    }
+
+    .sidebar a {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width:600px) and (max-width:1100px) {
+    .content {
+        margin-left: 90px !important;
+        width: 100% !important;
+    }
+
+    .video{
+        width: 90%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .theme{
+        margin-left: 0;
+    }
+
+    .chat{
+        margin-left: 0;
+    }
+
+    .video_course{
+        margin: 0;
+    }
+
+    .all_page {
+        height: 100%;
+    }
+
+    .card {
+        width: 200px;
+    }
+
+    .sidebar-logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .sidebar_text {
+        margin-left: 30px;
+        margin-bottom: 30px;
+    }
+
+    .side_bar {
+        display: none;
+    }
+
+    .sidebar {
+        display: block;
+    }
+
+    .sidebar-logo p {
+        font-size: 25px;
+    }
+
+    .courses_sectors_images {
+        transition: 1s;
+        margin-left: 0;
+    }
+
+    embed{
+        height: 320px;
+    }
+
+}
+
+@media (max-width:900px){
+    embed{
+        width: 100%;
+        height: 250px;
+    }
+}
+
+@media (max-width:600px) {
+    .ham {
+        display: block;
+    }
+
+    .side_bar_links {
+        display: none;
+    }
+
+    .side_bar {
+        justify-content: space-between;
+    }
+
+    .sections p a {
+        margin-left: 20px;
+    }
+
+    .all_page {
+
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        height: 100%;
+    }
+
+    .leave-button {
+        display: none;
+    }
+
+    .all_page .side_bar {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background-color: #1F4989;
+        height: 60px;
+        margin: 0;
+        padding-bottom: 1.6%;
+        padding-top: 1%;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 2px 2px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .all_page .content {
+        margin-top: 80px;
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card p {
+        font-size: 14px;
+    }
+
+    .card h3 {
+        font-size: 16px;
+    }
+
+    .training_sectors_h2 {
+        margin-left: 10%;
+    }
+
+    .courses_sectors_images {
+        display: grid;
+    }
+
+    .video{
+        width: 90%;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .theme{
+        margin-left: 0;
+    }
+
+    .chat{
+        margin-left: 0;
+    }
+
+    .video_course{
+        margin: 0;
+    }
+}
