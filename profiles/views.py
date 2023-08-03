@@ -1,31 +1,32 @@
+from django.http import HttpResponseForbidden
 from django.shortcuts import render
 from django.views import View
 from courses.models import Course
 from users.models import User
 from django.views.generic import DetailView
 from django.utils.timezone import localtime
+from django.shortcuts import get_object_or_404
 
 
 class Profile(View):
     def get(self, request):
-        user = User.objects.get(username=request.user.username)
+        # Получите аутентифицированного пользователя
+        authenticated_user = request.user
 
         courses = Course.objects.all()
 
         context = {
-            'user': user,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
+            'authenticated_user': authenticated_user,
             'courses': courses
         }
 
-        if user.role == 'student':
-            courses = Course.objects.filter(students=user)
+        if authenticated_user.role == 'student':
+            courses = Course.objects.filter(students=authenticated_user)
             return render(request, 'users/student/profileSettings.html', {'context': context, 'courses': courses})
-        elif user.role == 'curator':
-            courses = Course.objects.filter(curators=user)
+        elif authenticated_user.role == 'curator':
+            courses = Course.objects.filter(curators=authenticated_user)
             return render(request, 'users/curator/profileSettingsAdmin.html', {'context': context, 'courses': courses})
-        elif user.role == 'admin':
+        elif authenticated_user.role == 'admin':
             courses = Course.objects.all()
             return render(request, 'users/admin/profileSettingsAdmin.html', {'context': context, 'courses': courses})
         else:
@@ -33,34 +34,36 @@ class Profile(View):
 
 
 
-class ProfileView(DetailView):
-    model = User
-    template_name = 'users/admin/profileSettingsAdmin.html'
-    context_object_name = 'profile'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user = self.get_object()
 
-        # Проверка наличия файла перед его использованием
-        if user.image:
-            try:
-                context['user_image_url'] = user.image.url
-            except ValueError:
-                # Обработка исключения, если файл некорректный
-                context['user_image_url'] = None
-        else:
-            context['user_image_url'] = None
+class ProfileView(View):
+    template_name_curator = 'users/curator/profileSettingsAdmin.html'
+    template_name_admin = 'users/admin/profileSettingsAdmin.html'
 
-        # Добавление информации о последнем входе пользователя и его роли
-        context['last_login'] = localtime(user.last_login)
-        context['role'] = user.role
+    def get(self, request, pk):
+        # Check if the user is allowed to access this view based on their role
+        if request.user.role not in ['curator', 'admin']:
+            return HttpResponseForbidden("У вас нет доступа к этой странице.")
 
-        # Получение списка курсов, в которых участвует студент
-        courses = Course.objects.filter(students=user)
-        context['courses'] = courses
+        # Fetch the specific student object based on the provided 'pk' parameter
+        student = get_object_or_404(User, pk=pk, role='student')
+        courses = student.courses.all()
+        email = student.email
 
-        return context
+        context = {
+            'student': student,
+            'courses': courses,
+            'email': email,
+        }
+
+        # Render the appropriate template based on the user's role
+        if request.user.role == 'curator':
+            return render(request, self.template_name_curator, context)
+        elif request.user.role == 'admin':
+            return render(request, self.template_name_admin, context)
+
+
+
 
 
 

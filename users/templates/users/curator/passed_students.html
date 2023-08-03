@@ -1,0 +1,9 @@
+{% extends 'users/curator/base.html' %}
+{% block content %}
+<h1>Список студентов, прошедших все уроки и сдавших все тесты и эссе</h1>
+<ul>
+  {% for student in passed_students %}
+    <li>{{ student.username }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

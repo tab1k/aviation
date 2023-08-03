@@ -1,0 +1,115 @@
+{% extends 'users/stransit/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}О нас{% endblock %}</title>
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'stransit/assets/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'stransit/assets/css/styles.min.css' %}">
+    {% endblock %}
+</head>
+
+<body>
+    {% block li_active %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:index' %}">Главная</a></li>
+        <li class="nav-item"><a class="nav-link active" href="{% url 'stransit:about' %}">О нас</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:all_courses' %}">Курсы</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:online_courses' %}">Онлайн курсы</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:certificates' %}">Сертификаты</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:contacts' %}">Контакты</a></li>
+    {% endblock %}
+    {% block content %}
+        <section class="py-5">
+        <!-- Start: Features Cards -->
+        <div class="container py-5">
+            <div class="row mb-4 mb-lg-5">
+                <div class="col-md-8 col-xl-9 text-center mx-auto">
+                    <h3 class="fw-bold" style="font-size: 30px;">&nbsp;О нас</h3>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
+                <div class="col mb-5"><img class="rounded img-fluid shadow" src="{% static 'stransit/assets/img/products/Снимок%20экрана%202023-07-28%20в%2021.13.06.png' %}"></div>
+                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
+                    <div>
+                        <h5 class="fw-bold"><strong>АУЦ</strong>&nbsp;«Стандарт Транзит»&nbsp;</h5>
+                        <p class="text-muted mb-4">ТОО «Стандарт Транзит» основана в 2015 году, специализируется на обучающих программах, тренингах, курсах повышения квалификации.</p>
+                        <a href="{% url 'stransit:contacts' %}"><button class="btn btn-primary shadow" type="button"><strong>Связаться с нами</strong></button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
+                <div class="col mb-5"><img class="rounded img-fluid shadow" src="{% static 'stransit/assets/img/products/photo_2023-07-27_23-19-06.jpg' %}"></div>
+                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
+                    <div>
+                        <h4 class="fw-bold">Журкабаева Динара</h4>
+                        <h6 class="fw-bold">Директор АУЦ "Стандарт Транзит"</h6>
+                        <p class="text-muted mb-4">Более 22 лет опыта в управлении в авиационной деятельности. Опыт работы также включает соответствие стандартам ИКАО и нефтегазовой отрасли (OGP). Работы в специальных проектах, включающих внедрение в стране западных вертолетов нового поколения, создание новых операционных баз для западных воздушных чартерных услуг, включая административные и логистические операции, а также создание различных программ обучения для иностранных и национальных пилотов и инженеров. Деятельность включала технические, эксплуатационные, коммерческие, финансовые и юридические аспекты и взаимодействие с исполнительными органами с предоставлением презентаций по сложным и специализированным авиационным, эксплуатационным и административным вопросам. Взаимодействие на регулярной основе с государственными органами РК по вопросам трудовых отношений, налоговым департаментом, таможенным комитетом, управлением миграции и департаментом экологии. Счастливо замужем и воспитывает троих детей.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
+                <div class="col mb-5"><img class="rounded img-fluid shadow" src="{% static 'stransit/assets/img/team/photo_2023-07-28_22-15-00.jpg' %}"></div>
+                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
+                    <div>
+                        <h4 class="fw-bold">Нсанбаева Назгуль</h4>
+                        <h6 class="fw-bold">Менеджер по обеспечению качества.</h6>
+                        <p class="text-muted mb-4">С 14 летним опытом в авиационной деятельности, выбирает  правильные и профессиональные пути решения для улучшения качества обучения. Показательные знания поддерживают соответствие АУЦ с требуемыми нормативными документами. Чёткая проверка в обеспечении качества предоставляемых услуг. Проведение внешних и внутренних аудитов. Сертифицированный специалист по системе менеджмента качества, аудитор по международному стандарту качества . Также держит баланс в трудоемкой работе.  Часть руководящей команды и наша гордость.</p>
+                        <a href="{% url 'stransit:contacts' %}"><button href="{% url 'stransit:contacts' %}" class="btn btn-primary shadow" type="button">Связаться с нами</button></a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End: Features Cards -->
+    </section>
+        <div class="row mb-4 mb-lg-5">
+        <div class="col-md-8 col-xl-6 text-center mx-auto">
+            <h2 class="fw-bold">Наши инструктора</h2>
+        </div>
+    </div>
+        <div class="row row-cols-2 row-cols-md-3 mx-auto" style="max-width: 700px;width: 900px;">
+        <div class="col mb-4">
+            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-55-35.jpg' %}">
+                <h5 class="fw-bold mb-0" style="text-align: center;">Андрей<strong>&nbsp;</strong>Михайлович</h5>
+                <p class="text-muted mb-2" style="font-size: 11px;"><strong>Менеджер по учебным услугам</strong> / <strong>Инструктор по курсу</strong> "Авиационному законодательству /Aviation Legislation Continuation Training<br>«МОДУЛЬ 10 RK»</p>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-55-59.jpg' %}">
+                <h5 class="fw-bold mb-0">Ринат Маратович</h5>
+                <p class="text-muted mb-2" style="font-size: 11px;"><strong>Экзаменатор&nbsp;по курсу</strong> "Авиационному законодательству" и Возможности человека, применительно <br>к техническому обслуживанию ВС</p>
+            </div>
+        </div>
+        <div class="col-xl-4 mb-4">
+            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-56-29.jpg' %}">
+                <h5 class="fw-bold mb-0">Андрей Валерьевич</h5>
+                <p class="text-muted mb-2" style="font-size: 11px;"><strong>Инструктор по курсу</strong> " «Возможности человека, применительно <br>к техническому обслуживанию ВС Модуль 9А и 9В<br>/Human Factors in Aviation Module 9A / 9B»</p>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-56-57.jpg' %}">
+                <h5 class="fw-bold mb-0">Эрлан Алтайханович</h5>
+                <p class="text-muted mb-2" style="font-size: 12px;"><strong>Инструктор EWIS, FTS, ИАС.</strong> Человеческий фактор для руководителей.</p>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-57-55.jpg' %}">
+                <h5 class="fw-bold mb-0">Олжас Алтанбекулы</h5>
+                <p class="text-muted mb-2" style="font-size: 13px;"><strong>Инструктор по&nbsp;курсу</strong> "Безопасная перевозка опасных грузов по воздуху"</p>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-58-19.jpg' %}">
+                <h5 class="fw-bold mb-0">Еркин Амангельдиевич</h5>
+                <p class="text-muted mb-2" style="font-size: 10px;"><strong>Инструктор по подготовки специалистов</strong>,<br>участвующих в противообледенительной<br>обработке воздушных судов на земле.</p>
+            </div>
+        </div>
+    </div><!-- Start: Footer Multi Column -->
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'stransit/assets/js/script.min.js' %}"></script>
+</body>
+
+</html>

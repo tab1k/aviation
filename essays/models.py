@@ -1,32 +1,32 @@
 from django.db import models
-
 from courses.models import Lesson
 from users.models import User
 
 
 class Essay(models.Model):
-    text = models.TextField()  # Текст эссе
-    files = models.FileField(upload_to='essays/')  # Файлы эссе
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)  # Связь с моделью "Lesson"
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)  # Связь с моделью "User"
+    text = models.CharField(max_length=255)  # Тема эссе
+    description = models.TextField(null=True, default=None)  # Описание темы эссе with a default value
+    photo = models.ImageField(upload_to='essay_photos/', null=True, blank=True)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Эссе под {self.lesson} от {self.user}'
+        return self.text  # Change from self.topic to self.text
 
     class Meta:
-        verbose_name = 'Эссе'
-        verbose_name_plural = 'Эссе'
+        verbose_name = 'Тема эссе'
+        verbose_name_plural = 'Темы эссе'
 
 
-class EssayResult(models.Model):
-    student = models.ForeignKey(User, on_delete=models.CASCADE)  # Связь с моделью "User"
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)  # Связь с моделью "Lesson"
-    essay_text = models.TextField()  # Текст эссе
-    is_passed = models.BooleanField(default=False)  # Флаг, указывающий, прошел ли студент эссе
+class EssaySubmission(models.Model):
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    essay_text = models.TextField()
+    files = models.FileField(upload_to='essay_submissions/', blank=True, null=True)
+    is_passed = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Essay Result: {self.student.username} - {self.lesson.title}"
+        return f"Essay Submission: {self.student.username} - {self.lesson.title}"
 
     class Meta:
-        verbose_name = 'Результат эссе'
-        verbose_name_plural = 'Результаты эссе'
+        verbose_name = 'Сдача эссе'
+        verbose_name_plural = 'Сдачи эссе'

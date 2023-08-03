@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+TELEGRAM_BOT_TOKEN = '6430829618:AAFkAYmcOeu_oROGyDp2irSUGZZNIx60pR8'
+TELEGRAM_CHAT_ID = '-1001976653807'
+
 
 
 # Application definition
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
     "curator.apps.CuratorConfig",
     "student.apps.StudentConfig",
     "administrator.apps.AdministratorConfig",
+    "stransit.apps.StransitConfig",
     'django_extensions',
     'embed_video',
 ]
@@ -226,7 +230,8 @@ JAZZMIN_SETTINGS = {
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
         {"name": "Support", "url": "https://www.instagram.com/tab1k.k/", "new_window": True},
-        {"model": "auth.user"}
+        {"model": "auth.user"},
+        {"name": "Открыть сайт", "url": "admin:open_website", "icon": "fas fa-external-link-alt"}
     ],
 
     #############

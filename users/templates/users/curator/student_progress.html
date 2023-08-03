@@ -1,0 +1,202 @@
+{% extends 'users/curator/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap">
+  {% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'admin/css/student.css' %}" rel="stylesheet">
+  {% endblock %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили для таблицы */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Медиа-запрос для адаптивности на маленьких экранах */
+@media (max-width: 768px) {
+  th, td {
+    font-size: 14px;
+  }
+
+  /* Скрываем заголовки столбцов на маленьких экранах */
+  th {
+    display: none;
+  }
+
+  /* Применяем стили для отображения содержимого таблицы в столбцы */
+  td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+
+  tr {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+    </style>
+</head>
+
+<body>
+
+    {% block content %}
+        <div class="content">
+
+      <!-- search-input -->
+
+      <div class="content-header">
+        <h2>Успеваемость студента {{ student.first_name }}</h2>
+
+
+        <form method="GET" action="{% url 'stransit:users:admin:search_curators' %}">
+
+          <div class="search-footer">
+            <input type="text" name="q"  placeholder="Поиск...">
+            <button>Поиск</button>
+          </div>
+
+
+        </form>
+      </div>
+
+
+      <!-- Главная -->
+            <main class="table-responsive">
+              <table>
+                  <thead>
+                    <tr>
+                      <th>Курс</th>
+                      <th>Модуль</th>
+                      <th>Урок</th>
+                      <th>Результат теста</th>
+                      <th>Сдано эссе</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in progress %}
+                    <tr>
+                      <td>{{ item.course.title }}</td>
+                      <td>{{ item.module.title }}</td>
+                      <td>{{ item.lesson.title }}</td>
+                      <td>{{ item.test_result.score }}</td>
+                      <td>{% if item.essay_submission %}Да{% else %}Нет{% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </main>
+
+            <div style="margin: 100px">
+                <h2>Общая статистика</h2>
+              <p>Средний балл за тесты: {{ average_test_score }}</p>
+              <p>Количество сданных эссе: {{ total_essays_submitted }}</p>
+
+              <!-- Charts -->
+              <h2>Графики</h2>
+              <div style="width: 80%;">
+                <canvas id="testScoresChart"></canvas>
+              </div>
+              <div style="width: 80%;">
+                <canvas id="essaySubmissionsChart"></canvas>
+              </div>
+
+            </div>
+
+
+
+
+
+        </div>
+    {% endblock %}
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var testScoresChart = new Chart(testScoresCtx, {
+  type: 'bar',
+  data: {
+    labels: {% autoescape off %}{{ lessons_titles|safe }}{% endautoescape %},
+    datasets: [{
+      label: 'Баллы за тесты',
+      data: {% autoescape off %}{{ test_scores|safe }}{% endautoescape %},
+      backgroundColor: 'rgba(54, 162, 235, 0.8)',
+    }],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: 14,
+          },
+        },
+      },
+      y: {
+        ticks: {
+          font: {
+            size: 14,
+          },
+        },
+      },
+    },
+  },
+});
+
+var essaySubmissionsChart = new Chart(essaySubmissionsCtx, {
+  type: 'line', // Change the chart type to line
+  data: {
+    labels: {% autoescape off %}{{ lessons_titles|safe }}{% endautoescape %},
+    datasets: [{
+      label: 'Изменение эссе',
+      data: {% autoescape off %}{{ essays_submitted|safe }}{% endautoescape %},
+      fill: false, // Do not fill the area under the line
+      borderColor: 'rgba(255, 99, 132, 0.8)',
+      borderWidth: 2,
+    }],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: 14,
+          },
+        },
+      },
+      y: {
+        ticks: {
+          font: {
+            size: 14,
+          },
+        },
+      },
+    },
+  },
+});
+
+</script>
+</html>

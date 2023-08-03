@@ -36,16 +36,16 @@
           <div class="profile-img">
 
             <div class="profile-image">
-            {% if user_image_url %}
-                <img class="user-img" src="{{ profile.user.image.url }}" alt="">
-            {% else %}
-                <p>Нет фото</p>
-            {% endif %}
+                {% if student.image %}
+                    <img class="user-img" src="{{ student.image.url }}" alt="">
+                {% else %}
+                    <p>Нет фото</p>
+                {% endif %}
             </div>
 
             <div class="profileText">
-              <h3>id: {{ profile.id }}</h3>
-              <p>Пользователь - {{ profile.role }}</p>
+              <h3>id: {{ student.id }}</h3>
+              <p>Пользователь - {{ student.role }}</p>
 
             </div>
 
@@ -80,7 +80,7 @@
                         </defs>
                       </svg>
 
-                      <input placeholder="{{ profile.first_name }} {{ profile.last_name }}" type="text" class="input">
+                      <input placeholder="{{ student.first_name }} {{ student.last_name }}" type="text" class="input">
                     </div>
                   </div>
 
@@ -94,7 +94,7 @@
                       </svg>
 
 
-                      <input placeholder="{{ profile.email }}" type="email" class="input">
+                      <input placeholder="{{ email }}" type="email" class="input">
                     </div>
                   </div>
 
@@ -122,7 +122,7 @@
                 </div>
           </div>
 
-          <a style="padding-top: 17px" href="{% url 'users:admin:students_admin_check' %}" class="button"><b>Все студенты</b></a>
+          <a style="padding-top: 17px" href="{% url 'stransit:users:admin:students_admin_check' %}" class="button"><b>Все студенты</b></a>
 
 
           </form>

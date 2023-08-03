@@ -6,7 +6,7 @@ app_name = 'curator'
 urlpatterns = [
     path('', curator_view, name='curator'),
     path('courses/', include('courses.urls')),
-    path('profile/', include('profiles.urls')),
+    path('profile/', include('profiles.urls', namespace='profile')),
     path('schedule/', include('schedule.urls')),
     path('curator_check/students/', StudentsCheckAdmin.as_view(), name='students_admin_check'),
     path('logout/', LogoutView.as_view(), name='logout'),

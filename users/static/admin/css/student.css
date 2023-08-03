@@ -1075,19 +1075,13 @@ select {
 .students__content {
   width: 100%;
   display: grid;
+  overflow: hidden;
 }
 
-.students__titles, .students__links, .students__item, .students__table {
+.students__titles, .students__links, .students__item-content, .students__table {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.students__item.show {
-  display: flex;
-}
-.students__item {
-  display: none;
 }
 
 .students__links {
@@ -1132,7 +1126,16 @@ select {
   main {
     padding: 0;
   }
+  .students__content {
+    grid-gap: 32px;
+  }
   .students__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+  }
+  .students__item-content {
     border-radius: 14px;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
     padding: 5% 0 5% 5%;
@@ -1148,7 +1151,7 @@ select {
     width: auto;
   }
   
-  .students__item {
+  .students__item-content {
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
@@ -1182,9 +1185,12 @@ select {
 }
 
 @media (max-width:600px) {
-  .students__item {
-    /* margin: 3% 15px; */
-    padding: 10% 0 10% 7%;
+  .students__content {
+    grid-gap: 75px;
+  }
+
+  .students__item-content {
+    padding: 7% 0 7% 5%;
   }
   .students__table {
     gap: 20px;
@@ -1193,7 +1199,7 @@ select {
 }
 
 @media (max-width: 300px) {
-  .students__item {
+  .students__item-content {
     padding: 10% 0 10% 10%;
   }
   

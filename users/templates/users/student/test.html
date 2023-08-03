@@ -1,5 +1,6 @@
 {% extends 'users/student/base.html' %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="ru" dir="ltr">
 
@@ -8,7 +9,7 @@
   <title></title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'student/css/test.css' %}">
+  {% block css %}<link rel="stylesheet" href="{% static 'student/css/test.css' %}">{% endblock %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
@@ -18,79 +19,44 @@
 
 <body>
   <div class="all_page">
-    <!-- SIDE BAR-->
-
-    <!-- -->
     {% block content %}
-        <div class="content">
-
-      <!-- search-input -->
-
-      <!-- my courses -->
-
-          <div class="courses">
-
-              <div class="quiz">
-                <h2 class="my-courses-h2">Тест</h2>
-                <!-- theme lesson -->
-                <form method="post" action="{% url 'users:student:courses:tests:tests' %}">
+    <div class="content">
+        <div class="courses">
+            <div class="quiz">
+                <h2>Тест "{{ lesson.title }}"</h2>
+                <form method="post" action="{% url 'stransit:users:student:courses:tests:take_test' lesson_id=lesson.id %}">
                     {% csrf_token %}
-                    <div class="theme">
-                        <p><b>{{ question.question }}</b></p>
-                        <!-- test -->
-                        <div class="test">
-                            {% for choice in question.testchoice_set.all %}
-                            <div class="variant">
-                                <label class="checkbox">
-                                    <input name="answer" type="radio" value="{{ choice.id }}">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <p> <b>{{ choice.choice }}</b> </p>
+                    <ol>
+                        {% for question in questions %}
+                        <div class="theme">
+                            <li>{{ question.question }}</li>
+                            <div class="test">
+                                {% for choice in question.testchoice_set.all %}
+                                <div class="variant">
+                                    <label class="checkbox">
+                                        <input name="question_{{ question.id }}" type="radio" value="{{ choice.id }}">
+                                    </label>
+                                    <p><b>{{ choice.choice }}</b></p>
+                                </div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
                         </div>
-                        <div class="nextBtn">
-                            <input type="submit" value="Отправить">
-                        </div>
+                        {% endfor %}
+                    </ol>
+                    <div class="nextBtn">
+                        <a href="video.html"><img id="back" src="img/back.png" alt=""></a>
+                        <button type="submit" class="essay">Сдать тест</button>
                     </div>
                 </form>
-                <div class="nextBtn">
-                    <a href="#"><img id="back" src="{% static 'student/img/back.png' %}" alt=""></a>
-                    <a href="#"><img  src="{% static 'student/img/next-button.svg' %}" alt=""></a>
-                </div>
             </div>
-
-
-          </div>
-
-              <div class="chat">
-
-                <div class="comment">
-                  <div class="ava">
-                    <img src="img/comment-ava.jpg" alt="">
-                  </div>
-                  <div class="comment-text">
-                    <p>A fast 50mm like f1.8 would help with <br> the bokeh.  I’ve been using primes as they <br> tend to get a bit sharper images.</p>
-                  </div>
-                </div>
-
-                <div class="reply">
-                  <form action="">
-                    <input type="text" class="reply-input" placeholder="Комментарии">
-                    <button class="send"><img src="img/send.svg" alt=""></button>
-                  </form>
-                </div>
-
-              </div>
-
-            <a href="video.html"><img id="back" src="img/back.png" alt=""></a>
         </div>
-    {% endblock %}
-    
     </div>
-  
+    {% endblock %}
+  </div>
 
-    <script src="{% static 'student/js/side-bar.js' %}"></script>
+  <script src="{% static 'student/js/side-bar.js' %}"></script>
 </body>
 
 </html>
+
+

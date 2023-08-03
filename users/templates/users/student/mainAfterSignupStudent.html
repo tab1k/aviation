@@ -23,13 +23,13 @@
       {% block content %}
             <div class="content">
 
-                <div class="training_sectors">
+          <div class="training_sectors">
               <div class="training_sectors">
                   <h2 class="training_sectors_h2">Курсы</h2>
                   <!-- training_sectors_images -->
                   <div class="training_sectors_images training_slider_cources">
                     {% for c in courses %}
-                      <a href="{% url 'users:student:courses:modules' c.pk %}">
+                      <a href="{% url 'stransit:users:student:courses:modules' c.pk %}">
                         <div class="training_sectors_indusrial">
                           <div class="aviation-img rel">
                             <div class="course-info">
@@ -58,7 +58,7 @@
                     <div class="training_sectors_images training_slider">
                     {% for ct in courses_type %}
                       <!-- training_sectors_aviation -->
-                      <a href="{% url 'users:student:courses:courses_by_type' ct.pk %}">
+                      <a href="{% url 'stransit:users:student:courses:courses_by_type' ct.pk %}">
                       <div class="training_sectors_aviation">
                         <div class="aviation-img">
                           <div class="course-info">
@@ -81,6 +81,7 @@
                     </div>
 
                 </div>
+
 
       {% endblock %}
   </div>

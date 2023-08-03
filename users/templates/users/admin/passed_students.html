@@ -1,0 +1,78 @@
+<!-- templates/users/admin/admin_passed_students.html -->
+
+{% extends 'users/admin/base.html' %}
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap">
+  {% block css %}
+      <link rel="stylesheet" type="text/css" href="{% static 'admin/css/student.css' %}" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="{% static 'admin/css/passed_students.css' %}" rel="stylesheet">
+  {% endblock %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<div class="all_page">
+  {% block content %}
+  <div class="content">
+
+    <div class="content-header">
+
+        <h2>Список успешно завершивших студентов</h2>
+        <form action="{% url 'stransit:users:admin:courses:passed_students' %}" method="get">
+
+          <div class="search-footer">
+            <input name="q" placeholder="Поиск...">
+            <button>Поиск</button>
+          </div>
+
+        </form>
+    </div>
+
+    {% if passed_students %}
+    <table class="student-table">
+      <thead style="display: contents">
+        <tr>
+          <th>Имя</th>
+          <th>Фамилия</th>
+          <th>Email</th>
+          <th>Курс</th>
+          <th>Посмотреть успеваемость</th>
+          <th>Выдать</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in passed_students %}
+        <tr>
+          <td>{{ student.first_name }}</td>
+          <td>{{ student.last_name }}</td>
+          <td>{{ student.email }}</td>
+          <td>
+              {% for course in student.courses.all %}
+                    - {{ course.title }}<br>{% if not forloop.last %} {% endif %}
+              {% endfor %}
+          </td>
+          <td><a href="{% url 'stransit:users:admin:courses:student_progress' student_id=student.id %}">Успеваемость</a></td>
+          <td><a href="{% url 'stransit:users:admin:courses:generate_certificate' student_id=student.id %}" target="_blank">Выдать сертификат</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>Пока нет успешно завершивших студентов.</p>
+    {% endif %}
+  </div>
+  {% endblock %}
+</div>

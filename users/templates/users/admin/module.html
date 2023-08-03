@@ -5,7 +5,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title> 
+  <title></title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% block css %}<link rel="stylesheet" href="{% static 'student/css/module.css' %}">{% endblock %}
@@ -28,12 +28,12 @@
                 {% for module in modules %}
                 <div class="course">
 
-                  <a  href="{% url 'users:student:courses:lessons_by_module' module.id %}"><p class="module-name" ><b>{{ module.title|truncatechars:16 }}</b></p></a>
+                  <a  href="{% url 'stransit:users:student:courses:lessons_by_module' module.id %}"><p class="module-name" ><b>{{ module.title|truncatechars:16 }}</b></p></a>
                   <p>7 уроков</p>
 
                   <div class="buttons">
 
-                    <a  href="{% url 'users:student:courses:lessons_by_module' module.id %}"><button class="go">Перейти</button></a>
+                    <a  href="{% url 'stransit:users:student:courses:lessons_by_module' module.id %}"><button class="go">Перейти</button></a>
 
                   </div>
 
@@ -46,9 +46,7 @@
     {% endblock %}
 
     </div>
-    
+
   <script src="{% static 'admin/js/side-bar.js' %}"></script>
 </body>
 </html>
-
-

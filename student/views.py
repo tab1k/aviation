@@ -39,4 +39,4 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         # Дополнительный код, например, перенаправление на другую страницу
-        return redirect('users:login')  # Замените 'home' на имя URL-шаблона для перенаправления на нужную страницу
+        return redirect('stransit:users:login')  # Замените 'home' на имя URL-шаблона для перенаправления на нужную страницу

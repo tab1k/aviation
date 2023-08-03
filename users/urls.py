@@ -1,5 +1,5 @@
 from django.urls import path, include
-from users.views import back_to_home, login_view
+from users.views import back_to_home, login_view, open_website
 
 app_name = 'users'
 
@@ -9,6 +9,7 @@ urlpatterns = [
     path('student/', include('student.urls', namespace='student')),
     path('curator/', include('curator.urls', namespace='curator')),
     path('back-to-home/', back_to_home, name='back_to_home'),
+    path('open-website/', open_website, name='open_website'),
 ]
 
 

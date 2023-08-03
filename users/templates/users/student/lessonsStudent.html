@@ -51,7 +51,7 @@
                         </div>
 
 
-                        <a href="{% url 'users:student:courses:lesson_view' lesson.pk %}">
+                        <a href="{% url 'stransit:users:student:courses:lesson_view' lesson.pk %}">
                             <button class="go">
                                 <p>Перейти</p>
                             </button>
@@ -60,7 +60,7 @@
                     </div>
                     {% endfor %}
 
-                    <a href="{% url 'users:back_to_home' %}"><img class="back" src="{% static 'admin/img/next-button.svg' %}" alt=""></a>
+                    <a href="{% url 'stransit:users:back_to_home' %}"><img class="back" src="{% static 'admin/img/next-button.svg' %}" alt=""></a>
 
                 </div>
 

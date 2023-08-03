@@ -58,7 +58,9 @@ class Lesson(models.Model):
     description = models.TextField()  # Описание урока
     video = EmbedVideoField() # Видео
     zoom_link = models.URLField(blank=True, null=True)
+    learn_documentation = models.FileField(blank=True, null=True)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)  # Связь с моделью "Module"
+
 
     def __str__(self):
         return self.title

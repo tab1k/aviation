@@ -723,6 +723,38 @@ ol {
 }
 
 
+/* Albina edit */
+
+.all_page .content {
+  height: 92vh;
+}
+
+.quiz {
+  max-height: 85vh;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .all_page .content {
+    width: 85% !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .theme {
+    margin-top: 20%;
+  }
+  .test {
+    margin-top: 10%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .quiz {
+    max-height: 85vh;
+  }
+}
+
 
 @media screen and (max-height: 450px) {
   .sidebar {
@@ -731,6 +763,14 @@ ol {
 
   .sidebar a {
       font-size: 18px;
+  }
+  
+  .theme {
+    margin-top: 25%;
+  }
+
+  .variant {
+    margin-top: 5%;
   }
 }
 
@@ -865,4 +905,14 @@ ol {
       padding-right: 80%;
   }
 
+}
+
+
+@media screen and (max-width: 767px) {
+  .theme {
+    margin-top: 20%;
+  }
+  .test {
+    margin-top: 10%;
+  }
 }

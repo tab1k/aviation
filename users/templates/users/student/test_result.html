@@ -1,0 +1,60 @@
+{% extends 'users/student/base.html' %}
+{% load static %}
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'admin/css/videoAdmin.css' %}">{% endblock %}
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
+    <style>
+    .correct-answer {
+      color: green;
+    }
+  </style>
+
+</head>
+
+
+<body>
+
+
+    {% block content %}
+    <div class="content">
+        <div style="margin: 20px">
+            <h2>Результаты теста по уроку "{{ lesson.title }}"</h2>
+
+            <p>Ваша оценка: {{ total_score }}/{{ total_possible_score }}</p>
+
+            <ol style="background-color: #49fc49; border-radius: 10px; padding: 35px">{% for question in test_questions %}
+                <li style="">{{ question.question }}</li>
+                <ul>{% for choice in question.testchoice_set.all %}
+                    <li>{{ choice.choice }}
+                        {% if choice.is_correct %} - Правильно
+                        {% else %} - Неправильно
+                        {% endif %}</li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
+            </ol>
+
+            {% if is_passing_grade %}{% if essay_allowed %}
+                <button class="essay"><a style="color: black" href="{% url 'stransit:users:student:courses:essays:essay_submission'  lesson_id=lesson.id%}">Сдать эссе</a></button>
+            {% else %}
+                <a style="color: black" href="{% url 'next_lesson_url' %}">Перейти к следующему уроку</a>
+            {% endif %}
+            {% else %}<a style="color: black" href="{% url 'stransit:users:student:courses:tests:take_test' lesson_id=lesson.id %}">Пройти тест заново</a>
+            {% endif %}
+        </div>
+    </div>
+  {% endblock %}
+
+</body>
+
+</html>

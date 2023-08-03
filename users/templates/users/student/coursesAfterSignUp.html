@@ -8,12 +8,14 @@
   <title></title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/mainstyles.css">
+  <link rel="stylesheet" href="{% static 'student/css/mainstyles.css' %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap">
-  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'student/css/coursesAfterSignUp.css' %}" rel="stylesheet" />{% endblock %}
+  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'student/css/coursesAfterSignUp.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'curator/css/mainAfterSignUpAdmin.css' %}">{% endblock %}
   <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'student/css/slider-slick.css' %}">
 </head>
 
 <body>
@@ -28,21 +30,32 @@
 
        <div class="courses_sector">
         <h2 class="training_sectors_h2">Мои курсы</h2>
-        <div class="training_sectors_images">
-          {% for c in courses %}
-          <div class="card">
-            <a title="module" href="{% url 'users:student:courses:modules' c.pk %}">
-                <img class="card-img" src="{% static 'student/img/Mask Group.png' %}"  alt=""/>
-            </a>
-            <h2>{{ c.title }}</h2>
-          </div>
-          {% endfor %}
-        </div>
-        <!--courses-->
+            <div style="flex-wrap: initial;" class="training_sectors_images training_slider_cources" >
+                    {% for c in courses %}
+                      <a href="{% url 'stransit:users:student:courses:modules' c.pk %}">
+                        <div class="training_sectors_indusrial">
+                          <div class="aviation-img rel">
+                            <div class="course-info">
+                              <div class="course-type">
+                                <h3>{{ c.title|truncatechars:10 }}</h3>
+                              </div>
+                              <button class="course-minutes">
+                                {{ c.duration }} min
+                              </button>
+                            </div>
+                            <img src="{% static 'admin/img/Mask Group.png' %}" alt="">
+                            <div class="aviation-text-industry">
+                              <p>{{ c.description|truncatechars:80 }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    {% endfor %}
+                  </div>
 
-        <h2 class="training_sectors_h2">Новые уведомления</h2>
+            <h2 class="training_sectors_h2">Новые уведомления</h2>
 
-          <div class="news">
+            <div class="news">
 
             <img onclick="prev()" class="prev" src="{% static 'student/img/next-button.svg' %}" alt="">
             <div class="news-buttons">
@@ -71,10 +84,13 @@
             <img onclick="next()" class="next" src="{% static 'student/img/next-button.svg' %}" alt="">
 
           </div>
-      </div>
+       </div>
+
     {% endblock %}
 
     <script src="{% static 'student/js/side-bar.js' %}"></script>
+    <script src="{% static 'student/js/slider-slick.js' %}"></script>
+    <script src="{% static 'student/js/slider.js' %}"></script>
     <script>
       // Add the verbatim tag to avoid conflicts with Django template tags
       {% verbatim %}

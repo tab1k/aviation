@@ -1,5 +1,5 @@
 from django.contrib import admin
-from tests.models import Test, TestChoice
+from tests.models import Test, TestChoice, TestResult
 
 
 class TestAdmin(admin.ModelAdmin):
@@ -14,5 +14,12 @@ class TestChoiceAdmin(admin.ModelAdmin):
     search_fields = ('choice', 'test__question', 'test__lesson__title')
 
 
+class TestResultAdmin(admin.ModelAdmin):
+    list_display = ('student', 'lesson', 'score', 'attempts')
+    list_filter = ('student','lesson')
+    search_fields = ('student', 'lesson', 'score', 'attempts')
+
+
 admin.site.register(Test, TestAdmin)
 admin.site.register(TestChoice, TestChoiceAdmin)
+admin.site.register(TestResult,TestResultAdmin)

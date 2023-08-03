@@ -6,8 +6,6 @@ from users.models import User
 class Test(models.Model):
     question = models.TextField()  # Вопрос
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)  # Связь с моделью "Lesson"
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)  # Связь с моделью "User"
-    score = models.PositiveIntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.question
@@ -18,9 +16,11 @@ class Test(models.Model):
 
 
 class TestChoice(models.Model):
-    test = models.ForeignKey(Test, on_delete=models.CASCADE)  # Связь с моделью "Test"
-    choice = models.CharField(max_length=255)  # Вариант ответа
-    is_correct = models.BooleanField(default=False)  # Правильный ответ
+    test = models.ForeignKey(Test, on_delete=models.CASCADE)
+    choice = models.CharField(max_length=255)
+    score = models.PositiveIntegerField(default=0)
+    is_correct = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.choice
@@ -31,9 +31,10 @@ class TestChoice(models.Model):
 
 
 class TestResult(models.Model):
-    student = models.ForeignKey(User, on_delete=models.CASCADE)  # Связь с моделью "User"
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)  # Связь с моделью "Lesson"
-    score = models.PositiveIntegerField()  # Оценка
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    score = models.PositiveIntegerField(null=True, blank=True)
+    attempts = models.PositiveIntegerField(default=0)  # Количество попыток прохождения теста
 
     def __str__(self):
         return f"Test Result: {self.student.username} - {self.lesson.title}"
@@ -41,4 +42,5 @@ class TestResult(models.Model):
     class Meta:
         verbose_name = 'Результат теста'
         verbose_name_plural = 'Результаты тестов'
+
 

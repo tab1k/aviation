@@ -316,9 +316,7 @@ input:-webkit-autofill:active {
 
 /* training_sectors_images-style */
 .training_sectors_images {
-  display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap;
   margin-top: 5%;
   gap: 20px;
 }
@@ -633,7 +631,7 @@ input:-webkit-autofill:active {
     }
 
     .news_info{
-      width: 90%;
+      width: 100%;
     }
 
     .card{

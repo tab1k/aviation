@@ -57,23 +57,19 @@
         </tr>
       </thead>
       <tbody>
-        {% for schedule in schedules %}
+        {% for start_time, end_time in time_ranges %}
         <tr>
           <td class="schedule-item">
-            <span class="schedule-time_start">{{ schedule.start_time|time:"H:i" }}</span>
-            <span class="schedule-time_end">{{ schedule.end_time|time:"H:i" }}</span>
+            <span class="schedule-time_start">{{ start_time }}</span>
+            <span class="schedule-time_end">{{ end_time }}</span>
           </td>
-          {% for day in weekdays %}
+          {% for day, day_name in weekdays %}
           <td class="schedule-item">
-            {% if day.0 in schedule.weekdays %}
-              {% if user_role == 'admin' %}
-                {{ schedule.course.name }}  {# Показываем курсы для администратора #}
-              {% else %}
-                {% if schedule.course in all_courses %}
-                  {{ schedule.course.name }}  {# Показываем курсы для студента и куратора #}
-                {% endif %}
-              {% endif %}
+            {% for schedule in schedules %}
+            {% if schedule.weekdays == day and schedule.start_time == start_time and schedule.end_time == end_time %}
+              {{ schedule.course.name }}
             {% endif %}
+            {% endfor %}
           </td>
           {% endfor %}
         </tr>
@@ -91,3 +87,4 @@
 </body>
 
 </html>
+

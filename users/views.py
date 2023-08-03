@@ -16,11 +16,11 @@ def login_view(request):
                 login(request, user)
                 if user.is_staff:
                     if user.role == 'curator':
-                        return redirect('users:curator:curator')
+                        return redirect('stransit:users:curator:curator')
                     elif user.role == 'admin':
-                        return redirect('users:admin:admin')
+                        return redirect('stransit:users:admin:admin')
                 else:
-                    return redirect('users:student:student')
+                    return redirect('stransit:users:student:student')
             else:
                 error = 'Не правильные данные!'
     else:
@@ -34,22 +34,25 @@ def login_view(request):
 def back_to_home(request):
     if request.user.is_authenticated:
         if request.user.role == 'admin':
-            return redirect('users:admin:admin')  # Замените 'admin_home' на имя URL-шаблона главной страницы администратора
+            return redirect('stransit:users:admin:admin')  # Замените 'admin_home' на имя URL-шаблона главной страницы администратора
         elif request.user.role == 'curator':
-            return redirect('users:curator:curator')  # Замените 'curator_home' на имя URL-шаблона главной страницы куратора
+            return redirect('stransit:users:curator:curator')  # Замените 'curator_home' на имя URL-шаблона главной страницы куратора
         else:
-            return redirect('users:student:student')  # Замените 'student_home' на имя URL-шаблона главной страницы студента
+            return redirect('stransit:users:student:student')  # Замените 'student_home' на имя URL-шаблона главной страницы студента
     else:
         return redirect('login')  # Замените 'login' на имя URL-шаблона страницы входа
-
-
-
 
 
 # ERROR - 404
 
 def error_404_view(request, exception):
     return render(request, 'users/404.html', status=404)
+
+
+def open_website(request):
+    # Здесь вы можете указать URL вашего сайта
+    website_url = "http://127.0.0.1:8000"  # Замените на ваш URL
+    return redirect(website_url)
 
 
 

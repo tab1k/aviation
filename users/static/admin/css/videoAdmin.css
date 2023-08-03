@@ -353,6 +353,7 @@ embed {
 .buttonNext {
     display: flex;
     justify-content: space-between;
+    margin-top: 5%;
     margin-bottom: 5%;
     align-items: center;
 }

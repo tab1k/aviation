@@ -56,7 +56,7 @@
           <div class="video_course">
             {% video lesson.video width="800" height="450" %}
             <div class="buttonNext">
-                <button><a href="{% url 'users:admin:courses:tests:tests' %}">Пройти тест</a></button>
+                <button><a href="{% url 'stransit:users:admin:courses:tests:take_test' lesson_id=lesson.id%}">Пройти тест</a></button>
                 <a href="#"><img src="img/next-button.svg" alt=""></a>
             </div>
           </div>

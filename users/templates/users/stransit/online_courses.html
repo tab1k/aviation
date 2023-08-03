@@ -1,0 +1,57 @@
+{% extends 'users/stransit/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}Онлайн курсы{% endblock %}</title>
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'stransit/assets/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'stransit/assets/css/styles.min.css' %}">
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block li_active %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:index' %}">Главная</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:about' %}">О нас</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:all_courses' %}">Курсы</a></li>
+        <li class="nav-item"><a class="nav-link active" href="{% url 'stransit:online_courses' %}">Онлайн курсы</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:certificates' %}">Сертификаты</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:contacts' %}">Контакты</a></li>
+    {% endblock %}
+
+    {% block content %}
+        <section class="py-5">
+        <!-- Start: Projects Grid -->
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="fw-bold">Онлайн курсы</h2>
+                    <p class="text-muted">Curae hendrerit donec commodo hendrerit egestas tempus, turpis facilisis nostra nunc. Vestibulum dui eget ultrices.</p>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
+              {% for o in online %}
+                <div class="col mb-4">
+                    <div><a href="#"><img class="rounded img-fluid shadow w-100 fit-cover" src="{{ o.photo.url }}" style="height: 250px;"></a>
+                        <div class="py-4"><span class="badge bg-primary mb-2">{{ o.type }}</span>
+                            <h4 class="fw-bold">{{ o.title }}</h4>
+                            <p class="text-muted">{{ o.about_course }}</p>
+                        </div>
+                    </div>
+                </div>
+              {% endfor %}
+            </div>
+        </div><!-- End: Projects Grid -->
+    </section>
+    {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'stransit/assets/js/script.min.js' %}"></script>
+</body>
+
+</html>

@@ -112,7 +112,16 @@ class AddCurator(View):
 
 
 class SearchStudentsView(View):
-    template_name = 'users/admin/student.html'
+    def get_template_names(self):
+        # Получаем текущего пользователя
+        user = self.request.user
+
+        # Если поле role у пользователя равно "admin", используем шаблон для администратора
+        if user.role == 'admin':
+            return ['users/admin/student.html']
+        # Иначе используем шаблон для куратора
+        else:
+            return ['users/curator/student.html']
 
     def get(self, request):
         query = request.GET.get('q')
@@ -120,14 +129,14 @@ class SearchStudentsView(View):
 
         students = User.objects.filter(
             role='student',
-            first_name__icontains=query
+            first_name__icontains=query,
         )
 
         if stream:
             students = students.filter(stream__number=int(stream))
 
         context = {'students': students}
-        return render(request, self.template_name, context)
+        return render(request, self.get_template_names(), context)
 
 
 
@@ -160,4 +169,4 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         # Дополнительный код, например, перенаправление на другую страницу
-        return redirect('users:login')  # Замените 'home' на имя URL-шаблона для перенаправления на нужную страницу
+        return redirect('stransit:index')  # Замените 'home' на имя URL-шаблона для перенаправления на нужную страницу
