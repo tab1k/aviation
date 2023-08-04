@@ -144,6 +144,11 @@ class LessonView(View):
         next_lesson = Lesson.objects.filter(module=module, id__gt=current_lesson.id).order_by('id').first()
         return next_lesson
 
+    def get_previous_lesson(self, current_lesson):
+        module = current_lesson.module
+        previous_lesson = Lesson.objects.filter(module=module, id__lt=current_lesson.id).order_by('-id').first()
+        return previous_lesson
+
     def get(self, request, lesson_id):
         lesson = get_object_or_404(Lesson, id=lesson_id)
         module = lesson.module
@@ -153,9 +158,11 @@ class LessonView(View):
 
         if request.user.role == 'student':
             next_lesson = self.get_next_lesson(lesson)
+            previous_lesson = self.get_previous_lesson(lesson)
             return render(request, self.student_template,
                           {'lesson': lesson, 'lessons': lessons, 'comment_form': comment_form,
-                           'student_comments': student_comments, 'next_lesson': next_lesson})
+                           'student_comments': student_comments, 'next_lesson': next_lesson,
+                           'previous_lesson': previous_lesson})
         elif request.user.role == 'curator':
             return render(request, self.curator_template,
                           {'lesson': lesson, 'lessons': lessons, 'comment_form': comment_form})
@@ -312,6 +319,7 @@ class StudentProgressView(View):
 
 class PassedStudentsView(View):
     template_name = 'users/admin/passed_students.html'
+    template_name_curator = 'users/curator/passed_students.html'
 
     def get(self, request):
         if request.user.role not in ['curator', 'admin']:
@@ -375,7 +383,10 @@ class PassedStudentsView(View):
             'search_query': search_query,
         }
 
-        return render(request, self.template_name, context)
+        if request.user.role == 'curator':
+            return render(request, self.template_name_curator, context)
+        elif request.user.role == 'admin':
+            return render(request, self.template_name, context)
 
 
 

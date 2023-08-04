@@ -49,7 +49,7 @@
             {% else %}
                 <a style="color: black" href="{% url 'next_lesson_url' %}">Перейти к следующему уроку</a>
             {% endif %}
-            {% else %}<a style="color: black" href="{% url 'stransit:users:student:courses:tests:take_test' lesson_id=lesson.id %}">Пройти тест заново</a>
+            {% else %}<button class="buttons"><a style="color: black" href="{% url 'stransit:users:student:courses:tests:take_test' lesson_id=lesson.id %}">Пройти тест заново</a></button>
             {% endif %}
         </div>
     </div>

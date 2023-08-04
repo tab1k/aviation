@@ -27,9 +27,14 @@ class TakeTestView(View):
         total_score = 0
         for question in questions:
             selected_choice_id = request.POST.get(f'question_{question.id}')
-            selected_choice = TestChoice.objects.get(pk=selected_choice_id)
-            if selected_choice.is_correct:
-                total_score += selected_choice.score
+            if selected_choice_id is not None:
+                try:
+                    selected_choice = TestChoice.objects.get(pk=selected_choice_id)
+                    if selected_choice.is_correct:
+                        total_score += selected_choice.score
+                except TestChoice.DoesNotExist:
+                    # Обработка случая, когда выбранный вариант ответа не существует
+                    pass
 
         test_result, created = TestResult.objects.get_or_create(student=user, lesson=lesson)
         test_result.score = total_score

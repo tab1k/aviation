@@ -1126,14 +1126,11 @@ select {
   main {
     padding: 0;
   }
-  .students__content {
-    grid-gap: 32px;
-  }
+
   .students__item {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px;
   }
   .students__item-content {
     border-radius: 14px;
@@ -1185,9 +1182,7 @@ select {
 }
 
 @media (max-width:600px) {
-  .students__content {
-    grid-gap: 75px;
-  }
+
 
   .students__item-content {
     padding: 7% 0 7% 5%;
@@ -1270,7 +1265,6 @@ select {
   .all_page .content {
     background-color: white;
     height: 100%;
-    width: 97% !important;
     margin-top: 80px;
     margin-left: auto;
     margin-right: auto;
@@ -1398,3 +1392,5 @@ select {
 .hidden {
   display: none;
 }
+
+

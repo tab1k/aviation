@@ -1,5 +1,7 @@
+from django.conf.urls.static import static
 from django.urls import path, include
 from users.views import back_to_home, login_view, open_website
+from django.conf import settings
 
 app_name = 'users'
 
@@ -11,6 +13,9 @@ urlpatterns = [
     path('back-to-home/', back_to_home, name='back_to_home'),
     path('open-website/', open_website, name='open_website'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 

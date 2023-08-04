@@ -38,12 +38,12 @@
 
                             <div class="about-lesson">
                                 <div class="data">
-                                    <p>Дата и время начала Ср 15 Фев 15:00</p>
+                                    <p>Дата и время начала: {{ lesson.start_datetime|date:"D d M H:i" }}</p>
                                 </div>
                                 <a href="videoAdmin.html">
                                     <div class="lesson-name">
                                         <p><b>{{ lesson.title }}</b> </p>
-                                        <p class="link">Zoom: <a href="">Ссылка</a></p>
+                                        <p class="link">Zoom: <a href="{{ lesson.zoom_link }}">{{ lesson.zoom_link }}</a></p>
                                     </div>
                                 </a>
                             </div>
@@ -59,7 +59,7 @@
                     </div>
                     {% endfor %}
 
-                    <img class="back" src="{% static 'admin/img/next-button.svg' %}" alt="">
+                    <a href=""><img class="back" src="{% static 'admin/img/next-button.svg' %}" alt=""></a>
 
                 </div>
 

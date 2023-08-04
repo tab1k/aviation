@@ -14,14 +14,13 @@
   {% block css %}
       <link rel="stylesheet" type="text/css" href="{% static 'admin/css/student.css' %}" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="{% static 'admin/css/passed_students.css' %}" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="{% static 'admin/css/responsive_passed_student.css' %}">
   {% endblock %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-    <style>
-
-    </style>
 </head>
 
 <div class="all_page">
@@ -42,34 +41,36 @@
     </div>
 
     {% if passed_students %}
-    <table class="student-table">
-      <thead style="display: contents">
-        <tr>
-          <th>Имя</th>
-          <th>Фамилия</th>
-          <th>Email</th>
-          <th>Курс</th>
-          <th>Посмотреть успеваемость</th>
-          <th>Выдать</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for student in passed_students %}
-        <tr>
-          <td>{{ student.first_name }}</td>
-          <td>{{ student.last_name }}</td>
-          <td>{{ student.email }}</td>
-          <td>
-              {% for course in student.courses.all %}
-                    - {{ course.title }}<br>{% if not forloop.last %} {% endif %}
-              {% endfor %}
-          </td>
-          <td><a href="{% url 'stransit:users:admin:courses:student_progress' student_id=student.id %}">Успеваемость</a></td>
-          <td><a href="{% url 'stransit:users:admin:courses:generate_certificate' student_id=student.id %}" target="_blank">Выдать сертификат</a></td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="responsive-table">
+      <table class="student-table">
+        <thead style="display: contents">
+          <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Email</th>
+            <th>Курс</th>
+            <th>Посмотреть успеваемость</th>
+            <th>Выдать</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in passed_students %}
+          <tr>
+            <td>{{ student.first_name }}</td>
+            <td>{{ student.last_name }}</td>
+            <td>{{ student.email }}</td>
+            <td>
+                {% for course in student.courses.all %}
+                      - {{ course.title }}<br>{% if not forloop.last %} {% endif %}
+                {% endfor %}
+            </td>
+            <td><a href="{% url 'stransit:users:admin:courses:student_progress' student_id=student.id %}">Успеваемость</a></td>
+            <td><a href="{% url 'stransit:users:admin:courses:generate_certificate' student_id=student.id %}" target="_blank">Выдать сертификат</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
     {% else %}
     <p>Пока нет успешно завершивших студентов.</p>
     {% endif %}

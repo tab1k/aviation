@@ -27,7 +27,6 @@
               <!-- LOGO -->
               <div class="side_bar_logo_settings">
                 <img class="side_bar_logo" src="{% static 'curator/img/logo.png' %}" alt="" width="40" height="40">
-                <p class="side_bar_logo_text"><a href="#">Aviation</a></p>
               </div>
 
               <!-- BURGER MENU -->
@@ -67,7 +66,11 @@
                 </div>
                 <div class="burger-content-element">
                   <img width="24" src="{% static 'curator/img/icons8-чат-48.png' %}" alt="">
-                    <p><a href="answers.html">Лента ответов</a></p>
+                    <p><a href="{% url 'stransit:users:curator:courses:answers_view' %}">Лента ответов</a></p>
+                </div>
+                <div class="burger-content-element">
+                    <img width="24" src="{% static 'admin/img/icons8-админ-94.png' %}" alt="">
+                    <p><a href="{% url 'admin:index' %}">Админ панель</a></p>
                 </div>
                 <div class="burger-content-element-leave">
                   <img width="24" src="{% static 'curator/img/icons8-выйти-48.png' %}" alt="">
@@ -104,6 +107,10 @@
                   <img class="side_bar_img" width="24" src="{% static 'curator/img/icons8-чат-48.png' %}" alt="">
                   <p class="side_bar_text"><a href="{% url 'stransit:users:curator:courses:answers_view' %}">Лента ответов</a></p>
                 </div>
+                <div class="side_bar_timeTable">
+                    <img class="side_bar_img" width="24" src="{% static 'admin/img/icons8-админ-94.png' %}" alt="">
+                    <p class="side_bar_text"><a href="{% url 'admin:index' %}">Админ панель</a></p>
+                </div>
             </div>
 
             <!-- support-img -->
@@ -117,8 +124,7 @@
           <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
             <a href="mainAfterSignUpAdmin.html">
             <div class="sidebar-logo">
-              <img class="side_bar_logo" src="img/logo.png" alt="" width="40" height="40">
-              <p class="">Aviation</p>
+              <img class="side_bar_logo" src="{% static 'curator/img/logo.png' %}" alt="" width="40" height="40">
             </div>
             </a>
             <a href="mainAfterSignUpAdmin.html"><span>
@@ -141,6 +147,9 @@
             <span class="sidebar_text">Расписание</span></a><br>
             <a href="{% url 'stransit:users:curator:courses:answers_view' %}">
               <img width="24" src="{% static 'curator/img/icons8-чат-48.png' %}" alt=""><span class="sidebar_text">Лента ответов</span>
+            </a>
+            <a href="admin">
+                <img width="24" src="{% static 'admin/img/icons8-админ-94.png' %}" alt=""><span class="sidebar_text">Админ панель</span>
             </a>
             <a href="index.html">
               <img  width="24" src="{% static 'curator/img/icons8-выйти-48.png' %}" alt="">

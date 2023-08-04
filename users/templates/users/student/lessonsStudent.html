@@ -18,8 +18,7 @@
 
 <body>
     <div class="all_page">
-        <!-- SIDE BAR-->
-        <!-- -->
+
         {% block content %}
             <div class="content">
             <div class="my-courses">
@@ -39,19 +38,19 @@
 
                             <div class="about-lesson">
                                 <div class="data">
-                                    <p>Дата и время начала Ср 15 Фев 15:00</p>
+                                    <p>Дата и время начала: {{ lesson.start_datetime|date:"D d M H:i" }}</p>
                                 </div>
                                 <a href="videoAdmin.html">
                                     <div class="lesson-name">
                                         <p><b>{{ lesson.title }}</b> </p>
-                                        <p class="link">Zoom: <a href="">Ссылка</a></p>
+                                        <p class="link">Zoom: <a href="{{ lesson.zoom_link }}">{{ lesson.zoom_link }}</a></p>
                                     </div>
                                 </a>
                             </div>
                         </div>
 
 
-                        <a href="{% url 'stransit:users:student:courses:lesson_view' lesson.pk %}">
+                        <a href="{% url 'stransit:users:admin:courses:lesson_view' lesson_id=lesson.id %}">
                             <button class="go">
                                 <p>Перейти</p>
                             </button>
@@ -60,7 +59,7 @@
                     </div>
                     {% endfor %}
 
-                    <a href="{% url 'stransit:users:back_to_home' %}"><img class="back" src="{% static 'admin/img/next-button.svg' %}" alt=""></a>
+                    <a href=""><img class="back" src="{% static 'admin/img/next-button.svg' %}" alt=""></a>
 
                 </div>
 
@@ -70,7 +69,7 @@
 
     </div>
 
-    <script src="{% static 'student/js/side-bar.js' %}"></script>
+    <script src="{% static 'admin/js/side-bar.js' %}"></script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
   <title></title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% block css %}<link rel="stylesheet" href="{% static 'curator/css/profileSettingsAdmin.css' %}">{% endblock %}
+  {% block css %}<link rel="stylesheet" href="{% static 'admin/css/profileSettingsAdmin.css' %}">{% endblock %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
@@ -18,6 +18,11 @@
 
 <body>
   <div class="all_page">
+    <!-- SIDE BAR-->
+
+      <!-- END SIDE_BAR-->
+
+    <!--Main -->
 
       {% block content %}
           <div class="content">
@@ -31,12 +36,16 @@
           <div class="profile-img">
 
             <div class="profile-image">
-            <img class="user-img" src="{% static 'curator/img/avatar.png' %}" alt="">
+                {% if student.image %}
+                    <img class="user-img" src="{{ student.image.url }}" alt="">
+                {% else %}
+                    <p>Нет фото</p>
+                {% endif %}
             </div>
 
             <div class="profileText">
-              <h3>id: {{ user.id }}</h3>
-              <p>Пользователь - {{ user.role }}</p>
+              <h3>id: {{ student.id }}</h3>
+              <p>Пользователь - {{ student.role }}</p>
 
             </div>
 
@@ -71,7 +80,7 @@
                         </defs>
                       </svg>
 
-                      <input placeholder="{{ user.first_name }} {{ user.last_name }}" type="text" class="input">
+                      <input placeholder="{{ student.first_name }} {{ student.last_name }}" type="text" class="input">
                     </div>
                   </div>
 
@@ -85,27 +94,36 @@
                       </svg>
 
 
-                      <input placeholder="{{ user.email }}" type="email" class="input">
+                      <input placeholder="{{ email }}" type="email" class="input">
                     </div>
                   </div>
 
+
                   <div class="inputsDiv">
-                    <label for="">Username</label>
+                    <label for="">Последний вход</label>
                     <div class="group">
                       <svg class="icon" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M3.6 4.71875C3.22594 4.71875 2.925 4.34258 2.925 3.875C2.925 3.40742 3.22594 3.03125 3.6 3.03125C3.97406 3.03125 4.275 3.40742 4.275 3.875C4.275 4.34258 3.97406 4.71875 3.6 4.71875ZM4.5 6.45195C5.29594 6.01953 5.85 5.02813 5.85 3.875C5.85 2.32109 4.84312 1.0625 3.6 1.0625C2.35687 1.0625 1.35 2.32109 1.35 3.875C1.35 5.02813 1.90406 6.01953 2.7 6.45195V8.375H0.9C0.402187 8.375 0 8.87773 0 9.5C0 10.1223 0.402187 10.625 0.9 10.625H8.1V12.548C7.30406 12.9805 6.75 13.9719 6.75 15.125C6.75 16.6789 7.75687 17.9375 9 17.9375C10.2431 17.9375 11.25 16.6789 11.25 15.125C11.25 13.9719 10.6959 12.9805 9.9 12.548V10.625H17.1C17.5978 10.625 18 10.1223 18 9.5C18 8.87773 17.5978 8.375 17.1 8.375H15.3V6.45195C16.0959 6.01953 16.65 5.02813 16.65 3.875C16.65 2.32109 15.6431 1.0625 14.4 1.0625C13.1569 1.0625 12.15 2.32109 12.15 3.875C12.15 5.02813 12.7041 6.01953 13.5 6.45195V8.375H4.5V6.45195ZM15.075 3.875C15.075 4.34258 14.7741 4.71875 14.4 4.71875C14.0259 4.71875 13.725 4.34258 13.725 3.875C13.725 3.40742 14.0259 3.03125 14.4 3.03125C14.7741 3.03125 15.075 3.40742 15.075 3.875ZM9 15.9688C8.62594 15.9688 8.325 15.5926 8.325 15.125C8.325 14.6574 8.62594 14.2812 9 14.2812C9.37406 14.2812 9.675 14.6574 9.675 15.125C9.675 15.5926 9.37406 15.9688 9 15.9688Z"
-                          fill="#727272" />
+                        <g clip-path="url(#clip0_582_2795)">
+                          <path
+                            d="M9 0.5C6.639 0.5 4.5 2.41475 4.5 4.7765C4.5 7.1375 6.4515 9.95675 9 14C11.5485 9.95675 13.5 7.1375 13.5 4.7765C13.5 2.41475 11.3617 0.5 9 0.5ZM9 6.5C8.17125 6.5 7.5 5.82875 7.5 5C7.5 4.17125 8.17125 3.5 9 3.5C9.82875 3.5 10.5 4.17125 10.5 5C10.5 5.82875 9.82875 6.5 9 6.5ZM17.1608 4.62425C17.1608 3.50525 16.6065 2.50175 15.7343 1.81325L16.29 1.24925C17.3363 2.075 18 3.27875 18 4.62425C18 5.96975 17.3363 7.17425 16.29 8L15.7343 7.43525C16.6065 6.7475 17.1608 5.74325 17.1608 4.62425ZM14.625 6.311L15.18 6.87425C15.8783 6.3245 16.3207 5.52125 16.3207 4.62425C16.3207 3.728 15.8783 2.924 15.18 2.37425L14.625 2.9375C15.1477 3.35075 15.4808 3.953 15.4808 4.62425C15.4808 5.2955 15.1477 5.8985 14.625 6.311ZM2.26575 7.43525L1.71 8C0.66375 7.17425 0 5.96975 0 4.62425C0 3.27875 0.66375 2.075 1.71 1.24925L2.26575 1.81325C1.3935 2.50175 0.83925 3.50525 0.83925 4.62425C0.83925 5.74325 1.3935 6.7475 2.26575 7.43525ZM2.51925 4.62425C2.51925 3.95225 2.8515 3.35075 3.375 2.9375L2.82 2.37425C2.12175 2.924 1.67925 3.728 1.67925 4.62425C1.67925 5.52125 2.12175 6.3245 2.82 6.87425L3.375 6.311C2.85225 5.8985 2.51925 5.29625 2.51925 4.62425ZM15 15.5C15 17.1567 12.3142 18.5 9 18.5C5.68575 18.5 3 17.1567 3 15.5C3 14.2985 4.416 13.265 6.456 12.7858L7.3215 14.1537C7.02075 14.2048 6.717 14.255 6.438 14.3353C3.954 15.047 3.84825 15.917 6.42225 16.6618C7.98825 17.114 10.005 17.1155 11.5778 16.661C14.292 15.8758 13.9507 14.9548 11.3767 14.2858C11.1547 14.228 10.911 14.1972 10.6747 14.1575L11.5417 12.7865C13.584 13.265 15 14.2985 15 15.5Z"
+                            fill="#727272" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_582_2795">
+                            <rect width="18" height="18" fill="white" transform="translate(0 0.5)" />
+                          </clipPath>
+                        </defs>
                       </svg>
 
 
-                      <input placeholder="{{ user.username }}" type="text" class="input">
+                      <input placeholder="{{ last_login }}" type="text" class="input">
                     </div>
                   </div>
                 </div>
           </div>
 
-          <a style="padding-top: 17px" href="{% url 'stransit:users:curator:students_admin_check' %}" class="button"><b>Успеваемость</b></a>
+          <a style="padding-top: 17px" href="{% url 'stransit:users:admin:students_admin_check' %}" class="button"><b>Все студенты</b></a>
+
 
           </form>
 
@@ -119,7 +137,7 @@
         <div class="profile security">
 
           <div class="profile-header ">
-            <h3>Ваши курсы - {{ user.first_name }}!</h3>
+            <h3>Курсы {{ profile.first_name }}a</h3>
           </div>
 
           <!-- profileInfo -->
@@ -144,7 +162,7 @@
 
                 </form>
 
-      </div>
+            </div>
 
       </div>
 
@@ -166,9 +184,10 @@
 
                 <h2>Возникли какие-либо вопросы?</h2>
 
-                <button class="button-support">Поддержка</button>
+                <a href="https://t.me/tab1kk" class="button-support">Поддержка</a>
 
-        </form>
+
+            </form>
 
     </div>
 
@@ -178,8 +197,8 @@
     </div>
       {% endblock %}
 
-    </div>
-    <script src="js/side-bar.js"></script>
+  </div>
+  <script src="{% static 'admin/js/side-bar.js' %}"></script>
 </body>
 
 </html>

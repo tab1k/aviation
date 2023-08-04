@@ -24,7 +24,6 @@
       <!-- LOGO -->
       <div class="side_bar_logo_settings">
         <img class="side_bar_logo" src="{% static 'admin/img/logo.png' %}" alt="" width="40" height="40">
-        <p class="side_bar_logo_text"><a href="#">Aviation</a></p>
       </div>
 
       <!-- BURGER MENU -->
@@ -66,7 +65,7 @@
         </div>
         <div class="burger-content-element">
           <img width="24" src="{% static 'admin/img/icons8-чат-48.png' %}" alt="">
-          <p><a href="#">{% url 'stransit:users:admin:courses:answers_view' %}</a></p>
+          <p><a href="{% url 'stransit:users:admin:courses:answers_view' %}">Лента ответов</a></p>
         </div>
         <div class="burger-content-element">
           <img width="24" src="{% static 'admin/img/icons8-админ-94.png' %}" alt="">

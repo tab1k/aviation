@@ -19,3 +19,4 @@ urlpatterns = [
     path('tests', include('tests.urls')),
     path('essays', include('essays.urls')),
 ]
+
