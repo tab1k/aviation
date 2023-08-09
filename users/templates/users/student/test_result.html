@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
-  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'admin/css/videoAdmin.css' %}">{% endblock %}
+  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'student/css/video.css' %}">{% endblock %}
   <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 
     <style>
@@ -44,13 +44,18 @@
             {% endfor %}
             </ol>
 
-            {% if is_passing_grade %}{% if essay_allowed %}
-                <button class="essay"><a style="color: black" href="{% url 'stransit:users:student:courses:essays:essay_submission'  lesson_id=lesson.id%}">Сдать эссе</a></button>
+            {% if is_passing_grade %}{% if lesson.essay_set.exists %}
+                <button class="essay"><a style="color: white" href="{% url 'users:student:courses:essays:essay_submission'  lesson_id=lesson.id%}">Сдать эссе</a></button>
             {% else %}
-                <a style="color: black" href="{% url 'next_lesson_url' %}">Перейти к следующему уроку</a>
+                <div class="buttonNext">
+                    <button style="cursor:pointer; width: 145px; height: 40px; display: flex; justify-content: center; align-items: center; border: none; background: #1F4989; border-radius: 7px; color: #fff; font-size: 14px; transition-duration: .25s;"> Следующий урок</button>
+                </div>
             {% endif %}
-            {% else %}<button class="buttons"><a style="color: black" href="{% url 'stransit:users:student:courses:tests:take_test' lesson_id=lesson.id %}">Пройти тест заново</a></button>
+            {% else %}
+                <button style="width: 145px; height: 40px; display: flex; justify-content: center; align-items: center; border: none; background: #1F4989; border-radius: 7px; color: #fff; font-size: 14px; transition-duration: .25s;"><a style="cursor: pointer" href="{% url 'users:student:courses:tests:take_test' lesson_id=lesson.id %}">Пройти заново</a></button>
             {% endif %}
+
+
         </div>
     </div>
   {% endblock %}

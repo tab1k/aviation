@@ -3,10 +3,11 @@ from administrator.views import *
 from administrator.views import CuratorCheckAdmin
 from administrator.views import StudentsCheckAdmin
 
+
 app_name = 'admin'
 
 urlpatterns = [
-    path('', admin_view, name='admin'),
+    path('', admin_view, name='administrator'),
     path('add_student/', AddStudent.as_view(), name='add_student'),
     path('add_сurator/', AddCurator.as_view(), name='add_curator'),
     path('logout/', LogoutView.as_view(), name='logout'),

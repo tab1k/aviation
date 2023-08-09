@@ -30,7 +30,7 @@
     <div class="content-header">
 
         <h2>Список успешно завершивших студентов</h2>
-        <form action="{% url 'stransit:users:admin:courses:passed_students' %}" method="get">
+        <form action="{% url 'users:admin:courses:passed_students' %}" method="get">
 
           <div class="search-footer">
             <input name="q" placeholder="Поиск...">
@@ -64,8 +64,8 @@
                       - {{ course.title }}<br>{% if not forloop.last %} {% endif %}
                 {% endfor %}
             </td>
-            <td><a href="{% url 'stransit:users:admin:courses:student_progress' student_id=student.id %}">Успеваемость</a></td>
-            <td><a href="{% url 'stransit:users:admin:courses:generate_certificate' student_id=student.id %}" target="_blank">Выдать сертификат</a></td>
+            <td><a href="{% url 'users:admin:courses:student_progress' student_id=student.id %}">Успеваемость</a></td>
+            <td><a href="{% url 'users:admin:courses:generate_certificate' student_id=student.id %}" target="_blank">Выдать сертификат</a></td>
           </tr>
           {% endfor %}
         </tbody>

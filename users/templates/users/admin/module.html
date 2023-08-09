@@ -12,7 +12,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 </head>
 
@@ -28,12 +27,12 @@
                 {% for module in modules %}
                 <div class="course">
 
-                  <a  href="{% url 'stransit:users:student:courses:lessons_by_module' module.id %}"><p class="module-name" ><b>{{ module.title|truncatechars:16 }}</b></p></a>
+                  <a  href="{% url 'users:curator:courses:lessons_by_module' module.id %}"><p class="module-name" ><b>{{ module.title|truncatechars:16 }}</b></p></a>
                   <p>7 уроков</p>
 
                   <div class="buttons">
 
-                    <a  href="{% url 'stransit:users:student:courses:lessons_by_module' module.id %}"><button class="go">Перейти</button></a>
+                    <a  href="{% url 'users:curator:courses:lessons_by_module' module.id %}"><button class="go">Перейти</button></a>
 
                   </div>
 

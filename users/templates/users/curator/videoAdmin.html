@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 {% extends 'users/curator/base.html' %}
 {% load static %}
-<!DOCTYPE html>
+{% load embed_video_tags %}
 <html lang="ru" dir="ltr">
 
 <head>
@@ -11,26 +12,34 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
-  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'curator/css/videoAdmin.css' %}">{% endblock %}
+  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'admin/css/videoAdmin.css' %}">{% endblock %}
   <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="all_page">
+    <!-- SIDE BAR-->
 
-    {% block css %}
+    <!-- -->
+    {% block content %}
         <div class="content">
 
       <div class="back">
-        <a href="coursesAfterSignUp.html"><b>Мои курсы></b></a><a href="module.html"><b>Модули></b></a><a
-          href="#"><b>Урок 2</b></a>
+        <a href="coursesAfterSignUp.html"><b>Курсы ➡️ </b></a><a href="module.html"><b>  Модули ➡️ </b></a><a href="#"><b> {{ lesson.title }} </b></a>
       </div>
 
-      <div class="buttons">
-        <button class="prev">Предыдущий</button>
-        <button class="next">Следущий урок</button>
-      </div>
-
+     <div class="buttons">
+        {% if previous_lesson %}
+            <a href="{% url 'lesson-detail' previous_lesson.id %}" class="btn btn-primary"><button style="cursor: pointer">Предыдущий</button></a>
+        {% else %}
+            <button class="prev" disabled>Предыдущий</button>
+        {% endif %}
+        {% if next_lesson %}
+            <a href="{% url 'lesson-detail' next_lesson.id %}" class="btn btn-primary"><button style="cursor: pointer">Следущий урок</button></a>
+        {% else %}
+            <button class="next" disabled>Следущий урок</button>
+        {% endif %}
+     </div>
       <!-- my courses -->
 
       <div class="courses">
@@ -43,42 +52,68 @@
 
           <div class="theme">
 
-            <p>Урок 1</p>
-            <p>Тема: Кабина</p>
+            <p>{{ lesson.title }}</p>
+            <p>{{ lesson.description }}</p>
+            {% if lesson.learn_documentation %}
+                <p>Документация: <a style="color: black" href="{{ lesson.learn_documentation.url }}" target="_blank">{{ lesson.learn_documentation.url|truncatechars:10 }} 📎</a></p>
+            {% endif %}
 
           </div>
 
           <!-- .video_course -->
 
-          <div class="video_course">
+          <style>
+            .video-wrapper {
+                position: relative;
+                padding-bottom: 56.25%; /* 16:9 aspect ratio (800 / 450 * 100) */
+                height: 0;
 
-            <embed src="https://www.youtube.com/embed/XO5oWm_HaMI" type="">
+            }
 
-            <div class="buttonNext">
-              <button> <a href="testAdmin.html">Пройти тест</a> </button>
-              <a href="#"><img src="img/next-button.svg" alt=""></a>
+            .video-wrapper iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+            }
+
+            .buttonNext {
+                position: relative; /* Make the button container relative to enable z-index */
+                z-index: 1; /* Ensure the button appears on top of the video */
+            }
+        </style>
+
+        <div class="video_course">
+            <div class="video-wrapper">
+                {% video lesson.video width="800" height="450" %}  {# Adjust width and height as needed #}
             </div>
+            <div class="buttonNext">
+                <button><a href="{% url 'users:admin:courses:tests:take_test' lesson_id=lesson.id%}">Пройти тест</a></button>
+            </div>
+        </div>
 
-          </div>
+
+
+
+
+
 
           <!-- chat -->
 
           <div class="chat">
 
             <div class="comment">
-              <div class="ava">
-                <img src="img/comment-ava.jpg" alt="">
-              </div>
               <div class="comment-text">
-                <p>A fast 50mm like f1.8 would help with <br> the bokeh. I’ve been using primes as they <br> tend to get
-                  a bit sharper images.</p>
+                <p>Напишите свой вопрос и вам обязательно ответ наш Инстуктор 😉</p>
               </div>
             </div>
 
             <div class="reply">
               <form action="">
                 <input type="text" class="reply-input" placeholder="Комментарии">
-                <button class="send"><img src="img/send.svg" alt=""></button>
+                <button class="send"><img src="{% static 'admin/img/send.svg' %}" alt=""></button>
               </form>
             </div>
 
@@ -88,10 +123,10 @@
 
       </div>
 
-    </div>
+    </div></div>
     {% endblock %}
 
-    <script src="{% static 'curator/js/side-bar.js' %}"></script>
+    <script src="{% static 'admin/js/side-bar.js' %}"></script>
 
 </body>
 

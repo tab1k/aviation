@@ -47,21 +47,21 @@
                 {% endfor %}
             </div>
         </div><!-- End: Projects Grid -->
-        <!-- Start: Gamanet_Pagination_bs5 -->
         <div id="pagination" class="d-flex justify-content-center">
-            <a class="pagination-item disabled" href="#">
+            <a class="pagination-item {% if not has_previous %}disabled{% endif %}" href="{% if has_previous %}{{ previous_page_url }}{% endif %}">
                 <img src="{% static 'stransit/assets/img/icon_arrow-left.svg' %}">
                 <span>Назад</span>
             </a>
-            <a class="pagination-item active" href="#">1</a>
-            <a class="pagination-item" href="#">2</a>
-            <a class="pagination-item" href="#">3</a>
-            <a class="pagination-item" href="#">...</a>
-            <a class="pagination-item" href="#">
+            {% for page in page_range %}
+                <a class="pagination-item {% if page == current_page %}active{% endif %}" href="{{ page_url }}">
+                    {{ page }}
+                </a>
+            {% endfor %}
+            <a class="pagination-item {% if not has_next %}disabled{% endif %}" href="{% if has_next %}{{ next_page_url }}{% endif %}">
                 <span>Далее</span>
                 <img src="{% static 'stransit/assets/img/icon_arrow-right.svg' %}">
             </a>
-        </div><!-- End: Gamanet_Pagination_bs5 -->
+        </div>
     </section><!-- Start: Footer Multi Column -->
     {% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

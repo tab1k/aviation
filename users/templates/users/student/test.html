@@ -24,7 +24,7 @@
         <div class="courses">
             <div class="quiz">
                 <h2>Тест "{{ lesson.title }}"</h2>
-                <form method="post" action="{% url 'stransit:users:student:courses:tests:take_test' lesson_id=lesson.id %}">
+                <form method="post" action="{% url 'users:student:courses:tests:take_test' lesson_id=lesson.id %}">
                     {% csrf_token %}
                     <ol>
                         {% for question in questions %}
@@ -45,7 +45,7 @@
                     </ol>
                     <div class="nextBtn">
                         <a href="video.html"><img id="back" src="img/back.png" alt=""></a>
-                        <button type="submit" class="essay">Сдать тест</button>
+                        <button style="cursor: pointer" type="submit" class="essay">Сдать тест</button>
                     </div>
                 </form>
             </div>

@@ -26,27 +26,27 @@
           <div style="padding: 4%;" class="courses">
             <h2 class="my-courses-h2">Лента ответов</h2>
             <div class="main-text">
-              <div class="course-type">
-                <select>
-                  <option value="option1" selected>Все уроки</option>
-                  <option value="option2">Дедлайн сегодня</option>
-                  <option value="option3">Дедлайн завтра</option>
-                </select>
-              </div>
-              <div class="course-type">
-                <select>
-                  <option value="option1" selected>Сначала старые</option>
-                  <option value="option2">Сначала новые</option>
-                </select>
-              </div>
-              <div class="course-type">
-                <select>
-                  <option value="option1" selected>Непрочитанные</option>
-                  <option value="option2">Прочитанные</option>
-                  <option value="option3">Принятые</option>
-                  <option value="option4">Не принятые</option>
-                </select>
-              </div>
+                <div class="course-type">
+                    <select id="lessonFilter">
+                        <option value="all" selected>Все курсы</option>
+                        <option value="course1">Курс 1</option>
+                        <option value="course2">Курс 2</option>
+                        <!-- Добавьте другие варианты курсов здесь -->
+                    </select>
+                </div>
+                <div class="course-type">
+                    <select id="sortOrder">
+                        <option value="new" selected>Сначала новые</option>
+                        <option value="old">Сначала старые</option>
+                    </select>
+                </div>
+                <div class="course-type">
+                    <select id="commentStatus">
+                        <option value="all" selected>Все</option>
+                        <option value="approved">Принятые</option>
+                        <option value="rejected">Не принятые</option>
+                    </select>
+                </div>
             </div>
             <h2 class="my-courses-h2">Все курсы</h2>
             <div class="answers">
@@ -54,18 +54,15 @@
             <div class="answer">
                 {% if comment.is_student_comment %}
                 <div class="student-answer">
-                    <div class="ava">
-                        <img width="50px" src="{% static 'admin/img/free-icon-user-profile-5675059.png' %}" alt=""/>
+                    <div style="padding: 0px 22px 0px 0px; height: 50px">
+                        <img style="border-radius: 100px" width="40px"  src="{{ comment.user.image.url }}" alt=""/>
                     </div>
                     <div class="comment">
 
                         <div class="df">
                             <div>
-                                <p class="date">{{ comment.lesson.module.course }}. {{ comment.lesson.module }}. {{ comment.lesson }}</p>
-                                <p class="black"><b>{{ comment.user.get_full_name }}</b></p>
-                            </div>
-                            <div class="button">
-                                <button>Ожидает проверки</button>
+                                <p style="margin-bottom: 11px">{{ comment.lesson.module.course }}. {{ comment.lesson.module }}. {{ comment.lesson }}</p>
+                                <p><b>{{ comment.user.get_full_name }}</b></p>
                             </div>
                         </div>
                         <div style="margin-bottom: 40px; margin-top: 25px" class="comment-text">
@@ -96,6 +93,53 @@
 
   <script src="{% static 'admin/js/side-bar.js' %}"></script>
   <script src="{% static 'admin/js/answerVerify.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const lessonFilter = $('#lessonFilter');
+            const sortOrder = $('#sortOrder');
+            const commentStatus = $('#commentStatus');
+            const answersDiv = $('.answers');
+
+            function updateLessonFilterOptions() {
+                $.get('/path/to/course-options/', function(data) {
+                    lessonFilter.empty().append($('<option>', {
+                        value: 'all',
+                        text: 'Все курсы'
+                    }));
+
+                    $.each(data.course_options, function(index, option) {
+                        lessonFilter.append($('<option>', {
+                            value: option.value,
+                            text: option.label
+                        }));
+                    });
+                });
+            }
+
+            function updateComments() {
+                const selectedLessonFilter = lessonFilter.val();
+                const selectedSortOrder = sortOrder.val();
+                const selectedCommentStatus = commentStatus.val();
+
+                const url = `/path/to/comments/?lesson_filter=${selectedLessonFilter}&sort_order=${selectedSortOrder}&comment_status=${selectedCommentStatus}`;
+
+                answersDiv.html('<p>Loading...</p>');
+
+                $.get(url, function(data) {
+                    answersDiv.html(data.comments_html);
+                });
+            }
+
+            lessonFilter.on('change', updateComments);
+            sortOrder.on('change', updateComments);
+            commentStatus.on('change', updateComments);
+
+            updateLessonFilterOptions();
+            updateComments();
+        });
+    </script>
   </div>
 
 </body>

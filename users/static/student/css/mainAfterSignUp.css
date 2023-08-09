@@ -350,8 +350,8 @@ input:-webkit-autofill:active {
 /* training_sectors_images img style */
 .training_sectors_images img {
   margin: 0 auto;
-  width: 90%;
   height: 100%;
+  width: 38%;
   background-size: cover;
 }
 
@@ -676,9 +676,6 @@ main .sidebar {
     justify-content: center; */
   }
 
-  .training_sectors_images img {
-    /* width: 60%; */
-  }
 
   .aviation-text,
   .aviation-text-industry {
@@ -802,10 +799,7 @@ main .sidebar {
     margin-left: auto;
     margin-right: auto;
   }
-  
-  .training_sectors_images img {
-    width: 100%;
-  }
+
 
   .training_slider_cources img {
     /* width: 77%; */

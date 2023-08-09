@@ -131,20 +131,12 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-# Добавляем следующие строки в ваш файл settings.py
-
-# Настройки статических файлов
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'users', 'static'),
 ]
 
-# Настройки медиафайлов
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -153,33 +145,26 @@ LOGIN_REDIRECT_URL = 'users:dashboard'
 LOGOUT_REDIRECT_URL = 'users:login'
 SITE_URL = 'http://127.0.0.1:8000/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-
-
-# JAZZMIN
 
 
 JAZZMIN_SETTINGS = {
 
     # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "Aviation Project",
+    "site_title": "STANDARD TRANSIT",
 
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_header": "Aviation",
+    "site_header": "STANDARD TRANSIT",
 
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_brand": "Aviation",
+    "site_brand": "STANDARD TRANSIT",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "books/img/logo.png",
+    "site_logo": "admin/img/photo_2023-07-28_21-16-53.jpg",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": None,
+    "login_logo": 'admin/img/photo_2023-07-28_21-16-53.jpg',
 
     # Logo to use for login form in dark themes (defaults to login_logo)
     "login_logo_dark": None,
@@ -191,10 +176,10 @@ JAZZMIN_SETTINGS = {
     "site_icon": None,
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the Aviation School",
+    "welcome_sign": "Welcome to the STANDARD TRANSIT",
 
     # Copyright on the footer
-    "copyright": "Acme Library Ltd",
+    "copyright": "STANDARD TRANSIT",
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string
@@ -231,7 +216,6 @@ JAZZMIN_SETTINGS = {
     "usermenu_links": [
         {"name": "Support", "url": "https://www.instagram.com/tab1k.k/", "new_window": True},
         {"model": "auth.user"},
-        {"name": "Открыть сайт", "url": "admin:open_website", "icon": "fas fa-external-link-alt"}
     ],
 
     #############
@@ -278,7 +262,7 @@ JAZZMIN_SETTINGS = {
     # Related Modal #
     #################
     # Use modals instead of popups
-    "related_modal_active": False,
+    "related_modal_active": True,
 
     #############
     # UI Tweaks #

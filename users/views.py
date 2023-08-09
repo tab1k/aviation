@@ -16,11 +16,11 @@ def login_view(request):
                 login(request, user)
                 if user.is_staff:
                     if user.role == 'curator':
-                        return redirect('stransit:users:curator:curator')
+                        return redirect('users:curator:curator')
                     elif user.role == 'admin':
-                        return redirect('stransit:users:admin:admin')
+                        return redirect('users:admin:administrator')
                 else:
-                    return redirect('stransit:users:student:student')
+                    return redirect('users:student:student')
             else:
                 error = 'Не правильные данные!'
     else:
@@ -34,11 +34,11 @@ def login_view(request):
 def back_to_home(request):
     if request.user.is_authenticated:
         if request.user.role == 'admin':
-            return redirect('stransit:users:admin:admin')  # Замените 'admin_home' на имя URL-шаблона главной страницы администратора
+            return redirect('users:admin:admin')  # Замените 'admin_home' на имя URL-шаблона главной страницы администратора
         elif request.user.role == 'curator':
-            return redirect('stransit:users:curator:curator')  # Замените 'curator_home' на имя URL-шаблона главной страницы куратора
+            return redirect('users:curator:curator')  # Замените 'curator_home' на имя URL-шаблона главной страницы куратора
         else:
-            return redirect('stransit:users:student:student')  # Замените 'student_home' на имя URL-шаблона главной страницы студента
+            return redirect('users:student:student')  # Замените 'student_home' на имя URL-шаблона главной страницы студента
     else:
         return redirect('login')  # Замените 'login' на имя URL-шаблона страницы входа
 

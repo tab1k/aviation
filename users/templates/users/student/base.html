@@ -26,7 +26,7 @@
 
       <!-- LOGO -->
       <div class="side_bar_logo_settings">
-        <img class="side_bar_logo" src="{% static 'student/img/logo.png' %}" alt="" width="40" height="40" />
+        <img class="side_bar_logo" src="{% static 'admin/img/logo.png' %}" alt="" width="40" height="40" />
       </div>
 
       <!-- BURGER MENU -->
@@ -46,25 +46,25 @@
       <div class="burger-content" style="left: -100%;">
         <div class="burger-content-element">
           <img width="24" src="{% static 'student/img/icons8-главная-48.png' %}" alt="">
-          <p><a href="{% url 'stransit:users:student:student' %}">Главная</a></p>
+          <p><a href="{% url 'users:student:student' %}">Главная</a></p>
         </div>
         <div class="burger-content-element">
           <img width="24" src="{% static 'student/img/icons8-студенческий-центр-48.png' %}" alt="">
-          <p><a href="{% url 'stransit:users:student:courses:courses' %}">Мои курсы</a></p>
+          <p><a href="{% url 'users:student:courses:courses' %}">Мои курсы</a></p>
         </div>
 
         <div class="burger-content-element">
           <img width="24" src="{% static 'student/img/icons8-настройки-48.pn' %}g" alt="">
-          <p><a href="{% url 'stransit:users:student:profiles:profile' %}">Настройки</a></p>
+          <p><a href="{% url 'users:student:profiles:profile' %}">Настройки</a></p>
         </div>
         <div class="burger-content-element">
           <img width="24" src="{% static 'student/img/icons8-расписание-48.png' %}" alt="">
-          <p><a href="{% url 'stransit:users:student:schedule:student_schedule' %}">Расписание</a></p>
+          <p><a href="{% url 'users:student:schedule:student_schedule' %}">Расписание</a></p>
         </div>
 
         <div class="burger-content-element-leave">
           <img width="24" src="{% static 'student/img/icons8-выйти-48.png' %}" alt="">
-          <p><a href="{% url 'stransit:users:student:logout' %}">Выйти</a></p>
+          <p><a href="{% url 'users:student:logout' %}">Выйти</a></p>
         </div>
       </div>
 
@@ -74,30 +74,30 @@
       <div class="side_bar_links">
         <div class="side_bar_courses">
           <img class="side_bar_img" width="24" src="{% static 'student/img/icons8-главная-48.png' %}" alt="">
-          <p class="side_bar_text"><a href="{% url 'stransit:users:student:student' %}">Главная</a></p>
+          <p class="side_bar_text"><a href="{% url 'users:student:student' %}">Главная</a></p>
         </div>
 
         <div class="side_bar_general">
           <img class="side_bar_img" width="24" src="{% static 'student/img/icons8-студенческий-центр-48.png' %}" alt="">
-          <p class="side_bar_text"><a href="{% url 'stransit:users:student:courses:courses' %}">Мои курсы</a></p>
+          <p class="side_bar_text"><a href="{% url 'users:student:courses:courses' %}">Мои курсы</a></p>
         </div>
 
 
         <div class="side_bar_settings">
           <img class="side_bar_img" width="24" src="{% static 'student/img/icons8-настройки-48.png' %}" alt="">
-          <p class="side_bar_text"><a href="{% url 'stransit:users:student:profiles:profile' %}">Настройки</a></p>
+          <p class="side_bar_text"><a href="{% url 'users:student:profiles:profile' %}">Настройки</a></p>
         </div>
 
         <div class="side_bar_timeTable">
           <img class="side_bar_img" width="24" src="{% static 'student/img/icons8-расписание-48.png' %}" alt="">
-          <p class="side_bar_text"><a href="{% url 'stransit:users:student:schedule:student_schedule' %}">Расписание</a></p>
+          <p class="side_bar_text"><a href="{% url 'users:student:schedule:student_schedule' %}">Расписание</a></p>
         </div>
 
       </div>
 
 
       <div class="leave-button">
-        <a href="{% url 'stransit:users:student:logout' %}"><button class="leave">Выйти</button></a>
+        <a href="{% url 'users:student:logout' %}"><button class="leave">Выйти</button></a>
        </div>
     </div>
 
@@ -105,7 +105,7 @@
      <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
       <a href="mainAfterSignUp.html">
         <div class="sidebar-logo">
-          <img class="side_bar_logo" src="{% static 'student/img/logo.png' %}" alt="" width="40" height="40">
+          <img class="side_bar_logo" src="{% static 'admin/img/logo.png' %}" alt="" width="40" height="40">
           <p class="">Aviation</p>
         </div>
       </a>
@@ -121,7 +121,7 @@
         <img width="24" src="{% static 'student/img/icons8-настройки-48.png' %}" alt="">
         <span class="sidebar_text">Настройки</span></a>
       </a><br>
-      <a href="{% url 'stransit:users:student:schedule:student_schedule' %}">
+      <a href="{% url 'users:student:schedule:student_schedule' %}">
         <img width="24" src="{% static 'student/img/icons8-расписание-48.png' %}" alt="">
         <span class="sidebar_text">Мое расписание</span></a><br>
 
@@ -135,7 +135,7 @@
     <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
       <a href="mainAfterSignUp.html">
         <div class="sidebar-logo">
-          <img class="side_bar_logo" src="{% static 'student/img/logo.png' %}" alt="" width="40" height="40">
+          <img class="side_bar_logo" src="{% static 'admin/img/logo.png' %}" alt="" width="40" height="40">
           <p class="">Aviation</p>
         </div>
       </a>
@@ -153,7 +153,7 @@
         <img width="24" src="{% static 'student/img/icons8-настройки-48.png' %}" alt="">
         <span class="sidebar_text">Настройки</span></a>
       </a><br>
-      <a href="{% url 'stransit:users:student:schedule:student_schedule' %}">
+      <a href="{% url 'users:student:schedule:student_schedule' %}">
         <img width="24" src="{% static 'student/img/icons8-расписание-48.png' %}" alt="">
         <span class="sidebar_text">Мое расписание</span></a><br>
 

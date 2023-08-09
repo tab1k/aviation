@@ -24,11 +24,11 @@ body {
   }
   
   
-  .training_sectors_images img{
+  .users{
     border-radius: 35px;
   }
   
-  .training_sectors_images img:hover{
+  .users:hover{
     box-shadow: 5px 5px 4px 3px rgba(0,0,0,0.14);
     transition: 500ms;
   }
@@ -868,10 +868,9 @@ input:-webkit-autofill:active {
   justify-content: space-evenly;
 }
 
-/* training_sectors_images img style */
-.training_sectors_images img {
+/* users style */
+.users {
   margin-left: 10%;
-  width: 80%;
   height: 100%;
   background-size: cover;
 }

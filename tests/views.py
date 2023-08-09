@@ -9,6 +9,8 @@ from .models import Test, TestChoice, TestResult
 
 class TakeTestView(View):
     template_name = 'users/student/test.html'
+    template_name_curator = 'users/admin/testAdmin.html'
+    template_name_admin = 'users/admin/testAdmin.html'
 
     def get(self, request, lesson_id):
         lesson = get_object_or_404(Lesson, pk=lesson_id)
@@ -17,7 +19,14 @@ class TakeTestView(View):
             'lesson': lesson,
             'questions': questions,
         }
-        return render(request, self.template_name, context)
+        if request.user.role == 'curator':
+            return render(request, self.template_name_curator, context)
+        elif request.user.role == 'admin':
+            return render(request, self.template_name_admin, context)
+        else:
+            # Пользователь не имеет определенной роли, обработайте этот случай по своему усмотрению
+            return render(request, self.template_name, context)  # Здесь используем перенаправление для студентов, но вы можете выбрать другой путь
+
 
     def post(self, request, lesson_id):
         lesson = get_object_or_404(Lesson, pk=lesson_id)
@@ -40,12 +49,16 @@ class TakeTestView(View):
         test_result.score = total_score
         test_result.save()
 
-        return redirect('stransit:users:student:courses:tests:test_result', lesson_id=lesson_id)
+        return redirect('users:student:courses:tests:test_result', lesson_id=lesson_id)
+
+
 
 
 
 class TestResultView(View):
     template_name = 'users/student/test_result.html'
+    template_name_curator = 'users/curator/test_result_curator.html'
+    template_name_admin = 'users/admin/test_result_admin.html'
 
     def get(self, request, lesson_id):
         current_user = request.user
@@ -83,7 +96,13 @@ class TestResultView(View):
             'test_questions': test_questions,
         }
 
-        return render(request, 'users/student/test_result.html', context)
+        if request.user.role == 'curator':
+            return render(request, self.template_name_curator, context)
+        elif request.user.role == 'admin':
+            return render(request, self.template_name_admin, context)
+        else:
+            return render(request, self.template_name, context)
+
 
 
 

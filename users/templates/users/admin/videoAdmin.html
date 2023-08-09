@@ -54,7 +54,9 @@
 
             <p>{{ lesson.title }}</p>
             <p>{{ lesson.description }}</p>
-            <p>Документация: <a style="color: black" href="{{ lesson.learn_documentation.url }}" target="_blank">{{ lesson.learn_documentation.url|truncatechars:10 }} 📎</a></p>
+            {% if lesson.learn_documentation %}
+                <p>Документация: <a style="color: black" href="{{ lesson.learn_documentation.url }}" target="_blank">{{ lesson.learn_documentation.url|truncatechars:10 }} 📎</a></p>
+            {% endif %}
 
           </div>
 
@@ -88,7 +90,7 @@
                 {% video lesson.video width="800" height="450" %}  {# Adjust width and height as needed #}
             </div>
             <div class="buttonNext">
-                <button><a href="{% url 'stransit:users:admin:courses:tests:take_test' lesson_id=lesson.id%}">Пройти тест</a></button>
+                <button><a href="{% url 'users:admin:courses:tests:take_test' lesson_id=lesson.id%}">Пройти тест</a></button>
             </div>
         </div>
 

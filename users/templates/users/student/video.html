@@ -54,7 +54,9 @@
 
             <p>{{ lesson.title }}</p>
             <p>{{ lesson.description }}</p>
-            <p>Документация: <a style="color: black" href="{{ lesson.learn_documentation.url }}" target="_blank">{{ lesson.learn_documentation.url|truncatechars:10 }} 📎</a></p>
+            {% if lesson.learn_documentation %}
+                <p>Документация: <a style="color: black" href="{{ lesson.learn_documentation.url }}" target="_blank">{{ lesson.learn_documentation.url|truncatechars:10 }} 📎</a></p>
+            {% endif %}
 
           </div>
 
@@ -87,9 +89,15 @@
             <div class="video-wrapper">
                 {% video lesson.video width="800" height="450" %}  {# Adjust width and height as needed #}
             </div>
+
             <div class="buttonNext">
-                <button><a href="{% url 'stransit:users:admin:courses:tests:take_test' lesson_id=lesson.id%}">Пройти тест</a></button>
+                {% if lesson.test_set.exists %}
+                    <button><a href="{% url 'users:admin:courses:tests:take_test' lesson_id=lesson.id%}">Пройти тест</a></button>
+                {% elif lesson.essay_set.exists %}
+                    <button class="essay"><a style="color: white" href="{% url 'users:student:courses:essays:essay_submission'  lesson_id=lesson.id%}">Сдать эссе</a></button>
+                {% endif %}
             </div>
+
         </div>
 
 
@@ -101,27 +109,76 @@
           <!-- chat -->
 
           <div class="chat">
-
-            <div class="comment">
-              <div class="comment-text">
-                <p>Напишите свой вопрос и вам обязательно ответ наш Инстуктор 😉</p>
-              </div>
+                <div class="comments">
+                    {% for comment in comments %}
+                    {% if comment.is_student_comment %}
+                    <div class="comment">
+                        <!-- Ваш код для отображения комментариев -->
+                        <div class="comment-text">
+                            <p><strong>{{ comment.user }}</strong>(student): {{ comment.text }}</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <!-- Код для отображения комментариев куратора -->
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="reply">
+                    <form method="post" id="commentForm">
+                        {% csrf_token %}
+                        <input type="text" name="text" class="reply-input" placeholder="Комментарии">
+                        <button type="submit" class="send"><img src="{% static 'student/img/send.svg' %}" alt=""></button>
+                    </form>
+                </div>
             </div>
-
-            <div class="reply">
-              <form action="">
-                <input type="text" class="reply-input" placeholder="Комментарии">
-                <button class="send"><img src="{% static 'admin/img/send.svg' %}" alt=""></button>
-              </form>
-            </div>
-
-          </div>
 
         </div>
 
       </div>
 
-    </div></div>
+    </div>
+        </div>
+        <script>
+        document.getElementById('commentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Отменяем отправку формы по умолчанию
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken') // Передаем CSRF-токен в заголовках
+                }
+            })
+            .then(response => response.json()) // Ожидаем JSON-ответ
+            .then(data => {
+                if (data.success) {
+                    form.reset(); // Очищаем форму после успешной отправки
+                    // Обновляем список комментариев на странице без перезагрузки
+                    const commentsDiv = document.querySelector('.comments');
+                    commentsDiv.innerHTML = ''; // Очищаем список комментариев
+                    for (const comment of data.comments) {
+                        const commentDiv = document.createElement('div');
+                        commentDiv.className = 'comment';
+                        commentDiv.innerHTML = `
+                            <div class="ava">
+                                <img src="{% static 'student/img/comment-ava.jpg' %}" alt="">
+                            </div>
+                            <div class="comment-text">
+                                <p><strong>Student: ${comment.user}</strong>: ${comment.text}</p>
+                            </div>`;
+                        commentsDiv.appendChild(commentDiv);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+
     {% endblock %}
 
     <script src="{% static 'admin/js/side-bar.js' %}"></script>

@@ -7,14 +7,29 @@ from django.contrib import messages
 
 
 class EssaySubmissionView(View):
-    template_name = 'users/student/essay.html'
+    template_name_student = 'users/student/essay.html'
+    template_name_curator = 'users/curator/essay_curator.html'
+    template_name_admin = 'users/admin/essay_admin.html'
 
     def get(self, request, lesson_id):
         lesson = Lesson.objects.get(pk=lesson_id)
         context = {
             'lesson': lesson,
         }
-        return render(request, self.template_name, context)
+
+        # Фильтрация шаблонов на основе роли пользователя
+        if request.user.role == 'student':
+            return render(request, self.template_name_student, context)
+        elif request.user.role == 'curator':
+            return render(request, self.template_name_curator, context)
+        elif request.user.role == 'admin':
+            return render(request, self.template_name_admin, context)
+        else:
+            # Если пользователь не имеет определенной роли, обработайте этот случай по своему усмотрению
+            # Здесь можно использовать шаблон по умолчанию или вернуть ошибку доступа
+            # return render(request, 'default_template.html', context)
+            messages.error(request, "У вас нет доступа для сдачи эссе.")
+            return redirect('users:student:courses:tests:take_test', lesson_id=lesson_id)
 
     def post(self, request, lesson_id):
         student = request.user
@@ -23,7 +38,7 @@ class EssaySubmissionView(View):
         if student.role != 'student':
             # Если пользователь не студент, выдаем сообщение об ошибке
             messages.error(request, "У вас нет прав для сдачи эссе.")
-            return redirect('stransit:users:student:courses:tests:take_test', lesson_id=lesson_id)
+            return redirect('users:student:courses:tests:take_test', lesson_id=lesson_id)
 
         lesson = get_object_or_404(Lesson, pk=lesson_id)
         # Получаем текст эссе от студента

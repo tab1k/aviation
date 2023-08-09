@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.timezone import localtime, now
 from django.http import JsonResponse, HttpResponseForbidden
@@ -149,6 +150,11 @@ class LessonView(View):
         previous_lesson = Lesson.objects.filter(module=module, id__lt=current_lesson.id).order_by('-id').first()
         return previous_lesson
 
+    def get_comments(request, lesson_id):
+        comments = Comment.objects.filter(lesson_id=lesson_id)
+        comment_list = [{"user": comment.user, "text": comment.text} for comment in comments]
+        return JsonResponse({"comments": comment_list})
+
     def get(self, request, lesson_id):
         lesson = get_object_or_404(Lesson, id=lesson_id)
         module = lesson.module
@@ -263,9 +269,11 @@ class StudentProgressView(View):
         progress = []
         total_test_scores = 0
         total_essays_submitted = 0
-        lessons_titles = []  # Список заголовков уроков
-        test_scores = []  # Список баллов за тесты
-        essays_submitted = []  # Список сданных эссе
+        lessons_titles = []
+        test_scores = []
+        essays_submitted = []
+        total_test_lessons = 0
+        total_lessons = 0
 
         for course in courses:
             modules = course.modules.all()
@@ -277,11 +285,14 @@ class StudentProgressView(View):
 
                     if test_result:
                         total_test_scores += test_result.score
-                        test_scores.append(test_result.score)  # Добавляем баллы за тест в список
+                        test_scores.append(test_result.score)
+                        total_test_lessons += 1
 
                     if essay_submission:
                         total_essays_submitted += 1
-                        essays_submitted.append(1)  # Добавляем значение 1 (сдано) в список
+                        essays_submitted.append(1)
+                    else:
+                        essays_submitted.append(0)  # Добавляем значение 0 для урока без сданного эссе
 
                     progress.append({
                         'course': course,
@@ -291,11 +302,11 @@ class StudentProgressView(View):
                         'essay_submission': essay_submission,
                     })
 
-                    lessons_titles.append(lesson.title)  # Добавляем заголовок урока в список
+                    lessons_titles.append(lesson.title)
+                    total_lessons += 1
 
-        # Calculate average test score
-        total_lessons = len(progress)
-        average_test_score = total_test_scores / total_lessons if total_lessons > 0 else 0
+        lesson_count_with_tests = total_test_lessons
+        average_test_score = total_test_scores / lesson_count_with_tests if lesson_count_with_tests > 0 else 0
 
         context = {
             'student': student,
@@ -311,7 +322,6 @@ class StudentProgressView(View):
             return render(request, self.template_name_curator, context)
         elif request.user.role == 'admin':
             return render(request, self.template_name_admin, context)
-
 
 # Ваш файл views.py
 
@@ -389,6 +399,14 @@ class PassedStudentsView(View):
             return render(request, self.template_name, context)
 
 
+import tempfile
+from reportlab.lib.pagesizes import A4,landscape
+from reportlab.pdfgen import canvas
+from PIL import Image
+from datetime import date
+import calendar
+import locale
+
 
 class CertificateView(View):
     def get(self, request, student_id):
@@ -397,43 +415,75 @@ class CertificateView(View):
         except User.DoesNotExist:
             return HttpResponse("Студент с указанным ID не найден.", status=404)
 
-        # Загрузка и регистрация шрифта Pacifico
-        font_path = 'users/static/fonts/Pacifico-Regular.ttf'  # Replace with the path to the Pacifico font file in your project
-        pdfmetrics.registerFont(TTFont('Pacifico', font_path))
+
+        today = date.today()
+
+        # Установка русской локали
+        locale.setlocale(locale.LC_TIME, 'ru_RU.UTF-8')
+
+        # Получение названия месяца
+        month_name = today.strftime("%B")
+
+        today_str = f"{today.day} {month_name.capitalize()} {today.year} года"
+
+        # Открытие сертификата в виде изображения с помощью PIL
+        certificate_path = 'users/static/admin/img/certificate.png'  # Обновите путь к вашему сертификату
+        certificate_image = Image.open(certificate_path)
+
+        # Создание временного файла для сохранения сертификата
+        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_filepath = temp_file.name
+            certificate_image.save(temp_filepath, format='PNG')
 
         # Создание PDF-сертификата с помощью reportlab
         buffer = BytesIO()
-        p = canvas.Canvas(buffer, pagesize=letter)
+        p = canvas.Canvas(buffer, pagesize=landscape(A4))
 
-        # Использование зарегистрированного шрифта Pacifico для текста
-        p.setFont("Pacifico", 20)
-        p.setFillColorRGB(0, 0, 0)  # Set the text color to black
-        p.drawString(100, 700, f"Сертификат участника:")
-        p.setFont("Pacifico", 30)
-        full_name = f"{student.first_name} {student.last_name}"
-        p.drawString(100, 650, full_name)
+        # Вставка сертификата как изображения на PDF-страницу
+        p.drawImage(temp_filepath, 0, 0, width=850, height=600)
 
-        # Get the completed course for the student
-        completed_courses = student.courses.all()  # Get all completed courses for the student
+        # Вставка данных на сертификат
 
-        if completed_courses:
-            y_position = 600  # Starting y-position for displaying completed courses
-            for course in completed_courses:
-                p.drawString(100, y_position, f"Завершенный курс: {course.title}")
-                y_position -= 25
+        # Установка шрифта
+        font_path = 'users/static/fonts/Tinos-Italic.ttf'
+        pdfmetrics.registerFont(TTFont('Tinos', font_path))
 
-        # Ваш код для создания дизайна сертификата и добавления других элементов
+        # Расположение текста на сертификате
+        text_x = 380  # Горизонтальная позиция текста
+        text_y = 314  # Вертикальная позиция текста
+        line_height = 20  # Высота строки
+
+        # Вставка имени студента
+        p.setFont("Tinos", 15)
+        p.drawString(text_x, text_y, student.first_name)
+        p.drawString(text_x + p.stringWidth(student.first_name) + 5, text_y, student.last_name)
+
+        # Обновление вертикальной позиции для следующего текстового блока
+        text_y -= line_height * 5
+
+        # Вставка даты завершения курса
+        date_text_x = 400  # Горизонтальная позиция текста даты
+        date_text_y = 204  # Вертикальная позиция текста даты
+        p.setFont("Tinos", 15)
+        p.drawString(date_text_x, date_text_y, today_str)
+
+        # Обновление вертикальной позиции для следующего текстового блока
+        text_y -= line_height * 2
+
+        # Вставка информации о курсе
+        course_text = "Курс: Название вашего курса"  # Замените на фактическое название курса
+        p.setFont("Tinos", 15)
+        p.drawString(text_x, text_y, course_text)
+
+        # Добавьте любые другие данные, которые вы хотите вставить на сертификат
+        # с определенными координатами и размерами шрифта
+
         # ...
 
         p.save()
 
         buffer.seek(0)
         return HttpResponse(buffer, content_type='application/pdf')
-
-
-
-
-
 
 
 

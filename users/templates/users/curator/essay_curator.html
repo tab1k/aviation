@@ -1,0 +1,63 @@
+{% extends 'users/curator/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block css %}<link rel="stylesheet" href="{% static 'student/css/essay.css' %}">{% endblock %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="all_page">
+    {% block content %}
+      <div class="content">
+
+        <div class="courses">
+          <h2 class="my-courses-h2">Эссе</h2>
+          <div class="quiz">
+            <h3 class="my-courses-h2">Тема: {{ lesson.title }}</h3>
+
+            <!-- theme lesson -->
+            <div class="theme">
+              <p><b>Напишите развернутое эссе на данную тему. Покажите в нем то, как вы поняли эту тему.</b></p>
+
+              <!-- test -->
+              <div class="essay">
+                <div class="chat-essay">
+                  <div class="comment">
+                    <form style="width: 100%" action="{% url 'users:student:courses:essays:essay_submission' lesson_id=lesson.id %}" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <textarea name="essay_text" class="reply-textarea" placeholder="Введите свой комментарий под эссе. Напишите то, что вы не поняли по данной теме"></textarea>
+                      <label for="essay_file">Добавить файл:</label>
+                      <input type="file" name="essay_file" id="essay_file">
+                      <button style="display: initial; margin-top: 15px;" type="submit" class="send-button">Отправить</button>
+                    </form>
+                  </div>
+
+                  {% if essay_submission_id %}
+                    <p>Эссе успешно отправлено! ID сдачи эссе: {{ essay_submission_id }}</p>
+                  {% endif %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    {% endblock %}
+  </div>
+
+  <script src="{% static 'student/js/side-bar.js' %}"></script>
+</body>
+
+</html>

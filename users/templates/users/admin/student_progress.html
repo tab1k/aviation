@@ -32,7 +32,7 @@
         <h2>Успеваемость студента {{ student.first_name }}</h2>
 
 
-        <form method="GET" action="{% url 'stransit:users:admin:search_curators' %}">
+        <form method="GET" action="{% url 'users:admin:search_curators' %}">
 
           <div class="search-footer">
             <input type="text" name="q"  placeholder="Поиск...">

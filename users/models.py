@@ -13,6 +13,7 @@ class User(AbstractUser):
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
     stream = models.ForeignKey('Stream', on_delete=models.SET_NULL, null=True, blank=True)
 
+
     def __str__(self):
         return self.username
 

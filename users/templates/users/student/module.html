@@ -32,12 +32,12 @@
                 {% for module in modules %}
                 <div class="course">
 
-                  <a  href="{% url 'stransit:users:student:courses:lessons_by_module' module.id %}"><p class="module-name" ><b>{{ module.title }}</b></p></a>
+                  <a  href="{% url 'users:student:courses:lessons_by_module' module.id %}"><p class="module-name" ><b>{{ module.title }}</b></p></a>
                   <p>{{ module.lesson_set.count }} уроков</p>
 
                   <div class="buttons">
 
-                    <a  href="{% url 'stransit:users:student:courses:lessons_by_module' module.id %}"><button class="go">Перейти</button></a>
+                    <a  href="{% url 'users:student:courses:lessons_by_module' module.id %}"><button class="go">Перейти</button></a>
 
                   </div>
 

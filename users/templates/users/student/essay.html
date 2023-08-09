@@ -34,7 +34,7 @@
               <div class="essay">
                 <div class="chat-essay">
                   <div class="comment">
-                    <form style="width: 100%" action="{% url 'stransit:users:student:courses:essays:essay_submission' lesson_id=lesson.id %}" method="post" enctype="multipart/form-data">
+                    <form style="width: 100%" action="{% url 'users:student:courses:essays:essay_submission' lesson_id=lesson.id %}" method="post" enctype="multipart/form-data">
                       {% csrf_token %}
                       <textarea name="essay_text" class="reply-textarea" placeholder="Введите свой комментарий под эссе. Напишите то, что вы не поняли по данной теме"></textarea>
                       <label for="essay_file">Добавить файл:</label>

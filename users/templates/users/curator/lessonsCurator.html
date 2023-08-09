@@ -1,10 +1,75 @@
+{% extends 'users/curator/base.html' %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="ru" dir="ltr">
 
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}<link rel="stylesheet" href="{% static 'admin/css/lessonAdmin.css' %}">{% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="all_page">
+
+        {% block content %}
+            <div class="content">
+            <div class="my-courses">
+                <h3>Модуль 0: Введение</h3>
+
+                <div class="lessons">
+                    {% for lesson in lessons %}
+                    <div class="lesson">
+                        <div class="lesson-main">
+                            <svg width="50" height="50" viewBox="0 0 74 74" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect x="0.599609" y="0.299805" width="72.8" height="72.8" rx="16" fill="#1C3D6F" />
+                                <path
+                                    d="M41.5455 42.6754H33.7615L32.4735 46.3994H28.3575L35.3855 26.8274H39.9495L46.9775 46.3994H42.8335L41.5455 42.6754ZM40.4815 39.5394L37.6535 31.3634L34.8255 39.5394H40.4815Z"
+                                    fill="white" />
+                            </svg>
+
+                            <div class="about-lesson">
+                                <div class="data">
+                                    <p>Дата и время начала: {{ lesson.start_datetime|date:"D d M H:i" }}</p>
+                                </div>
+                                <a href="videoAdmin.html">
+                                    <div class="lesson-name">
+                                        <p><b>{{ lesson.title }}</b> </p>
+                                        <p class="link">Zoom: <a href="{{ lesson.zoom_link }}">{{ lesson.zoom_link }}</a></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <a href="{% url 'users:admin:courses:lesson_view' lesson_id=lesson.id %}">
+                            <button class="go">
+                                <p>Перейти</p>
+                            </button>
+                        </a>
+
+                    </div>
+                    {% endfor %}
+
+                    <a href=""><img class="back" src="{% static 'admin/img/next-button.svg' %}" alt=""></a>
+
+                </div>
+
+            </div>
+        </div>
+        {% endblock %}
+
+    </div>
+
+    <script src="{% static 'admin/js/side-bar.js' %}"></script>
 </body>
+
 </html>

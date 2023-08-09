@@ -29,7 +29,7 @@
       <div class="content-header">
 
         <h2>Кураторы</h2>
-        <form method="GET" action="{% url 'stransit:users:admin:search_curators' %}">
+        <form method="GET" action="{% url 'users:admin:search_curators' %}">
 
           <div class="search-footer">
             <input type="text" name="q"  placeholder="Поиск...">
@@ -57,7 +57,7 @@
           <div class="expandable">
             <select onchange="window.location.href = this.options[this.selectedIndex].value">
               <option value="">Действия</option>
-              <option value="{% url 'stransit:users:admin:add_curator' %}">Добавить куратора</option>
+              <option value="{% url 'users:admin:add_curator' %}">Добавить куратора</option>
             </select>
           </div>
         </div>
@@ -85,7 +85,7 @@
                   <a href="moduleAdmin.html" class="students__links-link">{{ curator.stream }} поток</a>
                 </div>
                 <div class="students__links-item">
-                  <a href="{% url 'stransit:users:admin:profile:profile_view' curator.pk %}" class="students__links-link">Личный кабинет</a>
+                  <a href="{% url 'users:admin:profile:profile_view' curator.pk %}" class="students__links-link">Личный кабинет</a>
                 </div>
               </div>
             </div>

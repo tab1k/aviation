@@ -47,11 +47,11 @@ body {
     background-color: inherit;
   }
   
-  .training_sectors_images img{
+  .users{
     border-radius: 35px;
   }
   
-  .training_sectors_images img:hover{
+  .users:hover{
     box-shadow: 5px 5px 4px 3px rgba(0,0,0,0.14);
     transition: 500ms;
   }

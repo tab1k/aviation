@@ -29,7 +29,7 @@
       <div class="content-header">
 
         <h2>Студенты</h2>
-        <form action="{% url 'stransit:users:admin:search_students' %}" method="get">
+        <form action="{% url 'users:admin:search_students' %}" method="get">
 
           <div class="search-footer">
             <input name="q" placeholder="Поиск...">
@@ -57,13 +57,13 @@
           <div class="expandable">
             <select onchange="window.location.href = this.options[this.selectedIndex].value">
               <option value="">Действия</option>
-              <option value="{% url 'stransit:users:admin:add_student' %}">Добавить студента</option>
-              <option value="{% url 'stransit:users:admin:add_student' %}">Проверить эссе студентов</option>
+              <option value="{% url 'users:admin:add_student' %}">Добавить студента</option>
+              <option value="{% url 'users:admin:add_student' %}">Проверить эссе студентов</option>
             </select>
           </div>
         </div>
 
-        <div class="move_button"><a href="{% url 'stransit:users:admin:courses:passed_students' %}">Выпускники</a></div>
+        <div class="move_button"><a href="{% url 'users:admin:courses:passed_students' %}">Выпускники</a></div>
       </div>
 
       <!-- Главная -->
@@ -87,10 +87,10 @@
                   <a href="moduleAdmin.html" class="students__links-link">{{ student.stream }} поток</a>
                 </div>
                 <div class="students__links-item">
-                  <a href="{% url 'stransit:users:curator:profile:profile_view' student.pk %}" class="students__links-link">Личный кабинет</a>
+                  <a href="{% url 'users:curator:profile:profile_view' student.pk %}" class="students__links-link">Личный кабинет</a>
                 </div>
                 <div class="students__links-item">
-                  <a href="{% url 'stransit:users:curator:courses:student_progress' student_id=student.id %}" class="students__links-link">Успеваемость</a>
+                  <a href="{% url 'users:curator:courses:student_progress' student_id=student.id %}" class="students__links-link">Успеваемость</a>
                 </div>
               </div>
             </div>

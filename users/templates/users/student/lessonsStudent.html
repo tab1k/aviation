@@ -24,7 +24,7 @@
             <div class="my-courses">
                 <h3>Модуль 0: Введение</h3>
 
-                <div class="lessons">
+                <div style="overflow-y: initial;" class="lessons">
                     {% for lesson in lessons %}
                     <div class="lesson">
                         <div class="lesson-main">
@@ -38,19 +38,19 @@
 
                             <div class="about-lesson">
                                 <div class="data">
-                                    <p>Дата и время начала: {{ lesson.start_datetime|date:"D d M H:i" }}</p>
+                                    <p>Дата и время: {{ lesson.start_datetime|date:"D d M H:i" }}</p>
                                 </div>
-                                <a href="videoAdmin.html">
+                                <a href="{% url 'users:admin:courses:lesson_view' lesson_id=lesson.id %}">
                                     <div class="lesson-name">
-                                        <p><b>{{ lesson.title }}</b> </p>
-                                        <p class="link">Zoom: <a href="{{ lesson.zoom_link }}">{{ lesson.zoom_link }}</a></p>
+                                        <p><b>{{ lesson.title|truncatechars:15 }}</b> </p>
+                                        <p class="link">Zoom: <a href="{{ lesson.zoom_link }}">{{ lesson.zoom_link|truncatechars:15 }}</a></p>
                                     </div>
                                 </a>
                             </div>
                         </div>
 
 
-                        <a href="{% url 'stransit:users:admin:courses:lesson_view' lesson_id=lesson.id %}">
+                        <a href="{% url 'users:admin:courses:lesson_view' lesson_id=lesson.id %}">
                             <button class="go">
                                 <p>Перейти</p>
                             </button>

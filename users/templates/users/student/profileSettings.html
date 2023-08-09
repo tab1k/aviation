@@ -126,29 +126,70 @@
 
           <!-- profileInfo -->
 
-          <div class="profileInfo">
-
-            <!-- profileFrom -->
-
-              <!-- profile Inputs -->
-
-              <form class="d-g" action="">
-
-                  <h2>Список курсов:</h2>
-                    <ul>
-                      {% for course in courses %}
-                        <li>{{ course.title }}</li>
-                      {% empty %}
-                        <li>Студент не участвует в курсах</li>
-                      {% endfor %}
-                    </ul>
 
 
-                </form>
+          <div class="aviation-courses">
+            <div class="aviation-courses-img">
+                <img src="{% static 'admin/img/Mask Group.png' %}" alt="">
+            </div>
+            <div class="aviation-courses-text">
+                <ul>
+                    {% for course in courses %}
+                    <li><strong><b>Курс: {{ course.title|truncatechars:20 }}</b></strong></li>
+                    <li><p>Длительность: {{ course.duration }} min</p></li>
+                    {% empty %}
+                    <li>Студент не участвует в курсах</li>
+                    {% endfor %}
+                </ul>
+            </div>
+          </div>
+        <style>
+            .aviation-courses {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: #FFFFFF;
+                box-shadow: 4px 4px 13px rgba(0, 0, 0, 0.25);
+                border-radius: 14px;
+                height: fit-content;
+                margin-top: 20px;
+                padding: 5px 10px 0px 10px;
+
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .aviation-courses-img {
+                margin-right: 20px;
+            }
+
+            .aviation-courses-img img {
+                max-width: 100px;
+                height: auto;
+                border-radius: 10px;
+            }
+
+            .aviation-courses-text {
+                flex-grow: 1;
+            }
+
+            .aviation-courses-text p {
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .aviation-courses-text ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .aviation-courses-text ul li {
+                margin-bottom: 5px;
+            }
+        </style>
 
       </div>
 
-      </div>
 
       <div class="profile security">
 
