@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.views import View
+from django.http import JsonResponse
 from django.contrib.auth import logout, get_user_model
 from django.db.models import Q
+from django.views.generic import ListView
+
 from administrator.forms import StudentForm, CuratorForm
 from courses.models import Course, CourseType
 from users.models import User, Stream
@@ -161,6 +163,14 @@ class SearchCuratorsView(View):
         context = {'results': curators}
         return render(request, self.template_name, context)
 
+
+
+
+
+class StreamListView(ListView):
+    model = Stream
+    template_name = 'users/admin/streams.html'
+    context_object_name = 'streams'
 
 
 

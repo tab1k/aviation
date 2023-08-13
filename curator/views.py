@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views import View
+from django.views.generic import ListView
 from courses.models import Course, CourseType
 from users.models import User, Stream
 
@@ -35,6 +36,12 @@ class StudentsCheckAdmin(View):
             'streams': streams,
             'selected_stream': selected_stream
         })
+
+
+class StreamListView(ListView):
+    model = Stream
+    template_name = 'users/curator/streams.html'
+    context_object_name = 'streams'
 
 
 class LogoutView(View):

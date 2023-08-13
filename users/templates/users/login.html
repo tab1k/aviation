@@ -32,7 +32,7 @@
                 <!-- заголовок формы -->
 
                 <div class="title_container">
-                    <p class="title">Welcome</p>
+                    <p class="title">Добро пожаловать!</p>
                 </div>
                 <br>
 
@@ -90,10 +90,12 @@
                     <hr class="line">
                 </div>
 
-                <!-- back button -->
+                <button style="width: 135px;" type="submit" class="sign-in_back">
+                    <span> <a href="{% url 'users:forgot-password' %}" id="s">Забыли пароль?</a></span>
+                </button>
 
-                <button  type="submit" class="sign-in_back">
-                    <span> <a href="{% url 'stransit:index' %}" id="s">На сайт</span></a>
+                <button type="submit" class="sign-in_back">
+                    <span> <a href="{% url 'stransit:index' %}" id="s">На сайт</a></span>
                 </button>
 
             </form>

@@ -26,7 +26,7 @@
         <div class="training_sectors">
             <h2 class="training_sectors_h2">Сектора тренингов</h2>
         <!-- training_sectors_images -->
-            <div class="training_sectors_images training_slider">
+            <div class="training_sectors_images training_slider training_slider_courses">
             {% for ct in courses_type %}
               <!-- training_sectors_aviation -->
               <a href="{% url 'users:curator:courses:courses_by_type' ct.pk %}">
@@ -59,7 +59,7 @@
               <div class="training_sectors">
                   <h2 class="training_sectors_h2">Курсы</h2>
                   <!-- training_sectors_images -->
-                  <div class="training_sectors_images training_slider_cources">
+                  <div class="training_sectors_images training_slider_cources training_slider_courses">
                     {% for c in courses %}
                       <a href="{% url 'users:student:courses:modules' c.pk %}">
                         <div class="training_sectors_indusrial">

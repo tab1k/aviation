@@ -30,10 +30,10 @@
 
        <div class="courses_sector">
         <h2 class="training_sectors_h2">Мои курсы</h2>
-            <div style="flex-wrap: initial;" class="training_sectors_images training_slider_cources" >
+            <div style="flex-wrap: initial;" class="training_sectors_images training_slider_cources training_slider_courses" >
                     {% for c in courses %}
                       <a href="{% url 'users:curator:courses:modules' c.pk %}">
-                        <div class="training_sectors_aviation">
+                        <div class="training_sectors_aviation" style="text-align: -moz-center;">
                           <div class="aviation-img rel">
                             <div class="course-info">
                               <div class="course-type">
@@ -43,7 +43,7 @@
                                 {{ c.duration }} min
                               </button>
                             </div>
-                            <img src="{% static 'admin/img/Mask Group.png' %}" alt="">
+                            <img src="{{ c.image.url }}" alt="" class="custom-image">
                             <div class="aviation-text-industry">
                               <p>{{ c.description|truncatechars:80 }}</p>
                             </div>

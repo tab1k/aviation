@@ -28,23 +28,20 @@
                 <h2 class="training_sectors_h2">Курсы</h2>
 
                 <!-- training_sectors_images -->
-                <div class="training_sectors_images training_slider_cources">
+                <div class="training_sectors_images training_slider_cources training_slider_courses">
                 {% for c in courses %}
                 <a href="{% url 'users:student:courses:modules' c.pk %}">
-                  <div class="training_sectors_indusrial">
+                  <div class="training_sectors_industrial" style="text-align: -moz-center;">
                     <div class="aviation-img rel">
                       <div class="course-info">
                         <div class="course-type">
-                          <h3>{{ c.title|truncatechars:10 }}</h3>
+                          <h3>{{ c.title|truncatechars:9 }}</h3>
                         </div>
                         <button class="course-minutes">
                           {{ c.duration }} min
                         </button>
                       </div>
-                      <img src="{% static 'admin/img/Mask Group.png' %}" alt="">
-                      <div class="aviation-text-industry">
-                        <p>{{ c.description|truncatechars:80 }}</p>
-                      </div>
+                      <img src="{{ c.image.url }}" alt="" class="custom-image">
                     </div>
                   </div>
                 </a>

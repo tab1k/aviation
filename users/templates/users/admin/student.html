@@ -83,7 +83,7 @@
 
               <div class="students__links">
                 <div class="students__links-item">
-                  <a href="moduleAdmin.html" class="students__links-link">{{ student.stream }} поток</a>
+                  <a href="{% url 'users:administrator:stream_list' %}" class="students__links-link">{{ student.stream }} поток</a>
                 </div>
                 <div class="students__links-item">
                   <a href="{% url 'users:admin:profile:profile_view' pk=student.pk %}" class="students__links-link">Личный кабинет</a>

@@ -326,7 +326,7 @@ input:-webkit-autofill:active {
 /* training_sectors_images img style */
 .training_sectors_images img {
   margin-left: 10%;
-  width: 38%;
+  width: 90%;
   height: 100%;
   background-size: cover;
 }

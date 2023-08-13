@@ -44,17 +44,6 @@
       <div class="container">
         <div class="expandables">
           <div class="expandable">
-            <div class="expandable-header">
-              <select name="" id="">
-                <option value="">Все кураторы</option>
-                <option value="">1 поток</option>
-                <option value="">2 поток</option>
-                <option value="">3 поток</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="expandable">
             <select onchange="window.location.href = this.options[this.selectedIndex].value">
               <option value="">Действия</option>
               <option value="{% url 'users:admin:add_curator' %}">Добавить куратора</option>
@@ -76,18 +65,10 @@
           <div class="students__item">
             <div class="students__item-content">
               <div class="students__table">
-                <div class="students__name">{{ curator.first_name }} {{ curator.last_name }}</div>
-                <div class="students__id">{{ curator.id }}</div>
+                <div class="students__name"><b>{{ curator.first_name }} {{ curator.last_name }}</b></div>
+                <div class="students__id"><b>{{ curator.id }}</b></div>
               </div>
 
-              <div class="students__links">
-                <div class="students__links-item">
-                  <a href="moduleAdmin.html" class="students__links-link">{{ curator.stream }} поток</a>
-                </div>
-                <div class="students__links-item">
-                  <a href="{% url 'users:admin:profile:profile_view' curator.pk %}" class="students__links-link">Личный кабинет</a>
-                </div>
-              </div>
             </div>
           </div>
             {% endfor %}

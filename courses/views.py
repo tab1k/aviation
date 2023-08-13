@@ -69,7 +69,7 @@ class Courses(View):
             courses = Course.objects.all()
         elif request.user.groups.filter(name='Кураторы').exists():
             template_name = 'users/curator/coursesAfterSignUpCurator.html'
-            courses = Course.objects.filter(curators=request.user)
+            courses = Course.objects.all()
         else:
             template_name = 'users/student/coursesAfterSignUp.html'
             courses = Course.objects.filter(students=request.user)
@@ -250,11 +250,6 @@ class AnswersView(View):
             return render(request, 'users/404.html')  # Здесь используем перенаправление для студентов, но вы можете выбрать другой путь
 
 
-
-
-# -------------------------
-
-
 class StudentProgressView(View):
     template_name_curator = 'users/curator/student_progress.html'
     template_name_admin = 'users/admin/student_progress.html'
@@ -330,6 +325,7 @@ class StudentProgressView(View):
 class PassedStudentsView(View):
     template_name = 'users/admin/passed_students.html'
     template_name_curator = 'users/curator/passed_students.html'
+
 
     def get(self, request):
         if request.user.role not in ['curator', 'admin']:

@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.views import View
+
 from users.forms import LoginForm
+from users.models import User
 
 
 def login_view(request):
@@ -56,28 +59,9 @@ def open_website(request):
 
 
 
+class ForgotPaswwordView(View):
 
-# @login_required(login_url='users:login')
-# def admin_view(request):
-#     if request.user.role == 'admin':
-#         return render(request, 'users/admin/mainAfterSignUpСurator.html')
-#     else:
-#         return redirect('users:login')
+    def get(self, request):
+        return render(request, 'users/forgot-password.html')
 
-
-
-# @login_required(login_url='users:login')
-# def dashboard_view(request):
-#     if request.user.role == 'student':
-#         return render(request, 'users/student/mainAfterSignupStudent.html')
-#     else:
-#         return redirect('users:login')
-
-
-# @login_required(login_url='users:login')
-# def curator_view(request):
-#     if request.user.role == 'curator':
-#         return render(request, 'users/curator/mainAfterSignUpСurator.html')
-#     else:
-#         return redirect('users:login')
 

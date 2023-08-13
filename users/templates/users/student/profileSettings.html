@@ -33,7 +33,7 @@
           <div class="profile-img">
 
             <div class="profile-image">
-            <img class="user-img" src="{% static 'student/img/avatar.png' %}" alt="">
+            <img class="user-img" src="{{ user.image.url }}" alt="">
             </div>
 
             <div class="profileText">
@@ -209,7 +209,7 @@
 
                 <h2>Возникли какие-либо вопросы?</h2>
 
-                <button class="button-support">Поддержка</button>
+                <button class="button-support"><a href="#">Поддержка</a></button>
 
         </form>
 

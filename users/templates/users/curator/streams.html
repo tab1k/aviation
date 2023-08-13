@@ -1,0 +1,86 @@
+{% extends 'users/curator/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'admin/css/student.css' %}" rel="stylesheet">{% endblock %}
+    <title>Потоки и студенты</title>
+    <style>
+        /* Адаптивные стили */
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 2%;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+
+    .stream-table {
+        width: 100%;
+    }
+
+    .stream-table th,
+    .stream-table td {
+        padding: 8px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .student-list {
+        padding: 0;
+        margin: 0;
+    }
+
+    .student-name {
+        font-size: 12px;
+        margin: 2px 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="all_page">
+    {% block content %}
+        <div class="content">
+            <div style="text-align: center">
+                <h1>Потоки студентов</h1>
+                <div style="margin: 6%;" class="container">
+                    <table class="stream-table">
+                        <thead style="display: revert">
+                            <tr>
+                                <th>Поток</th>
+                                <th>Количество студентов</th>
+                                <th>Имена студентов</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stream in streams %}
+                                <tr>
+                                    <td style="text-align: center">{{ stream.number }} поток</td>
+                                    <td style="text-align: center">{{ stream.user_set.count }}</td>
+                                    <td style="text-align: center">
+                                        <ul class="student-list">
+                                            {% for student in stream.user_set.all %}
+                                                <li class="student-name">{{ student.first_name }} {{ student.last_name }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</div>
+
+
+</body>
+</html>
+

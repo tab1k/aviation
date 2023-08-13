@@ -57,7 +57,6 @@
           <div class="expandable">
             <select onchange="window.location.href = this.options[this.selectedIndex].value">
               <option value="">Действия</option>
-              <option value="{% url 'users:admin:add_student' %}">Добавить студента</option>
               <option value="{% url 'users:admin:add_student' %}">Проверить эссе студентов</option>
             </select>
           </div>
@@ -75,26 +74,35 @@
             <div class="students__title students__title-id">ID студента</div>
           </div>
             {% for student in students %}
-          <div class="students__item">
-            <div class="students__item-content">
-              <div class="students__table">
-                <div class="students__name">{{ student.first_name }} {{ student.last_name }}</div>
-                <div class="students__id">{{ student.id }}</div>
-              </div>
+                <div class="students__item">
+                    <div class="students__item-content">
+                      <div class="students__table">
+                        <div class="students__name">{{ student.first_name }} {{ student.last_name }}</div>
+                        <div class="students__id">{{ student.id }}</div>
+                      </div>
 
-              <div class="students__links">
-                <div class="students__links-item">
-                  <a href="moduleAdmin.html" class="students__links-link">{{ student.stream }} поток</a>
-                </div>
-                <div class="students__links-item">
-                  <a href="{% url 'users:curator:profile:profile_view' student.pk %}" class="students__links-link">Личный кабинет</a>
-                </div>
-                <div class="students__links-item">
-                  <a href="{% url 'users:curator:courses:student_progress' student_id=student.id %}" class="students__links-link">Успеваемость</a>
-                </div>
-              </div>
-            </div>
-          </div>
+                      <div class="students__links">
+                        <div class="students__links-item">
+                            <script>
+                                function showAlert() {
+                                    alert("Студент не относится ни к какому потоку");
+                                }
+                                </script>
+                          {% if student.stream == "None" %}
+                              <a href="#" class="students__links-link" onclick="showAlert(); return false;"> {{ student.stream }} поток</a>
+                          {% else %}
+                              <a href="{% url 'users:curator:stream_list' %}" class="students__links-link"> {{ student.stream }} поток</a>
+                          {% endif %}
+                        </div>
+                        <div class="students__links-item">
+                          <a href="{% url 'users:curator:profile:profile_view' student.pk %}" class="students__links-link">Личный кабинет</a>
+                        </div>
+                        <div class="students__links-item">
+                          <a href="{% url 'users:curator:courses:student_progress' student_id=student.id %}" class="students__links-link">Успеваемость</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             {% endfor %}
         </div>
       </main>
@@ -116,16 +124,7 @@
     });
   });
 </script>
-<script>
-  function openPopup() {
-    document.getElementById("popup").style.display = "block";
 
-  }
-
-  function closePopup() {
-    document.getElementById("popup").style.display = "none";
-  }
-</script>
 
 
 </html>

@@ -16,6 +16,7 @@ urlpatterns = [
     path('schedule/', include('schedule.urls')),
     path('admin_check/students/', StudentsCheckAdmin.as_view(), name='students_admin_check'),
     path('admin_check/students/search/', SearchStudentsView.as_view(), name='search_students'),
+    path('streams/', StreamListView.as_view(), name='stream_list'),
     path('admin_check/curators/', CuratorCheckAdmin.as_view(), name='curators_admin_check'),
     path('admin_check/curators/search/', SearchCuratorsView.as_view(), name='search_curators'),
 ]

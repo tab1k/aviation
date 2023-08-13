@@ -25,30 +25,6 @@
           <!-- my courses -->
           <div style="padding: 4%;" class="courses">
             <h2 class="my-courses-h2">Лента ответов</h2>
-            <div class="main-text">
-                <div class="course-type">
-                    <select id="lessonFilter">
-                        <option value="all" selected>Все курсы</option>
-                        <option value="course1">Курс 1</option>
-                        <option value="course2">Курс 2</option>
-                        <!-- Добавьте другие варианты курсов здесь -->
-                    </select>
-                </div>
-                <div class="course-type">
-                    <select id="sortOrder">
-                        <option value="new" selected>Сначала новые</option>
-                        <option value="old">Сначала старые</option>
-                    </select>
-                </div>
-                <div class="course-type">
-                    <select id="commentStatus">
-                        <option value="all" selected>Все</option>
-                        <option value="approved">Принятые</option>
-                        <option value="rejected">Не принятые</option>
-                    </select>
-                </div>
-            </div>
-            <h2 class="my-courses-h2">Все курсы</h2>
             <div class="answers">
             {% for comment in comments %}
             <div class="answer">

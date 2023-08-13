@@ -31,9 +31,9 @@
                       <!-- training_sectors_aviation -->
                       <a href="">
                           <div style="display: flex; justify-content: center; align-items: center;">
-                              <div class="training_sectors_aviation">
-                                <div class="aviation-img">
-                                  <div class="course-info">
+                              <div class="training_sectors_aviation training_slider_courses">
+                                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" class="aviation-img">
+                                  <div style="margin-top: auto;" class="course-info">
                                     <div class="course-type">
                                       <h3>{{ ct.title|truncatechars:15 }}</h3>
                                     </div>
@@ -56,41 +56,49 @@
                   </div>
 
                 <div class="training_sectors">
-              <div class="training_sectors">
-                  <h2 class="training_sectors_h2">Курсы</h2>
-                  <!-- training_sectors_images -->
-                  <div class="training_sectors_images">
-                    {% for c in courses %}
-                      <a href="{% url 'users:student:courses:modules' c.pk %}">
-                        <div style="display: flex; justify-content: center; align-items: center;">
-                            <div class="training_sectors_aviation">
-                              <div class="aviation-img rel">
-                                <div class="course-info">
-                                  <div class="course-type">
-                                    <h3>{{ c.title|truncatechars:10 }}</h3>
+                  <div class="training_sectors">
+                      <h2 class="training_sectors_h2">Курсы</h2>
+                      <!-- training_sectors_images -->
+                      <div class="training_sectors_images">
+                        {% for c in courses %}
+                          <a href="{% url 'users:student:courses:modules' c.pk %}">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <div class="training_sectors_aviation">
+                                  <div class="aviation-img rel">
+                                    <div class="course-info">
+                                      <div class="course-type">
+                                        <h3>{{ c.title|truncatechars:10 }}</h3>
+                                      </div>
+                                      <button class="course-minutes">
+                                        {{ c.duration }} min
+                                      </button>
+                                    </div>
+                                      <style>
+                                          .custom-image {
+                                            max-width: 100%;
+                                            height: auto;
+                                            display: block;
+                                            margin: 0 auto;
+                                            /* Дополнительные стили, если необходимо */
+                                            width: 468px; /* Добавьте фиксированную ширину */
+                                            height: 315px; /* Добавьте фиксированную высоту */
+                                        }
+                                      </style>
+                                    <img style="max-width: 100%; height: auto; display: block; margin: 0 auto; width: 530px; height: 319px; " src="{{ c.image.url }}" alt="">
+                                    <div style="padding: 10px;  border: 1px solid #ddd;" class="aviation-text-industry">
+                                      <p>{{ c.description|truncatechars:80 }}</p>
+                                    </div>
                                   </div>
-                                  <button class="course-minutes">
-                                    {{ c.duration }} min
-                                  </button>
                                 </div>
-                                <img src="{% static 'admin/img/Mask Group.png' %}" alt="">
-                                <div class="aviation-text-industry">
-                                  <p>{{ c.description|truncatechars:80 }}</p>
-                                </div>
-                              </div>
                             </div>
-                        </div>
-                      </a>
-                    {% endfor %}
+                          </a>
+                        {% endfor %}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-
-
             </div>
-      {% endblock %}
-  </div>
+        {% endblock %}
+    </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script src="{% static 'admin/js/slider-slick.js' %}"></script>
