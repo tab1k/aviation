@@ -1,0 +1,31 @@
+version: '3'
+
+volumes:
+  postgres_data:
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=tabigat_user
+      - POSTGRES_PASSWORD=tabigat_password
+      - POSTGRES_DB=tabigat_aviation
+    ports:
+      - "5433:5432"
+
+  web:
+    build: .
+    tty: true
+    command: >
+      bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    restart: always
+    volumes:
+      - .:/code
+      - .:/static
+      - .:/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
