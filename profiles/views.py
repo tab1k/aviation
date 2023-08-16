@@ -25,10 +25,10 @@ class Profile(View):
             return render(request, 'users/student/profileSettings.html', {'context': context, 'courses': courses})
         elif authenticated_user.role == 'curator':
             courses = Course.objects.filter(curators=authenticated_user)
-            return render(request, 'users/curator/profileSettingsAdmin.html', {'context': context, 'courses': courses})
+            return render(request, 'users/curator/profileCurator.html', {'context': context, 'courses': courses})
         elif authenticated_user.role == 'admin':
             courses = Course.objects.all()
-            return render(request, 'users/admin/profileSettingsAdmin.html', {'context': context, 'courses': courses})
+            return render(request, 'users/admin/profileAdmin.html', {'context': context, 'courses': courses})
         else:
             return render(request, 'users/404.html')
 

@@ -1,0 +1,79 @@
+/* styles.css */
+
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Стили для таблицы расписания */
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.schedule-table th {
+  background-color: #f2f2f2;
+}
+
+/* Стили для заголовка страницы */
+.page-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Стили для кнопок */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* Стили для выбора курсов */
+.course-select {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.course-title {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 767px) {
+    .schedule-table th,
+    .schedule-table td {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .course-title {
+        font-size: 16px;
+    }
+}

@@ -17,6 +17,7 @@ class StudentForm(forms.ModelForm):
         self.fields['last_name'].widget.attrs['class'] = 'input'
         self.fields['email'].widget.attrs['class'] = 'input'
         self.fields['username'].widget.attrs['class'] = 'input'
+        self.fields['courses'].widget.attrs['class'] = 'input'
 
 
 
@@ -34,3 +35,4 @@ class CuratorForm(forms.ModelForm):
         self.fields['last_name'].widget.attrs['class'] = 'input'
         self.fields['email'].widget.attrs['class'] = 'input'
         self.fields['username'].widget.attrs['class'] = 'input'
+        self.fields['courses'].widget.attrs['class'] = 'input'

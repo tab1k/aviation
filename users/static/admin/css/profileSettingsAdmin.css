@@ -90,10 +90,10 @@ a {
     align-items: center;
 }
 
-.side_bar_student{
-	display: flex;
-	align-items: center;
-	margin-top: 2%;
+.side_bar_student {
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
 }
 
 .side_bar_answers{
@@ -123,10 +123,6 @@ a {
     align-items: center;
     width: 110%;
     border-radius: 20px 0 0 20px;
-}
-
-.side_bar_settings p a{
-    color: #FB6D3A;
 }
 
 .group {
@@ -329,7 +325,7 @@ form h2{
 }
 
 .security{
-    width: 48%;
+    width: 100%;
 }
 
 .profile-form{

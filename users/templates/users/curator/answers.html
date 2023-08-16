@@ -25,37 +25,6 @@
           <!-- my courses -->
           <div class="courses">
             <h2 class="my-courses-h2">Лента ответов</h2>
-            <div class="main-text">
-              <div class="df">
-                <label class="checkbox">
-                  <input name="var" type="checkbox"/>
-                  <span class="checkmark"></span>
-                </label>
-                <p>Только курсы, в которых я являюсь учителем</p>
-              </div>
-              <div class="course-type">
-                <select>
-                  <option value="option1" selected>Все уроки</option>
-                  <option value="option2">Дедлайн сегодня</option>
-                  <option value="option3">Дедлайн завтра</option>
-                </select>
-              </div>
-              <div class="course-type">
-                <select>
-                  <option value="option1" selected>Сначала старые</option>
-                  <option value="option2">Сначала новые</option>
-                </select>
-              </div>
-              <div class="course-type">
-                <select>
-                  <option value="option1" selected>Непрочитанные</option>
-                  <option value="option2">Прочитанные</option>
-                  <option value="option3">Принятые</option>
-                  <option value="option4">Не принятые</option>
-                </select>
-              </div>
-            </div>
-            <h2 class="my-courses-h2">Все курсы</h2>
             <div class="answers">
             {% for comment in comments %}
             <div class="answer">

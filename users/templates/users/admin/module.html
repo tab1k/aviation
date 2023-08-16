@@ -28,7 +28,7 @@
                 <div class="course">
 
                   <a  href="{% url 'users:curator:courses:lessons_by_module' module.id %}"><p class="module-name" ><b>{{ module.title|truncatechars:16 }}</b></p></a>
-                  <p>7 уроков</p>
+                  <p>{{ module.lesson_set.count }} уроков</p>
 
                   <div class="buttons">
 

@@ -22,7 +22,7 @@
         {% block content %}
             <div class="content">
             <div class="my-courses">
-                <h3>Модуль 0: Введение</h3>
+                <h3>{{ module.title|truncatechars:16 }}</h3>
 
                 <div style="overflow-y: initial;" class="lessons">
                     {% for lesson in lessons %}
@@ -59,7 +59,10 @@
                     </div>
                     {% endfor %}
 
-                    <a href=""><img class="back" src="{% static 'admin/img/next-button.svg' %}" alt=""></a>
+                    <a href="">
+                        <img class="back" src="{% static 'admin/img/next-button.svg' %}" alt="">
+                    </a>
+
 
                 </div>
 

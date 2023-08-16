@@ -43,16 +43,20 @@
 
       <div class="container">
         <div class="expandables">
-          <div class="expandable">
+            <div class="expandable">
             <div class="expandable-header">
-              <select name="" id="">
-                <option value="">Все студенты</option>
-                <option value="">1 поток</option>
-                <option value="">2 поток</option>
-                <option value="">3 поток</option>
-              </select>
+              <form method="get">
+                  <select name="stream" id="stream-filter" onchange="this.form.submit()">
+                    <option value="">Все студенты</option>
+                    {% for stream in streams %}
+                        <option value="{{ stream.id }}" {% if selected_stream == stream %}selected{% endif %}>{{ stream.number }} поток</option>
+                    {% endfor %}
+                  </select>
+              </form>
             </div>
           </div>
+
+
 
           <div class="expandable">
             <select onchange="window.location.href = this.options[this.selectedIndex].value">

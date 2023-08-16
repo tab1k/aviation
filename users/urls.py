@@ -12,8 +12,6 @@ urlpatterns = [
     path('curator/', include('curator.urls', namespace='curator')),
     path('back-to-home/', back_to_home, name='back_to_home'),
     path('open-website/', open_website, name='open_website'),
-    path('forgot-password', ForgotPaswwordView.as_view(), name='forgot-password')
-
 ]
 
 if settings.DEBUG:

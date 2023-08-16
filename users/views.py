@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views import View
-
+from django.core.mail import send_mail
 from users.forms import LoginForm
 from users.models import User
 
@@ -56,12 +56,5 @@ def open_website(request):
     # Здесь вы можете указать URL вашего сайта
     website_url = "http://127.0.0.1:8000"  # Замените на ваш URL
     return redirect(website_url)
-
-
-
-class ForgotPaswwordView(View):
-
-    def get(self, request):
-        return render(request, 'users/forgot-password.html')
 
 

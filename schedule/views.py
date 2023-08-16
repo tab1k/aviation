@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from courses.models import Course
 from schedule.models import Schedule
-
+from itertools import groupby
 
 class StudentScheduleView(View):
     template_name_student = 'users/student/timeTable.html'
@@ -15,9 +15,6 @@ class StudentScheduleView(View):
 
         # Определить тип пользователя
         user_role = current_user.role
-
-        # Получить все курсы
-        all_courses = Course.objects.all()
 
         # Определим дни недели
         weekdays = [
@@ -47,11 +44,25 @@ class StudentScheduleView(View):
             # For admin, display all schedules regardless of the assigned students
             schedules = Schedule.objects.all()
 
+        # Группируем расписание по курсам
+        schedules_by_course = {}
+        for schedule in schedules:
+            if schedule.course not in schedules_by_course:
+                schedules_by_course[schedule.course] = []
+            schedules_by_course[schedule.course].append(schedule)
+
+        # Преобразуем группированный словарь в список для порядкового вывода
+        grouped_schedules = []
+        for course, course_schedules in schedules_by_course.items():
+            grouped_schedules.append({
+                'course': course,
+                'schedules': course_schedules
+            })
+
         context = {
-            'schedules': schedules,
+            'grouped_schedules': grouped_schedules,
             'weekdays': weekdays,
             'user_role': user_role,
-            'all_courses': all_courses,
         }
         return render(request, template_name, context)
 

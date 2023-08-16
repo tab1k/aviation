@@ -29,7 +29,8 @@ def admin_view(request):
 class StudentsCheckAdmin(View):
     template_name = 'users/admin/student.html'
 
-    def get(self, request, stream_id=None):
+    def get(self, request):
+        stream_id = request.GET.get('stream')
         streams = Stream.objects.all()
         selected_stream = None
         students = User.objects.filter(role='student')
@@ -43,6 +44,7 @@ class StudentsCheckAdmin(View):
             'streams': streams,
             'selected_stream': selected_stream
         })
+
 
 
 class CuratorCheckAdmin(View):
@@ -79,7 +81,7 @@ class AddStudent(View):
             student_group = Group.objects.get(name='Студенты')
             student.groups.add(student_group)
 
-            return redirect('users:admin:courses:detail', course_id=courses.first().id)
+            return render(request, 'users/admin/detail.html', {'student': student})
         return render(request, self.template_name, {'form': form})
 
 

@@ -22,7 +22,8 @@ def curator_view(request):
 class StudentsCheckAdmin(View):
     template_name = 'users/curator/student.html'
 
-    def get(self, request, stream_id=None):
+    def get(self, request):
+        stream_id = request.GET.get('stream')
         streams = Stream.objects.all()
         selected_stream = None
         students = User.objects.filter(role='student')

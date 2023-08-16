@@ -298,3 +298,5 @@ JAZZMIN_USER_FIELDS = [
     'email',
     'image',  # Добавьте это поле
 ]
+
+

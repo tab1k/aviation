@@ -130,7 +130,9 @@
 
           <div class="aviation-courses">
             <div class="aviation-courses-img">
-                <img src="{% static 'admin/img/Mask Group.png' %}" alt="">
+                {% for course in courses %}
+                <img src="{{ course.image.url }}" alt="">
+                {% endfor %}
             </div>
             <div class="aviation-courses-text">
                 <ul>

@@ -125,9 +125,6 @@ a {
     align-items: center;
 }
 
-.side_bar_answers p a {
-    color: #FB6D3A;
-}
 
 .side_bar_book {
     display: flex;
