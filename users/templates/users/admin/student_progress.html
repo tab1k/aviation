@@ -32,7 +32,7 @@
         <h2>Успеваемость студента {{ student.first_name }}</h2>
 
 
-        <form method="GET" action="{% url 'users:admin:search_curators' %}">
+        <form method="GET" action="{% url 'users:admin:search_students' %}">
 
           <div class="search-footer">
             <input type="text" name="q"  placeholder="Поиск...">
@@ -87,11 +87,11 @@
               </div>
 
             </div>
-
-
-
-
-
+            <div style="text-align: center; margin-bottom: 30px;">
+                <button class="button" style="width: 50%">
+                    <a href="{% url 'users:admin:courses:generate_certificate' student_id=student.id %}">Выдать сертификат</a>
+                </button>
+            </div>
         </div>
     {% endblock %}
 

@@ -55,15 +55,6 @@
               </form>
             </div>
           </div>
-
-
-
-          <div class="expandable">
-            <select onchange="window.location.href = this.options[this.selectedIndex].value">
-              <option value="">Действия</option>
-              <option value="{% url 'users:admin:add_student' %}">Проверить эссе студентов</option>
-            </select>
-          </div>
         </div>
 
         <div class="move_button"><a href="{% url 'users:admin:courses:passed_students' %}">Выпускники</a></div>

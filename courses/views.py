@@ -384,9 +384,19 @@ class PassedStudentsView(View):
         else:
             passed_students = User.objects.filter(id__in=[student.id for student in passed_students])
 
+        selected_course_id = request.GET.get('course_filter')
+
+        if selected_course_id:
+            selected_course = Course.objects.get(pk=selected_course_id)
+            passed_students = [student for student in passed_students if selected_course in student.courses.all()]
+
+        all_courses = Course.objects.all()
+
         context = {
             'passed_students': passed_students,
             'search_query': search_query,
+            'all_courses': all_courses,
+            'selected_course_id': selected_course_id,
         }
 
         if request.user.role == 'curator':
@@ -445,31 +455,36 @@ class CertificateView(View):
         pdfmetrics.registerFont(TTFont('Tinos', font_path))
 
         # Расположение текста на сертификате
-        text_x = 380  # Горизонтальная позиция текста
-        text_y = 314  # Вертикальная позиция текста
+        text_x = 360  # Горизонтальная позиция текста
+        text_y = 340  # Вертикальная позиция текста
         line_height = 20  # Высота строки
 
         # Вставка имени студента
-        p.setFont("Tinos", 15)
+        p.setFont("Tinos", 20)
         p.drawString(text_x, text_y, student.first_name)
         p.drawString(text_x + p.stringWidth(student.first_name) + 5, text_y, student.last_name)
 
         # Обновление вертикальной позиции для следующего текстового блока
-        text_y -= line_height * 5
+        text_y -= line_height * 1
 
         # Вставка даты завершения курса
-        date_text_x = 400  # Горизонтальная позиция текста даты
-        date_text_y = 204  # Вертикальная позиция текста даты
+        date_text_x = 310  # Горизонтальная позиция текста даты
+        date_text_y = 265  # Вертикальная позиция текста даты
         p.setFont("Tinos", 15)
         p.drawString(date_text_x, date_text_y, today_str)
 
         # Обновление вертикальной позиции для следующего текстового блока
         text_y -= line_height * 2
 
+        text_course_x = 290
+        text_course_y = 241
+
         # Вставка информации о курсе
-        course_text = "Курс: Название вашего курса"  # Замените на фактическое название курса
-        p.setFont("Tinos", 15)
-        p.drawString(text_x, text_y, course_text)
+        student = get_object_or_404(User, pk=student_id)
+        course_names = student.courses.all().values_list('title', flat=True)
+        course_text = f"{', '.join(course_names)}"  # Замените на фактическое название курса
+        p.setFont("Tinos", 17)
+        p.drawString(text_course_x, text_course_y, course_text)
 
         # Добавьте любые другие данные, которые вы хотите вставить на сертификат
         # с определенными координатами и размерами шрифта

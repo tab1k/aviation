@@ -35,6 +35,46 @@ def back_to_home(request):
         return redirect('login')  # Замените 'login' на имя URL-шаблона страницы входа
 
 
+
+from django.shortcuts import render, get_object_or_404, redirect
+from courses.models import Lesson
+
+def show_previous_lesson(request, lesson_id):
+    current_lesson = get_object_or_404(Lesson, pk=lesson_id)
+    all_lessons = Lesson.objects.filter(module=current_lesson.module).order_by('id')
+
+    current_lesson_index = None
+    for index, lesson in enumerate(all_lessons):
+        if lesson.id == current_lesson.id:
+            current_lesson_index = index
+            break
+
+    if current_lesson_index is not None and current_lesson_index > 0:
+        previous_lesson = all_lessons[current_lesson_index - 1]
+        return redirect('users:student:previous_lesson', lesson_id=previous_lesson.id)
+    else:
+        return redirect('users:student:courses:lesson_view', lesson_id=current_lesson.id)
+
+
+def show_next_lesson(request, lesson_id):
+    current_lesson = get_object_or_404(Lesson, pk=lesson_id)
+    all_lessons = Lesson.objects.filter(module=current_lesson.module).order_by('id')
+
+    current_lesson_index = None
+    for index, lesson in enumerate(all_lessons):
+        if lesson.id == current_lesson.id:
+            current_lesson_index = index
+            break
+
+    if current_lesson_index is not None and current_lesson_index < len(all_lessons) - 1:
+        next_lesson = all_lessons[current_lesson_index + 1]
+        return redirect('users:student:next_lesson', lesson_id=next_lesson.id)
+    else:
+        return redirect('users:student:courses:lesson_view', lesson_id=current_lesson.id)
+
+
+
+
 class LogoutView(View):
     def get(self, request):
         logout(request)

@@ -39,6 +39,21 @@
 
         </form>
     </div>
+    <div>
+        <form action="{% url 'users:admin:courses:passed_students' %}" method="get">
+            <div style="display: flex; align-items: center; margin-top: 10px;">
+                <select name="course_filter" id="course_filter" style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                    <option value="">Все курсы</option>
+                    {% for course in all_courses %}
+                        <option value="{{ course.id }}" {% if selected_course_id == course.id %}selected{% endif %}>{{ course.title }}</option>
+                    {% endfor %}
+                </select>
+                <button style="padding: 5px 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; margin-left: 10px; align-self: flex-start;">
+                    Применить
+                </button>
+            </div>
+        </form>
+    </div>
 
     {% if passed_students %}
     <div class="responsive-table">

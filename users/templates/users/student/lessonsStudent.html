@@ -24,7 +24,7 @@
             <div class="my-courses">
                 <h3>{{ module.title|truncatechars:16 }}</h3>
 
-                <div style="overflow-y: initial;" class="lessons">
+                <div style="overflow-y: scroll;" class="lessons">
                     {% for lesson in lessons %}
                     <div class="lesson">
                         <div class="lesson-main">
@@ -40,7 +40,7 @@
                                 <div class="data">
                                     <p>Дата и время: {{ lesson.start_datetime|date:"D d M H:i" }}</p>
                                 </div>
-                                <a href="{% url 'users:admin:courses:lesson_view' lesson_id=lesson.id %}">
+                                <a href="{% url 'users:student:courses:lesson_view' lesson_id=lesson.id %}">
                                     <div class="lesson-name">
                                         <p><b>{{ lesson.title|truncatechars:15 }}</b> </p>
                                         <p class="link">Zoom: <a href="{{ lesson.zoom_link }}">{{ lesson.zoom_link|truncatechars:15 }}</a></p>
@@ -50,7 +50,7 @@
                         </div>
 
 
-                        <a href="{% url 'users:admin:courses:lesson_view' lesson_id=lesson.id %}">
+                        <a href="{% url 'users:student:courses:lesson_view' lesson_id=lesson.id %}">
                             <button class="go">
                                 <p>Перейти</p>
                             </button>
