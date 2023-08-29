@@ -1,79 +1,138 @@
-<!-- templates/users/admin/admin_passed_students.html -->
-
 {% extends 'users/admin/base.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap">
-  {% block css %}
-      <link rel="stylesheet" type="text/css" href="{% static 'admin/css/student.css' %}" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="{% static 'admin/css/passed_students.css' %}" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="{% static 'admin/css/responsive_passed_student.css' %}">
-  {% endblock %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% block title %}<title>Выпускники</title>{% endblock %}
+    <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
 </head>
 
-<div class="all_page">
-  {% block content %}
-  <div class="content">
+<body id="page-top">
+    <div id="wrapper">
+        {% block content %}
+            <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" action="{% url 'users:admin:search' %}" method="get">
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="text" name="q" placeholder="Искать...">
+                                <button class="btn btn-primary py-0" type="submit" style="background: #22549E;"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
+                                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
+                                    <form class="me-auto navbar-search w-100">
+                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Искать...">
+                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">{{ user.first_name}} {{ user.last_name }}</span><img class="border rounded-circle img-profile" src="{% if user.image and user.image.url %}{{ user.image.url }}{% else %}{% static 'student/img/profile.png' %}{% endif %}"></a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        <a class="dropdown-item" href="{% url 'users:admin:profile:profile' %}">
+                                            <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400">
 
-    <div class="content-header">
+                                            </i>&nbsp;Настройки
+                                        </a>
+                                        <a class="dropdown-item" href="{% url 'users:admin:courses:passed_students' %}"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Выпускники</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'users:admin:logout' %}"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Выйти</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Студенты</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold" style="color: #22549E;">Список успешно завершивших студентов</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="content">
+                                <div class="content-header">
+                                    <form action="{% url 'users:admin:courses:passed_students' %}" method="get" class="mb-3">
+                                        <div class="input-group">
+                                            <input name="q" placeholder="Поиск..." class="form-control" style="height: 50%;">
+                                            <button class="btn btn-primary" type="submit">Поиск</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div>
+                                    <form action="{% url 'users:admin:courses:passed_students' %}" method="get" class="mb-3">
+                                        <div class="input-group">
+                                            <select name="course_filter" id="course_filter" class="form-select" style="height: 50%;">
+                                                <option value="">Все курсы</option>
+                                                {% for course in all_courses %}
+                                                    <option value="{{ course.id }}" {% if selected_course_id == course.id %}selected{% endif %}>{{ course.title }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <button class="btn btn-primary ms-2">Применить</button>
+                                        </div>
+                                    </form>
+                                </div>
 
-        <h2>Список успешно завершивших студентов</h2>
-        <form action="{% url 'users:admin:courses:passed_students' %}" method="get">
+                                {% if passed_students %}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Имя</th>
+                                                <th>Фамилия</th>
+                                                <th>Email</th>
+                                                <th>Курс</th>
+                                                <th>Посмотреть успеваемость</th>
+                                                <th>Выдать</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for student in passed_students %}
+                                            <tr>
+                                                <td>{{ student.first_name }}</td>
+                                                <td>{{ student.last_name }}</td>
+                                                <td>{{ student.email }}</td>
+                                                <td>
+                                                    {% for course in student.courses.all %}
+                                                    - {{ course.title }}<br>
+                                                    {% if not forloop.last %} {% endif %}
+                                                    {% endfor %}
+                                                </td>
+                                                <td><a href="{% url 'users:admin:courses:student_progress' student_id=student.id %}" class="btn btn-primary btn-sm">Успеваемость</a></td>
+                                                <td><a href="{% url 'users:admin:courses:generate_certificate' student_id=student.id %}" target="_blank" class="btn btn-success btn-sm">Выдать сертификат</a></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {% else %}
+                                <p class="mt-3">Пока нет успешно завершивших студентов.</p>
+                                {% endif %}
+                            </div>
 
-          <div class="search-footer">
-            <input name="q" placeholder="Поиск...">
-            <button>Поиск</button>
-          </div>
-
-        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Standart Transit</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        {% endblock %}
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'admin/js/script.min.js' %}"></script>
+</body>
 
-    {% if passed_students %}
-    <div class="responsive-table">
-      <table class="student-table">
-        <thead style="display: contents">
-          <tr>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th>Email</th>
-            <th>Курс</th>
-            <th>Посмотреть успеваемость</th>
-            <th>Выдать</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for student in passed_students %}
-          <tr>
-            <td>{{ student.first_name }}</td>
-            <td>{{ student.last_name }}</td>
-            <td>{{ student.email }}</td>
-            <td>
-                {% for course in student.courses.all %}
-                      - {{ course.title }}<br>{% if not forloop.last %} {% endif %}
-                {% endfor %}
-            </td>
-            <td><a href="{% url 'users:admin:courses:student_progress' student_id=student.id %}">Успеваемость</a></td>
-            <td><a href="{% url 'users:admin:courses:generate_certificate' student_id=student.id %}" target="_blank">Выдать сертификат</a></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    {% else %}
-    <p>Пока нет успешно завершивших студентов.</p>
-    {% endif %}
-  </div>
-  {% endblock %}
-</div>
+</html>

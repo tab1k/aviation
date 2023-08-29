@@ -25,7 +25,7 @@ class Schedule(models.Model):
         return f'{self.course} - {self.start_date} to {self.end_date}'
 
     class Meta:
-        verbose_name = 'Расписание'
+        verbose_name = 'Расписания'
         verbose_name_plural = 'Расписание'
 
 

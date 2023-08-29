@@ -140,6 +140,7 @@ class LessonView(View):
     curator_template = 'users/curator/videoAdmin.html'
     admin_template = 'users/admin/videoAdmin.html'
 
+
     def get_next_lesson(self, current_lesson):
         module = current_lesson.module
         next_lesson = Lesson.objects.filter(module=module, id__gt=current_lesson.id).order_by('id').first()
@@ -150,8 +151,9 @@ class LessonView(View):
         previous_lesson = Lesson.objects.filter(module=module, id__lt=current_lesson.id).order_by('-id').first()
         return previous_lesson
 
-    def get_comments(request, lesson_id):
-        comments = Comment.objects.filter(lesson_id=lesson_id)
+    def get_comments(self, lesson_id):
+        lesson = get_object_or_404(Lesson, id=lesson_id)
+        comments = Comment.objects.filter(lesson=lesson)
         comment_list = [{"user": comment.user, "text": comment.text} for comment in comments]
         return JsonResponse({"comments": comment_list})
 
@@ -161,14 +163,25 @@ class LessonView(View):
         lessons = Lesson.objects.filter(module=module)
         comment_form = CommentForm()
         student_comments = Comment.objects.filter(lesson=lesson, is_student_comment=True)
+        student = request.user
+        course_type = CourseType.objects.filter(courses__students=student).distinct()
+        courses = Course.objects.filter(students=student)
+
 
         if request.user.role == 'student':
             next_lesson = self.get_next_lesson(lesson)
             previous_lesson = self.get_previous_lesson(lesson)
+            curator_comments = Comment.objects.filter(lesson=lesson, is_student_comment=False, user=student)
             return render(request, self.student_template,
                           {'lesson': lesson, 'lessons': lessons, 'comment_form': comment_form,
                            'student_comments': student_comments, 'next_lesson': next_lesson,
-                           'previous_lesson': previous_lesson})
+                           'previous_lesson': previous_lesson,
+                           'courses': courses,
+                           'course_type': course_type,
+                           'student': student,
+                           'curator_comments': curator_comments,
+                           'lesson_id': lesson_id  # Передаем идентификатор урока в контекст
+                           })
         elif request.user.role == 'curator':
             return render(request, self.curator_template,
                           {'lesson': lesson, 'lessons': lessons, 'comment_form': comment_form})
@@ -215,6 +228,38 @@ class AnswersView(View):
     def get(self, request):
         student_comments = Comment.objects.filter(is_student_comment=True)
 
+        # Получаем список всех курсов
+        all_courses = Course.objects.all()
+
+        # Получаем выбранный курс из параметра запроса
+        course_filter = request.GET.get('course_filter')
+        module_filter = request.GET.get('module_filter')
+        lesson_filter = request.GET.get('lesson_filter')
+        student_filter = request.GET.get('student_filter')
+
+        selected_course = None
+        selected_module = None
+        selected_lesson = None
+        selected_student = None  # Добавляем переменную для выбранного студента
+
+        # Фильтруем комментарии по выбранным параметрам
+        if course_filter:
+            selected_course = Course.objects.filter(id=course_filter).first()
+            student_comments = student_comments.filter(lesson__module__course=selected_course)
+
+            if module_filter:
+                selected_module = Module.objects.filter(id=module_filter).first()
+                student_comments = student_comments.filter(lesson__module=selected_module)
+
+                if lesson_filter:
+                    selected_lesson = Lesson.objects.filter(id=lesson_filter).first()
+                    student_comments = student_comments.filter(lesson_id=lesson_filter)
+
+            if student_filter:  # Фильтр по студенту
+                selected_student = User.objects.filter(id=student_filter).first()
+                student_comments = student_comments.filter(user=selected_student)
+
+
         if request.user.role == 'curator':
             template_name = self.template_curator
         elif request.user.role == 'admin':
@@ -222,7 +267,14 @@ class AnswersView(View):
         else:
             template_name = self.template_error
 
-        return render(request, template_name, {'comments': student_comments})
+        return render(request, template_name, {
+            'comments': student_comments,
+            'all_courses': all_courses,
+            'selected_course': selected_course,
+            'selected_module': selected_module,
+            'selected_student': selected_student,
+            'is_student_comment': True
+        })
 
     def post(self, request):
         if 'delete_comment' in request.POST:
@@ -247,7 +299,9 @@ class AnswersView(View):
             return redirect('users:admin:courses:answers_view')
         else:
             # Пользователь не имеет определенной роли, обработайте этот случай по своему усмотрению
-            return render(request, 'users/404.html')  # Здесь используем перенаправление для студентов, но вы можете выбрать другой путь
+            return render(request, 'users/404.html')
+
+
 
 
 class StudentProgressView(View):
@@ -331,6 +385,7 @@ class PassedStudentsView(View):
         if request.user.role not in ['curator', 'admin']:
             return HttpResponseForbidden("У вас нет доступа к этой странице.")
 
+
         search_query = request.GET.get('q', '')
 
         passed_students = []
@@ -384,9 +439,19 @@ class PassedStudentsView(View):
         else:
             passed_students = User.objects.filter(id__in=[student.id for student in passed_students])
 
+        selected_course_id = request.GET.get('course_filter')
+
+        if selected_course_id:
+            selected_course = Course.objects.get(pk=selected_course_id)
+            passed_students = [student for student in passed_students if selected_course in student.courses.all()]
+
+        all_courses = Course.objects.all()
+
         context = {
             'passed_students': passed_students,
             'search_query': search_query,
+            'all_courses': all_courses,
+            'selected_course_id': selected_course_id,
         }
 
         if request.user.role == 'curator':
@@ -445,31 +510,36 @@ class CertificateView(View):
         pdfmetrics.registerFont(TTFont('Tinos', font_path))
 
         # Расположение текста на сертификате
-        text_x = 380  # Горизонтальная позиция текста
-        text_y = 314  # Вертикальная позиция текста
+        text_x = 360  # Горизонтальная позиция текста
+        text_y = 340  # Вертикальная позиция текста
         line_height = 20  # Высота строки
 
         # Вставка имени студента
-        p.setFont("Tinos", 15)
+        p.setFont("Tinos", 20)
         p.drawString(text_x, text_y, student.first_name)
         p.drawString(text_x + p.stringWidth(student.first_name) + 5, text_y, student.last_name)
 
         # Обновление вертикальной позиции для следующего текстового блока
-        text_y -= line_height * 5
+        text_y -= line_height * 1
 
         # Вставка даты завершения курса
-        date_text_x = 400  # Горизонтальная позиция текста даты
-        date_text_y = 204  # Вертикальная позиция текста даты
+        date_text_x = 310  # Горизонтальная позиция текста даты
+        date_text_y = 265  # Вертикальная позиция текста даты
         p.setFont("Tinos", 15)
         p.drawString(date_text_x, date_text_y, today_str)
 
         # Обновление вертикальной позиции для следующего текстового блока
         text_y -= line_height * 2
 
+        text_course_x = 290
+        text_course_y = 241
+
         # Вставка информации о курсе
-        course_text = "Курс: Название вашего курса"  # Замените на фактическое название курса
-        p.setFont("Tinos", 15)
-        p.drawString(text_x, text_y, course_text)
+        student = get_object_or_404(User, pk=student_id)
+        course_names = student.courses.all().values_list('title', flat=True)
+        course_text = f"{', '.join(course_names)}"  # Замените на фактическое название курса
+        p.setFont("Tinos", 17)
+        p.drawString(text_course_x, text_course_y, course_text)
 
         # Добавьте любые другие данные, которые вы хотите вставить на сертификат
         # с определенными координатами и размерами шрифта

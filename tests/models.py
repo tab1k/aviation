@@ -5,6 +5,7 @@ from users.models import User
 
 class Test(models.Model):
     question = models.TextField()  # Вопрос
+    question_image = models.ImageField(upload_to='test_images/', null=True, blank=True)
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)  # Связь с моделью "Lesson"
 
     def __str__(self):
@@ -18,6 +19,7 @@ class Test(models.Model):
 class TestChoice(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
     choice = models.CharField(max_length=255)
+    choice_image = models.ImageField(upload_to='test_choice_images/', null=True, blank=True)
     score = models.PositiveIntegerField(default=0)
     is_correct = models.BooleanField(default=False)
 
@@ -26,8 +28,8 @@ class TestChoice(models.Model):
         return self.choice
 
     class Meta:
-        verbose_name = 'Ответ'
-        verbose_name_plural = 'Ответы'
+        verbose_name = 'Тестовый ответ'
+        verbose_name_plural = 'Тестовые ответы'
 
 
 class TestResult(models.Model):

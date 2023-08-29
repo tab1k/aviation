@@ -1,6 +1,5 @@
 from django.contrib import admin
-from courses.models import Course, Module, Lesson, CourseType
-
+from courses.models import Course, Module, Lesson, CourseType, Notification
 
 
 class CourseTypeAdmin(admin.ModelAdmin):
@@ -24,9 +23,17 @@ class LessonAdmin(admin.ModelAdmin):
     list_filter = ('module__course',)
     search_fields = ('title', 'module__title', 'module__course__title')
 
+
+class NotificationAdmin(admin.ModelAdmin):
+    list_display = ('course', 'message', 'file', 'timestamp', 'read')
+    list_filter = ('course', 'message', 'file', 'timestamp', 'read')
+    search_fields = ('course', 'message', 'file', 'timestamp', 'read')
+
+
+
+admin.site.register(Notification, NotificationAdmin)
 admin.site.register(CourseType, CourseTypeAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Module, ModuleAdmin)
 admin.site.register(Lesson, LessonAdmin)
-
 

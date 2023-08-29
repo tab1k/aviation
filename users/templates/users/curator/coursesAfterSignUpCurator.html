@@ -1,133 +1,138 @@
 {% extends 'users/curator/base.html' %}
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="ru" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'student/css/mainstyles.css' %}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap">
-  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'student/css/coursesAfterSignUp.css' %}" rel="stylesheet" />
-  <link rel="stylesheet" href="{% static 'curator/css/mainAfterSignUpAdmin.css' %}">{% endblock %}
-  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'student/css/slider-slick.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% block title %}<title>Курсы</title>{% endblock %}
+    <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
+    {% block css %} {% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .course-card {
+            height: 400px; /* Задайте желаемую высоту */
+        }
+    </style>
 </head>
 
-<body>
-  <div class="all_page">
-
-    {% block content %}
-        <div class="content">
-
-      <!-- search-input -->
-
-      <!-- Training sectors -->
-
-       <div class="courses_sector">
-        <h2 class="training_sectors_h2">Мои курсы</h2>
-            <div style="flex-wrap: initial;" class="training_sectors_images training_slider_cources training_slider_courses" >
-                    {% for c in courses %}
-                      <a href="{% url 'users:curator:courses:modules' c.pk %}">
-                        <div class="training_sectors_aviation" style="text-align: -moz-center;">
-                          <div class="aviation-img rel">
-                            <div class="course-info">
-                              <div class="course-type">
-                                <h3>{{ c.title|truncatechars:10 }}</h3>
-                              </div>
-                              <button class="course-minutes">
-                                {{ c.duration }} min
-                              </button>
+<body id="page-top">
+    <div id="wrapper">
+        {% block content %}
+            <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" action="{% url 'users:curator:search' %}" method="get">
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="text" name="q" placeholder="Искать ...">
+                                <button class="btn btn-primary py-0" type="submit" style="background: #22549E;"><i class="fas fa-search"></i></button>
                             </div>
-                            <img src="{{ c.image.url }}" alt="" class="custom-image">
-                            <div class="aviation-text-industry">
-                              <p>{{ c.description|truncatechars:80 }}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    {% endfor %}
-                  </div>
+                        </form>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
+                                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
+                                    <form class="me-auto navbar-search w-100">
+                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">{{ user.first_name}} {{ user.last_name }}</span><img class="border rounded-circle img-profile" src="{% if user.image and user.image.url %}{{ user.image.url }}{% else %}{% static 'student/img/profile.png' %}{% endif %}"></a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        <a class="dropdown-item" href="{% url 'users:admin:profile:profile' %}">
+                                            <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400">
 
-            <h2 class="training_sectors_h2">Новые уведомления</h2>
-
-            <div class="news">
-
-            <img onclick="prev()" class="prev" src="{% static 'student/img/next-button.svg' %}" alt="">
-            <div class="news-buttons">
-              <p class="prev-p">Предыдущий</p>
-            <p class="next-p">Следующий</p>
-            </div>
-
-            <div class="news_info">
-              <div class="date">
-                  <h2>Ответы куратора </h2><p>Сегодня. {{ current_time|date:"d F Y" }}</p>
-              </div>
-              <div class="newsNone">
-                {% for comment in curator_comments %}
-                    <div class="comment">
-                        <p><strong>Студент: {{ comment.user.get_full_name }}</strong></p>
-                        <p>{{ comment.text }}</p>
-                        <p><strong>Куратор: {{ comment.curator.get_full_name }}</strong> ({{ comment.timestamp }})</p>
-                        <p>{{ comment.curator_response }}</p>
+                                            </i>&nbsp;Настройки
+                                        </a>
+                                        <a class="dropdown-item" href="{% url 'users:admin:courses:passed_students' %}"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Выпускники</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'users:admin:logout' %}"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Выйти</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                {% empty %}
-                    <p>Нет ответов куратора на комментарии студентов.</p>
-                {% endfor %}
-              </div>
+                </nav>
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">Мои курсы</h3>
+                    </div>
+
+                    <div class="container mt-5">
+                        <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                            <h3 class="text-dark mb-0">Курсы</h3><a class="btn-sm d-none d-sm-inline-block" href="#" ></a>
+                        </div>
+                        <div class="row">
+                            {% for c in courses %}
+                            <div class="col-md-4 course-card">
+                                <a href="{% url 'users:curator:courses:modules' c.pk %}">
+                                    <div class="card shadow border-start-primary mb-4">
+                                        <img src="{{ c.image.url }}" alt="" style="max-width: 100%; max-height: 300px;">
+                                        <div class="card-body">
+                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1">{{ c.title|truncatechars:40 }}</div>
+                                            <div class="text-dark fw-bold h5 mb-0">{{ c.duration }} часов</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="text-center">
+                            <button id="showMoreButton" class="btn btn-primary">Показать еще</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <img onclick="next()" class="next" src="{% static 'student/img/next-button.svg' %}" alt="">
-
-          </div>
-       </div>
-
-    {% endblock %}
-
-    <script src="{% static 'student/js/side-bar.js' %}"></script>
-    <script src="{% static 'student/js/slider-slick.js' %}"></script>
-    <script src="{% static 'student/js/slider.js' %}"></script>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Standart Transit</span></div>
+                </div>
+            </footer>
+        </div>
+            <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        {% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="{% static 'admin/js/script.min.js' %}"></script>
     <script>
-      // Add the verbatim tag to avoid conflicts with Django template tags
-      {% verbatim %}
-      // Функция для переключения на предыдущую новость
-      function prev() {
-        const dateElement = document.querySelector('.date p');
-        const newsElement = document.querySelector('.newsNone p');
+    document.addEventListener("DOMContentLoaded", function () {
+        const courseCards = document.querySelectorAll(".course-card");
+        const showMoreButton = document.getElementById("showMoreButton");
 
-        // Получаем текущую дату
-        const currentDate = new Date(dateElement.textContent);
+        const batchSize = 3; // Количество карточек для показа за один раз
+        let currentBatch = batchSize;
 
-        // Вычитаем один день от текущей даты
-        const prevDate = new Date(currentDate.getTime() - (24 * 60 * 60 * 1000));
+        function toggleCourseCards() {
+            for (let i = 0; i < courseCards.length; i++) {
+                if (i < currentBatch) {
+                    courseCards[i].style.display = "block";
+                } else {
+                    courseCards[i].style.display = "none";
+                }
+            }
 
-        // Обновляем дату и текст новости
-        dateElement.textContent = prevDate.toLocaleDateString();
-        newsElement.textContent = 'Текст предыдущей новости';
-      }
+            if (currentBatch < courseCards.length) {
+                showMoreButton.style.display = "block";
+            } else {
+                showMoreButton.style.display = "none";
+            }
+        }
 
-      // Функция для переключения на следующую новость
-      function next() {
-        const dateElement = document.querySelector('.date p');
-        const newsElement = document.querySelector('.newsNone p');
+        toggleCourseCards();
 
-        // Получаем текущую дату
-        const currentDate = new Date(dateElement.textContent);
-
-        // Прибавляем один день к текущей дате
-        const nextDate = new Date(currentDate.getTime() + (24 * 60 * 60 * 1000));
-
-        // Обновляем дату и текст новости
-        dateElement.textContent = nextDate.toLocaleDateString();
-        newsElement.textContent = 'Текст следующей новости';
-      }
-      {% endverbatim %}
+        showMoreButton.addEventListener("click", function () {
+            currentBatch += batchSize;
+            toggleCourseCards();
+        });
+    });
     </script>
-  </div>
-</body>
 
+</body>
 </html>

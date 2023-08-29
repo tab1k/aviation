@@ -30,6 +30,14 @@ class Course(models.Model):
     curators = models.ManyToManyField(get_user_model())   # Связь с моделью "Curator"
     students = models.ManyToManyField(User, related_name='courses', blank=True)
 
+    def create_notification(self, message):
+        notification = Notification(course=self, message=message)
+        notification.save()
+        notification.students.set(self.students.all())
+
+    def get_unread_notifications(self):
+        return Notification.objects.filter(course=self, read=False)
+
 
     def __str__(self):
         return self.title
@@ -60,7 +68,7 @@ class Lesson(models.Model):
     start_datetime = models.DateTimeField(blank=True, null=True)
     video = EmbedVideoField(blank=True, null=True) # Видео
     learn_documentation = models.FileField(blank=True, null=True)
-    module = models.ForeignKey(Module, on_delete=models.CASCADE)  # Связь с моделью "Module"
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
 
 
     def __str__(self):
@@ -70,4 +78,20 @@ class Lesson(models.Model):
         verbose_name = 'Урок'
         verbose_name_plural = 'Уроки'
 
+
+
+class Notification(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    students = models.ManyToManyField(get_user_model(), related_name='notifications')
+    file = models.FileField(upload_to='notifications/', blank=True, null=True)
+    message = models.TextField(blank=True, null=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.message
+
+    class Meta:
+        verbose_name = 'Объявление курсу'
+        verbose_name_plural = 'Объявление курсам'
 

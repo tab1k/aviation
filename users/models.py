@@ -23,3 +23,7 @@ class Stream(models.Model):
 
     def __str__(self):
         return str(self.number)
+
+    class Meta:
+        verbose_name = 'Поток'
+        verbose_name_plural = 'Потоки'

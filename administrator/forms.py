@@ -1,5 +1,5 @@
 from django import forms
-from courses.models import Course
+from courses.models import Course, Notification
 from users.models import User
 
 
@@ -13,11 +13,12 @@ class StudentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs['class'] = 'input'
-        self.fields['last_name'].widget.attrs['class'] = 'input'
-        self.fields['email'].widget.attrs['class'] = 'input'
-        self.fields['username'].widget.attrs['class'] = 'input'
-        self.fields['courses'].widget.attrs['class'] = 'input'
+        self.fields['first_name'].widget.attrs['class'] = 'form-control'
+        self.fields['last_name'].widget.attrs['class'] = 'form-control'
+        self.fields['email'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['password'].widget.attrs['class'] = 'form-control'
+        self.fields['courses'].widget.attrs['class'] = 'form-control'
 
 
 
@@ -31,8 +32,24 @@ class CuratorForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs['class'] = 'input'
-        self.fields['last_name'].widget.attrs['class'] = 'input'
-        self.fields['email'].widget.attrs['class'] = 'input'
-        self.fields['username'].widget.attrs['class'] = 'input'
-        self.fields['courses'].widget.attrs['class'] = 'input'
+        self.fields['first_name'].widget.attrs['class'] = 'form-control'
+        self.fields['last_name'].widget.attrs['class'] = 'form-control'
+        self.fields['email'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['password'].widget.attrs['class'] = 'form-control'
+        self.fields['courses'].widget.attrs['class'] = 'form-control'
+
+
+
+class NotificationForm(forms.ModelForm):
+    class Meta:
+        model = Notification
+        fields = ['course', 'message', 'file']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['course'].widget.attrs.update({'class': 'form-control'})
+        self.fields['message'].widget.attrs.update({'class': 'form-control'})
+        self.fields['file'].widget.attrs.update({'class': 'form-control-file'})
+
+

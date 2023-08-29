@@ -17,6 +17,12 @@ urlpatterns = [
     path('admin_check/students/', StudentsCheckAdmin.as_view(), name='students_admin_check'),
     path('admin_check/students/search/', SearchStudentsView.as_view(), name='search_students'),
     path('streams/', StreamListView.as_view(), name='stream_list'),
+    path('admin/applications/', ContactListView.as_view(), name='admin_applications'),
     path('admin_check/curators/', CuratorCheckAdmin.as_view(), name='curators_admin_check'),
     path('admin_check/curators/search/', SearchCuratorsView.as_view(), name='search_curators'),
+    path('view-notifications/', NotificationListView.as_view(), name='view_notifications'),
+    path('view-notifications/course/<int:course_id>/', NotificationListView.as_view(), name='view_notifications_by_course'),
+    path('create-notification/', NotificationCreateView.as_view(), name='create_notification'),
+    path('search/', SearchView.as_view(), name='search'),
+
 ]

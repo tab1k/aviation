@@ -85,6 +85,9 @@ class TestResultView(View):
         # Check if essay is allowed (assuming you have the logic for it)
         essay_allowed = True  # Replace this with your actual logic
 
+        difference_score = total_possible_score - total_correct_answers
+
+
         context = {
             'lesson': lesson,
             'test_results': test_results,
@@ -94,6 +97,7 @@ class TestResultView(View):
             'is_passing_grade': is_passing_grade,
             'essay_allowed': essay_allowed,
             'test_questions': test_questions,
+            'difference_score': difference_score,
         }
 
         if request.user.role == 'curator':

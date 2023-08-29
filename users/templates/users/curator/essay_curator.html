@@ -1,63 +1,124 @@
 {% extends 'users/curator/base.html' %}
 {% load static %}
-<!DOCTYPE html>
 <html lang="ru" dir="ltr">
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  {% block title %}<title>Эссе</title>{% endblock %}
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% block css %}<link rel="stylesheet" href="{% static 'student/css/essay.css' %}">{% endblock %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'admin/css/videoAdmin.css' %}">{% endblock %}
   <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
+    <style>
+    .correct-answer {
+      color: green;
+    }
+  </style>
+
 </head>
 
+
 <body>
-  <div class="all_page">
+
+
     {% block content %}
-      <div class="content">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" action="{% url 'users:curator:search' %}" method="get">
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="text" name="q" placeholder="Искать ...">
+                                <button class="btn btn-primary py-0" type="submit" style="background: #22549E;"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
+                                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
+                                    <form class="me-auto navbar-search w-100">
+                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">{{ user.first_name}} {{ user.last_name }}</span><img class="border rounded-circle img-profile" src="{% if user.image and user.image.url %}{{ user.image.url }}{% else %}{% static 'student/img/profile.png' %}{% endif %}"></a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        <a class="dropdown-item" href="{% url 'users:admin:profile:profile' %}">
+                                            <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400">
 
-        <div class="courses">
-          <h2 class="my-courses-h2">Эссе</h2>
-          <div class="quiz">
-            <h3 class="my-courses-h2">Тема: {{ lesson.title }}</h3>
+                                            </i>&nbsp;Настройки
+                                        </a>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
 
-            <!-- theme lesson -->
-            <div class="theme">
-              <p><b>Напишите развернутое эссе на данную тему. Покажите в нем то, как вы поняли эту тему.</b></p>
+                <div class="container">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                            <h3 class="text-dark mb-0">Эссе</h3>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">{{ lesson.title }}</div>
+                                    <div class="card-body">
+                                        <div class="content">
+                                            <div class="courses">
 
-              <!-- test -->
-              <div class="essay">
-                <div class="chat-essay">
-                  <div class="comment">
-                    <form style="width: 100%" action="{% url 'users:student:courses:essays:essay_submission' lesson_id=lesson.id %}" method="post" enctype="multipart/form-data">
-                      {% csrf_token %}
-                      <textarea name="essay_text" class="reply-textarea" placeholder="Введите свой комментарий под эссе. Напишите то, что вы не поняли по данной теме"></textarea>
-                      <label for="essay_file">Добавить файл:</label>
-                      <input type="file" name="essay_file" id="essay_file">
-                      <button style="display: initial; margin-top: 15px;" type="submit" class="send-button">Отправить</button>
-                    </form>
-                  </div>
-
-                  {% if essay_submission_id %}
-                    <p>Эссе успешно отправлено! ID сдачи эссе: {{ essay_submission_id }}</p>
-                  {% endif %}
-
+                                                <div class="quiz">
+                                                    <h3 class="my-courses-h2">Тема: {{ lesson.title }}</h3>
+                                                    <div class="theme">
+                                                        {% if essay.description %}
+                                                            <p>{{ essay.description }}</p>
+                                                        {% else %}
+                                                            <p><b>Напишите развернутое эссе на данную тему. Покажите в нем то, как вы поняли эту тему.</b></p>
+                                                        {% endif %}
+                                                        <div class="essay">
+                                                            <div class="chat-essay">
+                                                                <div class="comment">
+                                                                    <form style="width: 100%" action="{% url 'users:student:courses:essays:essay_submission' lesson_id=lesson.id %}" method="post" enctype="multipart/form-data">
+                                                                        {% csrf_token %}
+                                                                        <textarea name="essay_text" class="form-control mb-3" rows="4" placeholder="Введите ваш комментарий"></textarea>
+                                                                        <label for="essay_file">Добавить файл:</label>
+                                                                        <input type="file" name="essay_file" id="essay_file" class="form-control mb-3">
+                                                                        <button type="submit" class="btn btn-primary">Отправить</button>
+                                                                    </form>
+                                                                    {% if essay_submission_id %}
+                                                                    <p class="mt-3">Эссе успешно отправлено! ID сдачи эссе: {{ essay_submission_id }}</p>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-8 offset-md-2">
+                            <canvas id="chartContainer"></canvas>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
+
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            {% endblock %}
         </div>
-
-      </div>
-    {% endblock %}
-  </div>
-
-  <script src="{% static 'student/js/side-bar.js' %}"></script>
+    </div>
 </body>
 
 </html>
