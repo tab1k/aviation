@@ -4,15 +4,20 @@ from django.http import JsonResponse
 from django.contrib.auth import logout, get_user_model
 from django.db.models import Q
 from django.views.generic import ListView
-
+from django.views.generic.edit import CreateView
+from django.contrib import messages
+from django.urls import reverse_lazy
+from .forms import NotificationForm
 from administrator.forms import StudentForm, CuratorForm
 from courses.models import Course, CourseType
+from stransit.models import Contact
 from users.models import User, Stream
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.views import View
 from django.contrib.auth import get_user_model
+from django.views import View
+from django.shortcuts import render
+from courses.models import Course, Notification
 
 
 @login_required(login_url='users:login')
@@ -21,9 +26,26 @@ def admin_view(request):
     if request.user.role == 'admin':
         courses = Course.objects.all()
         courses_type = CourseType.objects.all()
-        return render(request, 'users/admin/mainAfterSignUpAdmin.html', {'courses': courses, 'courses_type': courses_type, 'admin' : admin})
+
+        # Получите список заявок
+        contacts = Contact.objects.all().order_by('-timestamp')  # Замените на необходимый способ получения заявок
+
+        # Отметьте все заявки как прочитанные
+        Contact.objects.all().update(read=True)
+
+        # Получите количество заявок
+        contact_count = Contact.objects.count()
+
+        # Получите список уведомлений
+        notifications = Notification.objects.all().order_by('-timestamp')  # Замените на необходимый способ получения уведомлений
+
+        return render(request, 'users/admin/mainAfterSignUpAdmin.html',
+                      {'courses': courses, 'courses_type': courses_type, 'admin': admin, 'contacts': contacts,
+                       'contact_count': contact_count, 'notifications': notifications})
     else:
         return redirect('users:login')
+
+
 
 
 class StudentsCheckAdmin(View):
@@ -81,7 +103,7 @@ class AddStudent(View):
             student_group = Group.objects.get(name='Студенты')
             student.groups.add(student_group)
 
-            return render(request, 'users/admin/detail.html', {'student': student})
+            return render(request, 'users/admin/student.html', {'student': student})
         return render(request, self.template_name, {'form': form})
 
 
@@ -111,7 +133,7 @@ class AddCurator(View):
             curator_group = Group.objects.get(name='Кураторы')
             curator.groups.add(curator_group)
 
-            return redirect('users:admin:courses:detail', course_id=courses.first().id)
+            return render(request, 'users/admin/curators.html', {'curator': curator})
         return render(request, self.template_name, {'form': form})
 
 
@@ -166,6 +188,80 @@ class SearchCuratorsView(View):
         return render(request, self.template_name, context)
 
 
+class ContactListView(ListView):
+    model = Contact
+    template_name = 'users/admin/applications.html'
+    context_object_name = 'contacts'
+    paginate_by = 10
+
+    def get_queryset(self):
+        contacts = Contact.objects.all().order_by('-timestamp')
+
+        # Отметьте заявки как прочитанные
+        for contact in contacts:
+            if not contact.read:
+                contact.read = True
+                contact.save()
+
+        return contacts
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['contact_count'] = Contact.objects.count()
+        return context
+
+
+from datetime import datetime, timedelta
+from django.utils import timezone
+
+class NotificationListView(ListView):
+    model = Notification
+    template_name = 'users/admin/view_notifications.html'
+    context_object_name = 'notifications'
+    ordering = ['-timestamp']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['courses'] = Course.objects.all()  # Замените на ваш запрос для получения списка курсов
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        course_id = self.request.GET.get('course_id')
+        start_date = self.request.GET.get('start_date')
+        end_date = self.request.GET.get('end_date')
+
+        if course_id:
+            queryset = queryset.filter(course_id=course_id)
+
+        if start_date:
+            start_date = datetime.strptime(start_date, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+            queryset = queryset.filter(timestamp__gte=start_date)
+
+        if end_date:
+            end_date = datetime.strptime(end_date, '%Y-%m-%d').replace(tzinfo=timezone.utc) + timedelta(days=1)
+            queryset = queryset.filter(timestamp__lt=end_date)
+
+        return queryset
+
+
+
+
+
+
+class NotificationCreateView(CreateView):
+    model = Notification
+    form_class = NotificationForm
+    template_name = 'users/admin/create_notification.html'
+    success_url = reverse_lazy('users:admin:create_notification')  # Используем 'admin:create_notification' из app_name
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Уведомление успешно создано.')
+        return super().form_valid(form)
+
+
+
 
 
 
@@ -173,6 +269,26 @@ class StreamListView(ListView):
     model = Stream
     template_name = 'users/admin/streams.html'
     context_object_name = 'streams'
+
+
+
+
+
+from django.db.models import Q
+
+class SearchView(View):
+    template_name = 'users/admin/search_results.html'
+
+    def get(self, request):
+        query = request.GET.get('q')
+        courses = Course.objects.filter(title__icontains=query) if query else []
+        students = User.objects.filter(Q(role='student'),
+                                       Q(username__icontains=query) | Q(first_name__icontains=query) | Q(
+                                           last_name__icontains=query)) if query else []
+        notifications = Notification.objects.filter(message__icontains=query) if query else []
+
+        return render(request, self.template_name,
+                      {'courses': courses, 'students': students, 'notifications': notifications})
 
 
 

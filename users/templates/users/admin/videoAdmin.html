@@ -1,132 +1,209 @@
-<!DOCTYPE html>
 {% extends 'users/admin/base.html' %}
 {% load static %}
 {% load embed_video_tags %}
+<!DOCTYPE html>
 <html lang="ru" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
-  {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'admin/css/videoAdmin.css' %}">{% endblock %}
-  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% block title %}<title>{{ lesson.title }}</title>{% endblock %}
+    <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
+    {% block css %} {% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .course-card {
+            height: 400px; /* Задайте желаемую высоту */
+        }
+
+        /* Стили для мобильных устройств */
+        @media (max-width: 768px) {
+            .theme p {
+                font-size: 16px;
+            }
+            /* Добавьте другие стили по необходимости */
+        }
+    </style>
 </head>
 
-<body>
-  <div class="all_page">
-    <!-- SIDE BAR-->
+<body id="page-top">
+    <div id="wrapper">
+        {% block content %}
+            <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" action="{% url 'users:admin:search' %}" method="get">
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="text" name="q" placeholder="Искать...">
+                                <button class="btn btn-primary py-0" type="submit" style="background: #22549E;"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
+                                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
+                                    <form class="me-auto navbar-search w-100">
+                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">{{ user.first_name}} {{ user.last_name }}</span><img class="border rounded-circle img-profile" src="{{ user.image.url }}"></a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        <a class="dropdown-item" href="{% url 'users:admin:profile:profile' %}">
+                                            <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400">
 
-    <!-- -->
-    {% block content %}
-        <div class="content">
+                                            </i>&nbsp;Настройки
+                                        </a>
+                                        <a class="dropdown-item" href="{% url 'users:student:student_notifications' %}"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Почта</a>
+                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'users:admin:logout' %}"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Выйти</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">Курсы</h3>
+                    </div>
 
-      <div class="back">
-        <a href="coursesAfterSignUp.html"><b>Курсы ➡️ </b></a><a href="module.html"><b>  Модули ➡️ </b></a><a href="#"><b> {{ lesson.title }} </b></a>
-      </div>
+                    <div class="content">
 
-     <div class="buttons">
-        {% if previous_lesson %}
-            <a href="{% url 'lesson-detail' previous_lesson.id %}" class="btn btn-primary"><button style="cursor: pointer">Предыдущий</button></a>
-        {% else %}
-            <button class="prev" disabled>Предыдущий</button>
-        {% endif %}
-        {% if next_lesson %}
-            <a href="{% url 'lesson-detail' next_lesson.id %}" class="btn btn-primary"><button style="cursor: pointer">Следущий урок</button></a>
-        {% else %}
-            <button class="next" disabled>Следущий урок</button>
-        {% endif %}
-     </div>
-      <!-- my courses -->
 
-      <div class="courses">
+                 <div class="container">
+                    <div class="back" style="margin-bottom: 25px;">
+                        <a href="{% url 'users:admin:courses:courses' %}"><b>Курсы ➡️ </b></a><a href="#"><b>  Модули ➡️ </b></a><a href="#"><b> {{ lesson.title }} </b></a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="buttons d-flex justify-content-around mb-3">
+                                {% if previous_lesson %}
+                                    <a href="{% url 'lesson-detail' previous_lesson.id %}" class="btn btn-primary">Предыдущий</a>
+                                {% else %}
+                                    <button class="btn btn-secondary" disabled>Предыдущий</button>
+                                {% endif %}
+                                {% if next_lesson %}
+                                    <a href="{% url 'lesson-detail' next_lesson.id %}" class="btn btn-primary">Следующий урок</a>
+                                {% else %}
+                                    <button class="btn btn-secondary" disabled>Следующий урок</button>
+                                {% endif %}
+                            </div>
+                            <div class="courses">
+                                <div class="video">
+                                    <div class="theme">
+                                        <p>{{ lesson.title }}</p>
+                                        <p>{{ lesson.description }}</p>
+                                        {% if lesson.learn_documentation %}
+                                            <p>Документация: <a href="{{ lesson.learn_documentation.url }}" target="_blank">{{ lesson.learn_documentation.url|truncatechars:10 }} 📎</a></p>
+                                        {% endif %}
+                                    </div>
+                                    <style>
+                                        .video-wrapper {
+                                            position: relative;
+                                            padding-bottom: 56.25%;
+                                            height: 0;
+                                        }
 
-        <!-- video -->
+                                        .video-wrapper iframe {
+                                            position: absolute;
+                                            top: 0;
+                                            left: 0;
+                                            width: 100%;
+                                            height: 100%;
+                                            border-radius: 10px;
+                                        }
 
-        <div class="video">
+                                        .buttonNext {
+                                            position: relative;
+                                            z-index: 1;
+                                            margin-top: 15px;
+                                        }
+                                    </style>
+                                    <div class="video_course">
+                                        <div class="video-wrapper">
+                                            {% video lesson.video width="800" height="450" %}
+                                        </div>
+                                        <div class="buttonNext">
+                                            {% if lesson.test_set.exists %}
+                                                <a href="{% url 'users:student:courses:tests:take_test' lesson_id=lesson.id %}" class="btn btn-primary">Пройти тест</a>
+                                            {% elif lesson.essay_set.exists %}
+                                                <a href="{% url 'users:student:courses:essays:essay_submission'  lesson_id=lesson.id%}" class="btn btn-primary">Сдать эссе</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="chat">
+                                        <div class="comment">
+                                            <div class="comment-text">
+                                                <p>Напишите свой вопрос и вам обязательно ответ наш Инструктор 😉</p>
+                                            </div>
+                                        </div>
+                                        <div class="reply">
+                                            <form action="" style="display: flex;">
+                                                <input type="text" class="form-control reply-input" placeholder="Комментарии">
+                                                <button class="btn btn-primary send" style="background-color: white; border: none;">
+                                                    <img src="{% static 'student/img/send.svg' %}" alt="">
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-          <!-- theme lesson -->
 
-          <div class="theme">
 
-            <p>{{ lesson.title }}</p>
-            <p>{{ lesson.description }}</p>
-            {% if lesson.learn_documentation %}
-                <p>Документация: <a style="color: black" href="{{ lesson.learn_documentation.url }}" target="_blank">{{ lesson.learn_documentation.url|truncatechars:10 }} 📎</a></p>
-            {% endif %}
-
-          </div>
-
-          <!-- .video_course -->
-
-          <style>
-            .video-wrapper {
-                position: relative;
-                padding-bottom: 56.25%; /* 16:9 aspect ratio (800 / 450 * 100) */
-                height: 0;
-
-            }
-
-            .video-wrapper iframe {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                border-radius: 10px;
-            }
-
-            .buttonNext {
-                position: relative; /* Make the button container relative to enable z-index */
-                z-index: 1; /* Ensure the button appears on top of the video */
-            }
-        </style>
-
-        <div class="video_course">
-            <div class="video-wrapper">
-                {% video lesson.video width="800" height="450" %}  {# Adjust width and height as needed #}
-            </div>
-            <div class="buttonNext">
-                <button><a href="{% url 'users:admin:courses:tests:take_test' lesson_id=lesson.id%}">Пройти тест</a></button>
+                </div>
             </div>
         </div>
-
-
-
-
-
-
-
-          <!-- chat -->
-
-          <div class="chat">
-
-            <div class="comment">
-              <div class="comment-text">
-                <p>Напишите свой вопрос и вам обязательно ответ наш Инстуктор 😉</p>
-              </div>
-            </div>
-
-            <div class="reply">
-              <form action="">
-                <input type="text" class="reply-input" placeholder="Комментарии">
-                <button class="send"><img src="{% static 'admin/img/send.svg' %}" alt=""></button>
-              </form>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div></div>
-    {% endblock %}
-
+            <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        {% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="{% static 'admin/js/script.min.js' %}"></script>
     <script src="{% static 'admin/js/side-bar.js' %}"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const courseCards = document.querySelectorAll(".course-card");
+        const showMoreButton = document.getElementById("showMoreButton");
+
+        const batchSize = 3; // Количество карточек для показа за один раз
+        let currentBatch = batchSize;
+
+        function toggleCourseCards() {
+            for (let i = 0; i < courseCards.length; i++) {
+                if (i < currentBatch) {
+                    courseCards[i].style.display = "block";
+                } else {
+                    courseCards[i].style.display = "none";
+                }
+            }
+
+            if (currentBatch < courseCards.length) {
+                showMoreButton.style.display = "block";
+            } else {
+                showMoreButton.style.display = "none";
+            }
+        }
+
+        toggleCourseCards();
+
+        showMoreButton.addEventListener("click", function () {
+            currentBatch += batchSize;
+            toggleCourseCards();
+        });
+    });
+    </script>
+    </div>
 
 </body>
 

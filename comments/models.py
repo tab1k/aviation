@@ -8,10 +8,12 @@ class Comment(models.Model):
     text = models.TextField()  # Текст комментария
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)  # Связь с моделью "Lesson"
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)  # Связь с моделью "User"
+    student_response = models.TextField(blank=True, null=True)  # Текст ответа от студента
     curator_response = models.TextField(blank=True, null=True)  # Текст ответа от куратора
     curator = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments_curator', blank=True, null=True)  # Связь с моделью "User" для представления куратора
     is_student_comment = models.BooleanField(default=True)
     timestamp = models.DateTimeField(default=timezone.now)
+
 
     def __str__(self):
         return f'{self.user} оставил комментарий с текстом - {self.text} под уроком {self.lesson}'

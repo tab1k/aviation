@@ -2,7 +2,7 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from courses.models import Lesson
-from .models import EssaySubmission
+from .models import EssaySubmission, Essay
 from django.contrib import messages
 
 
@@ -13,8 +13,10 @@ class EssaySubmissionView(View):
 
     def get(self, request, lesson_id):
         lesson = Lesson.objects.get(pk=lesson_id)
+        essay = Essay.objects.get(lesson_id=lesson_id)
         context = {
             'lesson': lesson,
+            'essay' : essay,
         }
 
         # Фильтрация шаблонов на основе роли пользователя
