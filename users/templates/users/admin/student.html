@@ -37,7 +37,7 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">{{ user.first_name}} {{ user.last_name }}</span><img class="border rounded-circle img-profile" src="{{ user.image.url }}"></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">{{ user.first_name}} {{ user.last_name }}</span><img class="border rounded-circle img-profile" src="{% if user.image and user.image.url %}{{ user.image.url }}{% else %}{% static 'student/img/profile.png' %}{% endif %}"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                                         <a class="dropdown-item" href="{% url 'users:admin:profile:profile' %}">
                                             <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400">
@@ -110,7 +110,7 @@
                                     <tbody>
                                         {% for student in students %}
                                         <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{ user.image.url }}">{{ student.first_name }} {{ student.last_name }}</td>
+                                            <td><img class="rounded-circle me-2" width="30" height="30" src="{% if user.image and user.image.url %}{{ user.image.url }}{% else %}{% static 'student/img/profile.png' %}{% endif %}">{{ student.first_name }} {{ student.last_name }}</td>
                                             <td>{{ student.courses.name }}</td>
                                             <td>{{ student.id }}</td>
                                             <td><a style="text-decoration: none;" href="{% url 'users:administrator:stream_list' %}">{{ student.stream }}</a></td>
