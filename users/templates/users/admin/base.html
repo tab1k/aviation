@@ -9,23 +9,21 @@
     <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
-<<<<<<< HEAD
+
     {% block css %}
         <script src="{% static 'admin/js/script.min.js' %}"></script>
     {% endblock %}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-=======
+
     {% block css %} {% endblock %}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 
->>>>>>> develop
 </head>
 
 <body id="page-top">
     <div id="wrapper">
         {% block sidebar %}
             <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="height: 1551px;width: 104px;background: #22549E;">
-<<<<<<< HEAD
                 <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                         <div class="sidebar-brand-text mx-3"><span style="font-size: 13px;">STANDART TRANSIT</span></div>
                     </a>
@@ -55,7 +53,6 @@
                 });
             </script>
 
-=======
             <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                     <div class="sidebar-brand-text mx-3"><span style="font-size: 13px;">STANDART TRANSIT</span></div>
                 </a>
@@ -73,7 +70,6 @@
                 <div class="text-center d-none d-md-inline"><a href="{% url 'stransit:index' %}"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></a></div>
             </div>
         </nav>
->>>>>>> develop
         {% endblock %}
 
 

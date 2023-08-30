@@ -531,11 +531,8 @@ class CertificateView(View):
         # Обновление вертикальной позиции для следующего текстового блока
         text_y -= line_height * 2
 
-<<<<<<< HEAD
-        text_course_x = 290
-=======
+
         text_course_x = 275
->>>>>>> develop
         text_course_y = 241
 
         # Вставка информации о курсе

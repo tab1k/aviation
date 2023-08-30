@@ -95,13 +95,10 @@
                                             <td>
                                                 <ul class="list-unstyled">
                                                     {% for student in stream.user_set.all %}
-<<<<<<< HEAD
                                                         <li>{{ student.first_name }} {{ student.last_name }}</li>
-=======
                                                         {% if student.role == "student" %}
                                                             <li style="display: flex;"><img class="border rounded-circle img-profile" width="30" height="30"  src="{% if student.image and student.image.url %}{{ student.image.url }}{% else %}{% static 'student/img/profile.png' %}{% endif %}"> <p style="margin: 3px 0 0 5px; ">{{ student.first_name }} {{ student.last_name }}</p></li>
                                                         {% endif %}
->>>>>>> develop
                                                     {% endfor %}
                                                 </ul>
                                             </td>

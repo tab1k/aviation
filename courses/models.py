@@ -91,10 +91,10 @@ class Notification(models.Model):
     def __str__(self):
         return self.message
 
-<<<<<<< HEAD
+
     class Meta:
         verbose_name = 'Объявление курсу'
         verbose_name_plural = 'Объявление курсам'
 
-=======
->>>>>>> develop
+
+
