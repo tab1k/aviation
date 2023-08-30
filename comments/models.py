@@ -6,13 +6,19 @@ from django.utils import timezone
 
 class Comment(models.Model):
     text = models.TextField()  # Текст комментария
+<<<<<<< HEAD
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, verbose_name='Урок')  # Связь с моделью "Lesson"
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name='Пользователь')  # Связь с моделью "User"
+=======
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)  # Связь с моделью "Lesson"
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)  # Связь с моделью "User"
+>>>>>>> develop
     student_response = models.TextField(blank=True, null=True)  # Текст ответа от студента
     curator_response = models.TextField(blank=True, null=True)  # Текст ответа от куратора
     curator = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments_curator', blank=True, null=True, verbose_name='Инструктор')  # Связь с моделью "User" для представления куратора
     is_student_comment = models.BooleanField(default=True)
     timestamp = models.DateTimeField(default=timezone.now, verbose_name='Время')
+
 
 
     def __str__(self):

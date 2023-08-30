@@ -78,7 +78,11 @@
                                         <div class="aviation-courses-text">
                                             <ul>
                                                 {% for course in courses %}
+<<<<<<< HEAD
                                                 <li><strong><b>Курс: {{ course.title|truncatechars:20 }}</b></strong></li>
+=======
+                                                <li><strong><b>Курс: {{ course.title }}</b></strong></li>
+>>>>>>> develop
                                                 <li><p>Длительность: {{ course.duration }} часов</p></li>
                                                 {% empty %}
                                                 <li>Студент не участвует в курсах</li>

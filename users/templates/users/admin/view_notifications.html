@@ -35,6 +35,58 @@
                                     </form>
                                 </div>
                             </li>
+<<<<<<< HEAD
+=======
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <div class="nav-item dropdown no-arrow">
+                                    <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                                        <span class="badge bg-danger badge-counter">3+</span>
+                                        <i class="fas fa-bell fa-fw"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
+                                        <h6 class="dropdown-header">Уведомления</h6>
+                                        {% for notification in notifications %}
+                                        <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <div class="me-3">
+                                                <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
+                                            </div>
+                                            <div>
+                                                <span class="small text-gray-500">{{ notification.timestamp }}</span>
+                                                <p>{{ notification.message }}</p>
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+                                        <a class="dropdown-item text-center small text-gray-500" href="{% url 'users:admin:view_notifications' %}">Показать все уведомления</a>
+                                        <a class="dropdown-item text-center small text-gray-500" href="{% url 'users:admin:create_notification' %}" style="color: #fa6161">Создать новое уведомление</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <div class="nav-item dropdown no-arrow">
+                                    <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                                        <span class="badge bg-danger badge-counter">{{ contact_count }}</span>
+                                        <i class="fas fa-envelope fa-fw"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
+                                        <h6 class="dropdown-header">Заявки</h6>
+                                        {% for contact in contacts %}
+                                        <a class="dropdown-item d-flex align-items-center" href="{% url 'users:admin:admin_applications' %}">
+                                            <div class="dropdown-list-image me-3">
+                                                <img class="rounded-circle" src="{% static 'admin/img/avatars/avatar5.jpeg' %}">
+                                                <div class="bg-success status-indicator"></div>
+                                            </div>
+                                            <div class="fw-bold">
+                                                <div class="text-truncate"><span>{{ contact.message }}</span></div>
+                                                <p class="small text-gray-500 mb-0">{{ contact.name }} - {{ contact.timestamp|timesince }}</p>
+                                            </div>
+                                        </a>
+                                        {% endfor %}
+                                        <a class="dropdown-item text-center small text-gray-500" href="{% url 'users:admin:admin_applications' %}">Показать все заявки</a>
+                                    </div>
+                                </div>
+                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
+                            </li>
+>>>>>>> develop
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">{{ user.first_name}} {{ user.last_name }}</span><img class="border rounded-circle img-profile" src="{% if user.image and user.image.url %}{{ user.image.url }}{% else %}{% static 'student/img/profile.png' %}{% endif %}"></a>

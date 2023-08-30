@@ -480,7 +480,7 @@ class CertificateView(View):
         today = date.today()
 
         # Установка русской локали
-        locale.setlocale(locale.LC_TIME, 'ru_RU.UTF-8')
+        # locale.setlocale(locale.LC_TIME, 'ru_RU.UTF-8')
 
         # Получение названия месяца
         month_name = today.strftime("%B")
@@ -531,7 +531,11 @@ class CertificateView(View):
         # Обновление вертикальной позиции для следующего текстового блока
         text_y -= line_height * 2
 
+<<<<<<< HEAD
         text_course_x = 290
+=======
+        text_course_x = 275
+>>>>>>> develop
         text_course_y = 241
 
         # Вставка информации о курсе
@@ -541,10 +545,6 @@ class CertificateView(View):
         p.setFont("Tinos", 17)
         p.drawString(text_course_x, text_course_y, course_text)
 
-        # Добавьте любые другие данные, которые вы хотите вставить на сертификат
-        # с определенными координатами и размерами шрифта
-
-        # ...
 
         p.save()
 

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/Users/tab1k/Downloads/aviation/venv/bin/python3
+=======
+#!/Users/tab1k/Documents/projects/aviation/venv/bin/python3
+>>>>>>> develop
 # -*- coding: utf-8 -*-
 import re
 import sys

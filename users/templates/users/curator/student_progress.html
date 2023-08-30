@@ -20,9 +20,15 @@
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+<<<<<<< HEAD
                         <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" action="{% url 'users:curator:search' %}" method="get">
                             <div class="input-group">
                                 <input class="bg-light form-control border-0 small" type="text" name="q" placeholder="Искать ...">
+=======
+                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" action="{% url 'users:admin:search' %}" method="get">
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="text" name="q" placeholder="Искать...">
+>>>>>>> develop
                                 <button class="btn btn-primary py-0" type="submit" style="background: #22549E;"><i class="fas fa-search"></i></button>
                             </div>
                         </form>
@@ -62,7 +68,11 @@
                                     {% if student.image %}
                                         <img class="rounded-circle mb-3 mt-4" src="{{ student.image.url }}" width="160" height="160">
                                     {% else %}
+<<<<<<< HEAD
                                         <p>Нет фото</p>
+=======
+                                        <img class="rounded-circle mb-3 mt-4" src="{% static 'student/img/profile.png' %}" width="160" height="160">
+>>>>>>> develop
                                     {% endif %}
                                     <div class="card-body">
                                         <form>
@@ -124,7 +134,11 @@
                                                     <div class="col-lg-7 col-xl-8">
                                                         <div class="card shadow mb-4">
                                                             <div class="card-header d-flex justify-content-between align-items-center">
+<<<<<<< HEAD
                                                                 <h6 class="text-primary fw-bold m-3">Средний балл за тесты: {{ average_test_score }}</h6>
+=======
+                                                                <h6 class="text-primary fw-bold m-0">Средний балл за тесты: {{ average_test_score }}</h6>
+>>>>>>> develop
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="chart-area" >
@@ -136,7 +150,11 @@
                                                     <div class="col-lg-5 col-xl-4">
                                                         <div class="card shadow mb-4">
                                                             <div class="card-header d-flex justify-content-between align-items-center">
+<<<<<<< HEAD
                                                                 <h6 class="text-primary fw-bold m-3">Количество сданных эссе: {{ total_essays_submitted }}</h6>
+=======
+                                                                <h6 class="text-primary fw-bold m-0">Кол-во сданных эссе: {{ total_essays_submitted }}</h6>
+>>>>>>> develop
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="chart-area">
@@ -146,7 +164,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
+<<<<<<< HEAD
                                                 </div><!-- End: Chart -->
+=======
+                                                </div>
+>>>>>>> develop
 
                                                 <div style="text-align: center; margin-bottom: 30px;">
                                                         <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit"><a style="color: white; text-decoration: none;" href="{% url 'users:admin:courses:generate_certificate' student_id=student.id %}">Выдать сертификат</a></button></div>

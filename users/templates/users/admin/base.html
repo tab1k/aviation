@@ -9,16 +9,23 @@
     <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
+<<<<<<< HEAD
     {% block css %}
         <script src="{% static 'admin/js/script.min.js' %}"></script>
     {% endblock %}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+=======
+    {% block css %} {% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+
+>>>>>>> develop
 </head>
 
 <body id="page-top">
     <div id="wrapper">
         {% block sidebar %}
             <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="height: 1551px;width: 104px;background: #22549E;">
+<<<<<<< HEAD
                 <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                         <div class="sidebar-brand-text mx-3"><span style="font-size: 13px;">STANDART TRANSIT</span></div>
                     </a>
@@ -48,6 +55,25 @@
                 });
             </script>
 
+=======
+            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-text mx-3"><span style="font-size: 13px;">STANDART TRANSIT</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'users:admin:administrator' %}"><i class="fas fa-store-alt"></i><span>Главная</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:admin:courses:courses' %}"><i class="fas fa-clipboard-check"></i><span>Курсы</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:admin:students_admin_check' %}"><i class="fas fa-user"></i><span>Студенты</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:admin:curators_admin_check' %}"><i class="fas fa-user-md"></i><span>Кураторы</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:admin:schedule:student_schedule' %}"><i class="fas fa-table"></i><span>Расписание</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:admin:courses:answers_view' %}"><i class="fas fa-envelope"></i><span>Лента ответов</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'users:admin:profile:profile' %}"><i class="far fa-sun"></i><span>Настройки</span></a></li>
+                    <li class="nav-item"><a class="nav-link " href="{% url 'admin:index' %}"><i class="fas fa-user-circle"></i><span>Админ панель</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><a href="{% url 'stransit:index' %}"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></a></div>
+            </div>
+        </nav>
+>>>>>>> develop
         {% endblock %}
 
 

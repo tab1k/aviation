@@ -63,6 +63,7 @@
                                 <div class="col-md-6 text-nowrap">
                                     <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
                                         <form method="get">
+<<<<<<< HEAD
                     <div class="mb-2">
                         <label class="form-label d-block">
                             <select class="form-select form-select-sm" name="stream" id="stream-filter" onchange="this.form.submit()">
@@ -74,6 +75,19 @@
                         </label>
                     </div>
                 </form>
+=======
+                                            <div class="mb-2">
+                                                <label class="form-label d-block">
+                                                    <select class="form-select form-select-sm" name="stream" id="stream-filter" onchange="this.form.submit()">
+                                                        <option value="">Все студенты</option>
+                                                        {% for stream in streams %}
+                                                            <option value="{{ stream.id }}" {% if selected_stream == stream %}selected{% endif %}>{{ stream.number }} поток</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </form>
+>>>>>>> develop
                                     </div>
                                 </div>
                                 <div class="col-md-6">

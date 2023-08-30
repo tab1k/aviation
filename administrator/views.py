@@ -18,9 +18,12 @@ from django.contrib.auth import get_user_model
 from django.views import View
 from django.shortcuts import render
 from courses.models import Course, Notification
+<<<<<<< HEAD
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
+=======
+>>>>>>> develop
 
 
 @login_required(login_url='users:login')

@@ -38,7 +38,11 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 VIRTUAL_ENV="/Users/tab1k/Downloads/aviation/venv"
+=======
+VIRTUAL_ENV="/Users/tab1k/Documents/projects/aviation/venv"
+>>>>>>> develop
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

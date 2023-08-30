@@ -62,9 +62,15 @@
                                     {% if student.image %}
                                         <img class="rounded-circle mb-3 mt-4" src="{{ student.image.url }}" width="160" height="160">
                                     {% else %}
+<<<<<<< HEAD
                                         <p>Нет фото</p>
                                     {% endif %}
                                     <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Изменить</button></div>
+=======
+                                        <img class="rounded-circle mb-3 mt-4" src="{% static 'student/img/profile.png' %}" width="160" height="160">
+                                    {% endif %}
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Фото</button></div>
+>>>>>>> develop
                                 </div>
                             </div>
                             <div class="card shadow mb-4">
