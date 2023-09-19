@@ -69,6 +69,28 @@
                             <h3 class="text-dark mb-0">Курсы</h3><a class="btn-sm d-none d-sm-inline-block" href="#" ></a>
                         </div>
                         <div class="row">
+                            <div class="mb-4 mt-4">
+                                <select id="action-select" class="custom-select form-select form-select-sm">
+                                  <option value="" selected>Выберите действие</option>
+                                  <option value="#">Добавить курс</option>
+                                  <option value="#">Добавить модуль к курсу</option>
+                                </select>
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                  $(document).ready(function() {
+                                    // Обработчик события изменения значения в select
+                                    $('#action-select').change(function() {
+                                      // Получаем выбранное значение
+                                      var selectedValue = $(this).val();
+
+                                      // Перенаправляем пользователя на выбранную страницу
+                                      if (selectedValue) {
+                                        window.location.href = selectedValue;
+                                      }
+                                    });
+                                  });
+                                </script>
+                              </div>
                             {% for c in courses %}
                             <div class="col-md-4 course-card">
                                 <a href="{% url 'users:admin:courses:modules' c.pk %}">

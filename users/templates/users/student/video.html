@@ -142,122 +142,121 @@
                                             {% endif %}
                                         </div>
                                     </div>
-                                    <div class="container-fluid w-100" style="padding: 0px;">
-                                        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-                                            <div class="row clearfix" >
-                                                <div class="col-lg-8 w-100">
-                                                    <div class="card chat">
-                                                        <div class="chat-header clearfix">
-                                                            <div class="row">
-                                                                <div class="col-lg-6">
-                                                                    <div class="chat-about">
-                                                                        <h5 style="margin-top: 7px;" class="m-b-0">Инструктор <i style="margin: 0px 0px 2px 3px;" class="fa fa-circle online"></i></h5>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="chat-history" style="max-height: 400px; overflow-y: auto;">
-                                                            <ul class="m-b-0">
-                                                                {% for comment in curator_comments %}
-                                                                    <li class="clearfix">
-                                                                        <div class="message-data text-right">
-                                                                            <img class="border rounded-circle img-profile" style="float: right;" src="{% if user.image and user.image.url %}{{ user.image.url }}{% else %}{% static 'student/img/profile.png' %}{% endif %}">
-                                                                        </div>
-                                                                        <div class="message other-message float-right">
-                                                                            <p style="margin: 0; padding: 0;">{{ comment.text }}</p>
-                                                                            <p style="margin: 0; padding: 0; font-size: 10px;">{{ comment.timestamp }}</p>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="clearfix">
-                                                                        <div class="message other-message">
-                                                                            {{ comment.curator_response }}
-                                                                        </div>
-                                                                        <div class="message-data">
-                                                                            <p style="font-size: 12px;">{{ comment.timestamp }}</p>
-                                                                        </div>
-                                                                    </li>
-                                                                {% endfor %}
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="col-xl-4 xl-100 chat-sec box-col-6 w-100">
+                                <div class="card chat-default" style="margin-bottom: 70px;">
+                                  <div class="card-header card-no-border">
+                                    <div class="media media-dashboard">
+                                      <div class="media-body">
+                                        <h5 class="mb-0">Чат</h5>
+                                      </div>
                                     </div>
-                                    <div class="container mt-5">
-                                        <div class="row">
-                                            <div class="col-md-8 offset-md-2">
+                                  </div>
+                                  <div class="card-body chat-box" style="height: 310px;">
+                                    <div class="chat">
+                                        {% for comment in curator_comments %}
+                                      <div class="media right-side-chat">
+                                        <p class="f-w-400">{{ comment.timestamp }}</p>
+                                        <div class="media-body text-end">
+                                          <div class="message-main pull-right"><span class="mb-0 text-start">{{ comment.text }}</span>
+                                            <div class="clearfix"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="media left-side-chat">
+                                        <div class="media-body d-flex">
+                                          <div class="img-profile"> <img class="img-fluid" style="height: 25px; margin-right: 10px;" src="{% static 'stransit/assets/img/profile.png' %}" alt="Profile"></div>
+                                          <div class="main-chat">
+                                            <div class="message-main"><span class="mb-0">{{ comment.curator_response }}</span></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                        {%endfor%}
+                                        <div class="media right-side-chat">
+                                        <div class="media-body text-end">
+                                          <div class="message-main pull-right"><span class="loader-span mb-0 text-start" id="wave"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="container " style="margin-bottom: 70px;">
+                                        <div class="row" >
+                                            <div class="col-md-8 offset-md-2 ">
                                                 <div class="chat">
                                                     <div class="comments">
                                                         {% for comment in comments %}
                                                             <div class="comment {% if comment.is_student_comment %}student-comment{% else %}instructor-comment{% endif %}">
-                                                                <div class="comment-text">
-                                                                    <p><strong>{{ comment.user }}</strong> {% if comment.is_student_comment %}(student){% else %}(instructor){% endif %}: {{ comment.text }}</p>
-                                                                </div>
-                                                                {% if not comment.is_student_comment and comment.curator_response %}
-                                                                    <div class="curator-response">
-                                                                        <p><strong>Инструктор:</strong> {{ comment.curator_response }}</p>
+                                                                <div class="media">
+                                                                    <img src="{% static 'stransit/assets/img/profile.png' %}" class="mr-3 rounded-circle" alt="User Image" style="width: 40px;">
+                                                                    <div class="media-body">
+                                                                        <h5 class="mt-0"><strong>{{ comment.user }}</strong> {% if comment.is_student_comment %}(Student){% else %}(Instructor){% endif %}</h5>
+                                                                        <p>{{ comment.text }}</p>
+                                                                        {% if not comment.is_student_comment and comment.curator_response %}
+                                                                            <div class="curator-response bg-light p-2 mt-2">
+                                                                                <p><strong>Instructor:</strong> {{ comment.curator_response }}</p>
+                                                                            </div>
+                                                                        {% endif %}
                                                                     </div>
-                                                                {% endif %}
+                                                                </div>
                                                             </div>
                                                         {% endfor %}
-
                                                     </div>
-                                                    <div class="reply">
-                                                        <form id="commentForm" class="d-flex">
+                                                    <div class="reply mt-4">
+                                                        <form id="commentForm" >
                                                             {% csrf_token %}
-                                                            <textarea name="text" class="form-control mr-2 reply-input" placeholder="Напишите свой вопрос..." rows="5"></textarea>
-                                                            <button type="submit" class="btn btn-primary send h-100">
+                                                            <textarea name="text" class="form-control reply-input" placeholder="Напишите свой вопрос..." rows="1"></textarea>
+                                                            <button type="submit" class="btn btn-primary" style="margin: 10px 10px 10px 0px;">
                                                                 Отправить
                                                             </button>
-
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
+                                </div>
+                              </div>
                                     <script>
-                                        document.getElementById('commentForm').addEventListener('submit', function(event) {
-                                            event.preventDefault(); // Отменяем отправку формы по умолчанию
+                                document.getElementById('commentForm').addEventListener('submit', function(event) {
+                                    event.preventDefault(); // Отменяем отправку формы по умолчанию
 
-                                            const form = event.target;
-                                            const formData = new FormData(form);
+                                    const form = event.target;
+                                    const formData = new FormData(form);
 
-                                            fetch(window.location.href, { // Используйте текущий URL страницы или другой URL, если нужно
-                                                method: 'POST',
-                                                body: formData,
-                                                headers: {
-                                                    'X-CSRFToken': formData.get('csrfmiddlewaretoken') // Передаем CSRF-токен в заголовках
-                                                }
-                                            })
-                                            .then(response => response.json()) // Ожидаем JSON-ответ
-                                            .then(data => {
-                                                if (data.success) {
-                                                    form.reset(); // Очищаем форму после успешной отправки
-                                                    // Обновляем список комментариев на странице без перезагрузки
-                                                    const commentsDiv = document.querySelector('.comments');
-                                                    commentsDiv.innerHTML = ''; // Очищаем список комментариев
-                                                    for (const comment of data.comments) {
-                                                        const commentDiv = document.createElement('div');
-                                                        commentDiv.className = 'comment';
-                                                        commentDiv.innerHTML = `
-                                                            <div class="ava">
-                                                                <h3>Ваше сообщение находится на рассмотрении инструкторов ❗ </h3>
-                                                                <h4>После проверки вашего сообщения инструктором, в этом чате появятся ответ на ваш вопрос 😁</h4>
-                                                            </div>
-                                                            <div class="comment-text">
-                                                                <p><strong>${comment.user}</strong>: ${comment.text}</p>
-                                                            </div>`;
-                                                        commentsDiv.appendChild(commentDiv);
-                                                    }
-                                                }
-                                            })
-                                            .catch(error => {
-                                                console.error('Error:', error);
-                                            });
-                                        });
-                                    </script>
+                                    fetch(window.location.href, { // Используйте текущий URL страницы или другой URL, если нужно
+                                        method: 'POST',
+                                        body: formData,
+                                        headers: {
+                                            'X-CSRFToken': formData.get('csrfmiddlewaretoken') // Передаем CSRF-токен в заголовках
+                                        }
+                                    })
+                                    .then(response => response.json()) // Ожидаем JSON-ответ
+                                    .then(data => {
+                                        if (data.success) {
+                                            form.reset(); // Очищаем форму после успешной отправки
+                                            // Обновляем список комментариев на странице без перезагрузки
+                                            const commentsDiv = document.querySelector('.comments');
+                                            commentsDiv.innerHTML = ''; // Очищаем список комментариев
+                                            for (const comment of data.comments) {
+                                                const commentDiv = document.createElement('div');
+                                                commentDiv.className = 'comment';
+                                                commentDiv.innerHTML = `
+                                                    <div class="ava">
+                                                        <h5>Ваше сообщение находится на рассмотрении инструкторов ❗ </h5>
+                                                        <h6>После проверки вашего сообщения инструктором, в этом чате появятся ответ на ваш вопрос 😁</h6>
+                                                    </div>
+                                                    <div class="comment-text">
+                                                        <h5><strong>${comment.user}</strong>: ${comment.text}</h5>
+                                                    </div>`;
+                                                commentsDiv.appendChild(commentDiv);
+                                            }
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                    });
+                                });
+                            </script>
 
                                 </div>
                             </div>
@@ -274,6 +273,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script src="{% static 'admin/js/script.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'admin/assets/js/jquery-3.5.1.min.js' %}"></script>
+    <!-- Bootstrap js-->
+    <script src="{% static 'admin/assets/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <!-- feather icon js-->
+    <script src="{% static 'admin/assets/js/icons/feather-icon/feather.min.js' %}"></script>
+    <script src="{% static 'admin/assets/js/icons/feather-icon/feather-icon.js' %}"></script>
+    <!-- scrollbar js-->
+    <script src="{% static 'admin/assets/js/scrollbar/simplebar.js' %}"></script>
+    <script src="{% static 'admin/assets/js/scrollbar/custom.js' %}"></script>
+    <!-- Sidebar jquery-->
+    <script src="{% static 'admin/assets/js/config.js' %}"></script>
+    <!-- Plugins JS start-->
+    <script src="{% static 'admin/assets/js/sidebar-menu.js' %}"></script>
+    <script src="{% static 'admin/assets/js/chart/chartist/chartist.js' %}"></script>
+    <script src="{% static 'admin/assets/js/chart/chartist/chartist-plugin-tooltip.js' %}"></script>
+    <script src="{% static 'admin/assets/js/chart/knob/knob.min.js' %}"></script>
+    <script src="{% static 'admin/assets/js/chart/knob/knob-chart.js' %}"></script>
+    <script src="{% static 'admin/assets/js/chart/apex-chart/apex-chart.js' %}"></script>
+    <script src="{% static 'admin/assets/js/chart/apex-chart/stock-prices.js' %}"></script>
+    <script src="{% static 'admin/assets/js/notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'admin/assets/js/dashboard/default.js' %}"></script>
+    <script src="{% static 'admin/assets/js/notify/index.js' %}"></script>
+    <script src="{% static 'admin/assets/js/datepicker/date-picker/datepicker.js' %}"></script>
+    <script src="{% static 'admin/assets/js/datepicker/date-picker/datepicker.en.js' %}"></script>
+    <script src="{% static 'admin/assets/js/datepicker/date-picker/datepicker.custom.js' %}"></script>
+    <script src="{% static 'admin/assets/js/typeahead/handlebars.js' %}"></script>
+    <script src="{% static 'admin/assets/js/typeahead/typeahead.bundle.js' %}"></script>
+    <script src="{% static 'admin/assets/js/typeahead/typeahead.custom.js' %}"></script>
+    <script src="{% static 'admin/assets/js/typeahead-search/handlebars.js' %}"></script>
+    <script src="{% static 'admin/assets/js/typeahead-search/typeahead-custom.js' %}"></script>
+    <script src="{% static 'admin/assets/js/tooltip-init.js' %}"></script>
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="{% static 'admin/assets/js/script.js' %}"></script>
+    <script src="{% static 'admin/assets/js/theme-customizer/customizer.js' %}"></script>
 </body>
 
 </html>

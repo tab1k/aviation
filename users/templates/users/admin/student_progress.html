@@ -120,40 +120,62 @@
                                         </div>
 
                                         <div class="card-body">
-                                               <div class="row">
-                                                    <div class="col-lg-7 col-xl-8">
-                                                        <div class="card shadow mb-4">
-                                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                                <h6 class="text-primary fw-bold m-3">Средний балл за тесты: {{ average_test_score }}</h6>
-                                                                <h6 class="text-primary fw-bold m-0">Средний балл за тесты: {{ average_test_score }}</h6>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <div class="chart-area" >
-                                                                    <canvas id="testScoresChart" style="width: 100%; max-width: 100%;"></canvas>
-                                                                </div>
+                                            <div class="row">
+                                                <div class="col-lg-7 col-xl-8 w-100">
+                                                    <div class="card shadow mb-4">
+                                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                                            <h6 class="text-primary fw-bold m-3">Средний балл за тесты: {{ average_test_score }}</h6>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="chart-area">
+                                                                <canvas id="testScoresChart" style="width: 100%; max-width: 100%;"></canvas>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-5 col-xl-4">
-                                                        <div class="card shadow mb-4">
-                                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                                <h6 class="text-primary fw-bold m-3">Количество сданных эссе: {{ total_essays_submitted }}</h6>
-                                                                <h6 class="text-primary fw-bold m-0">Кол-во сданных эссе: {{ total_essays_submitted }}</h6>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <div class="chart-area">
-                                                                    <canvas id="essaySubmissionsChart" style="width: 100%; max-width: 100%;></canvas>
-                                                                </div>
-                                                                <div class="text-center small mt-4"><span class="me-2"><i class="fas fa-circle text-primary"></i>&nbsp;Direct</span><span class="me-2"><i class="fas fa-circle text-success"></i>&nbsp;Social</span><span class="me-2"><i class="fas fa-circle text-info"></i>&nbsp;Refferal</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- End: Chart -->
                                                 </div>
+                                            </div>
+                                            <div style="text-align: center; margin-bottom: 30px;">
+                                                <div class="mb-3">
+                                                    <button class="btn btn-primary btn-sm" type="submit"><a style="color: white; text-decoration: none;" href="{% url 'users:admin:courses:generate_certificate' student_id=student.id %}">Выдать сертификат</a></button>
+                                                </div>
+                                            </div>
+                                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                            <script>
 
-                                                <div style="text-align: center; margin-bottom: 30px;">
-                                                        <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit"><a style="color: white; text-decoration: none;" href="{% url 'users:admin:courses:generate_certificate' student_id=student.id %}">Выдать сертификат</a></button></div>
-                                                </div>
+                                                var ctx = document.getElementById('testScoresChart').getContext('2d');
+
+                                                var lessonsTitles = {{ lessons_titles|safe }};
+                                                var testScores = {{ test_scores|safe }};
+
+                                                var data = {
+                                                    labels: lessonsTitles,
+                                                    datasets: [{
+                                                        label: 'Баллы за тесты',
+                                                        data: testScores,
+                                                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                                        borderWidth: 1
+                                                    }]
+                                                };
+
+                                                var options = {
+                                                    scales: {
+                                                        y: {
+                                                            beginAtZero: true,
+                                                            max: 100 // Установите максимальное значение по оси Y (если нужно)
+                                                        }
+                                                    }
+                                                };
+
+                                                var myChart = new Chart(ctx, {
+                                                    type: 'bar',
+                                                    data: data,
+                                                    options: options
+                                                });
+                                            </script>
+
+                                        </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -166,106 +188,7 @@
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
         {% endblock %}
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'admin/js/script.min.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        var testScoresChart = new Chart(testScoresCtx, {
-      type: 'bar',
-      data: {
-        labels: {% autoescape off %}{{ lessons_titles|safe }}{% endautoescape %},
-        datasets: [{
-          label: 'Баллы за тесты',
-          data: {% autoescape off %}{{ test_scores|safe }}{% endautoescape %},
-          backgroundColor: 'rgba(54, 162, 235, 0.8)',
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            ticks: {
-              font: {
-                size: 14,
-              },
-            },
-          },
-          y: {
-            ticks: {
-              font: {
-                size: 14,
-              },
-            },
-          },
-        },
-      },
-    });
 
-    var essaySubmissionsChart = new Chart(essaySubmissionsCtx, {
-      type: 'line', // Change the chart type to line
-      data: {
-        labels: {% autoescape off %}{{ lessons_titles|safe }}{% endautoescape %},
-        datasets: [{
-          label: 'Изменение эссе',
-          data: {% autoescape off %}{{ essays_submitted|safe }}{% endautoescape %},
-          fill: false, // Do not fill the area under the line
-          borderColor: 'rgba(255, 99, 132, 0.8)',
-          borderWidth: 2,
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            ticks: {
-              font: {
-                size: 14,
-              },
-            },
-          },
-          y: {
-            ticks: {
-              font: {
-                size: 14,
-              },
-            },
-          },
-        },
-      },
-    });
-
-    </script>
-
-    <script>
-      $(document).ready(function() {
-        // Создаем ползунок
-        $("#slider").slider({
-          range: true,
-          min: 0,
-          max: 100,
-          values: [0, 100],
-          slide: function(event, ui) {
-            // При перемещении ползунка обновляем данные в таблице
-            $("#progress-table tbody tr").each(function() {
-              var testScore = parseInt($(this).find("td:eq(3)").text());
-              var essaySubmission = $(this).find("td:eq(4)").text() === "Да";
-              var isCompleted = $(this).find("td:eq(5)").text() === "Да";
-
-              if (testScore >= ui.values[0] &&
-                  testScore <= ui.values[1] &&
-                  (essaySubmission || !ui.values[2]) &&
-                  (isCompleted || !ui.values[3])) {
-                $(this).show();
-              } else {
-                $(this).hide();
-              }
-            });
-          }
-        });
-      });
-    </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>

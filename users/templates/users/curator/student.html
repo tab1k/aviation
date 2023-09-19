@@ -74,17 +74,6 @@
                                                 </label>
                                             </div>
                                         </form>
-                                            <div class="mb-2">
-                                                <label class="form-label d-block">
-                                                    <select class="form-select form-select-sm" name="stream" id="stream-filter" onchange="this.form.submit()">
-                                                        <option value="">Все студенты</option>
-                                                        {% for stream in streams %}
-                                                            <option value="{{ stream.id }}" {% if selected_stream == stream %}selected{% endif %}>{{ stream.number }} поток</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </label>
-                                            </div>
-                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -93,7 +82,7 @@
                                             <label class="form-label">
                                                 <input type="search" class="form-control form-control-sm" aria-controls="dataTable" name="q" placeholder="Поиск...">
                                             </label>
-                                            <button>Поиск</button>
+                                            <button class="btn btn-primary btn-sm"  type="submit" style="width: 80px; margin: 0 0 2px 0;">Поиск</button>
                                         </div>
                                     </form>
                                 </div>
