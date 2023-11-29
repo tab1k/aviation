@@ -5,7 +5,7 @@ from embed_video.fields import EmbedVideoField
 
 
 class CourseType(models.Model):
-    title = models.CharField(max_length=155, null=True, blank=True)
+    title = models.CharField(max_length=255, null=True, blank=True)
     description = models.CharField(max_length=155, null=True, blank=True)
     time = models.PositiveIntegerField(default=90, null=True, blank=True)
     photo = models.ImageField(upload_to='course_type_images', null=True, blank=True)
@@ -22,7 +22,7 @@ class CourseType(models.Model):
 
 
 class Course(models.Model):
-    title = models.CharField(max_length=255)  # Название курса
+    title = models.CharField(max_length=1000)  # Название курса
     description = models.TextField()  # Описание курса
     duration = models.PositiveIntegerField()  # Продолжительность курса
     image = models.ImageField(upload_to='course_images', null=True, blank=True)
