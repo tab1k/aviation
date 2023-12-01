@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-5i(815(8*cc8i9^$e1oe_+_a77p24vjbccdk6l_yvpfkzxxy=b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'www.stransit.kz', 'stransi.kz', '194.110.55.160']
 
 TELEGRAM_BOT_TOKEN = '6430829618:AAFkAYmcOeu_oROGyDp2irSUGZZNIx60pR8'
 TELEGRAM_CHAT_ID = '-1001976653807'
