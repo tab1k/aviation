@@ -31,8 +31,8 @@ class StransitCourse(models.Model):
 
     photo = models.ImageField(blank=True, null=True, upload_to='stransit_course_images', verbose_name='Фото')
     type = models.CharField(max_length=10,choices=LESSON_TYPE, blank=True, null=True, default='offline', verbose_name='Формат обучения')
-    title = models.CharField(max_length=255, verbose_name='Название курса')
-    about_course = models.TextField(max_length=300, verbose_name='О курсе')
+    title = models.CharField(max_length=1000, verbose_name='Название курса')
+    about_course = models.TextField(max_length=1100, verbose_name='О курсе')
 
     class Meta:
         abstract = True  # Указываем, что это абстрактный класс
