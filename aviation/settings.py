@@ -145,6 +145,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'users', 'static'),
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://stransit.kz']
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
