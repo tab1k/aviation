@@ -2,7 +2,9 @@ import telebot
 from django.shortcuts import render
 from django.views import View
 from django.core.paginator import Paginator
+from django.views.generic import ListView
 from aviation import settings
+from courses.models import Course
 from stransit.models import *
 
 
@@ -36,24 +38,17 @@ class AboutView(View):
         return render(request, 'users/stransit/about.html')
 
 
-
 class CoursesView(View):
 
     def get(self, request):
         return render(request, 'users/stransit/all_courses.html')
 
 
-
-class OnlineCoursesView(View):
-
+class OnlineCoursesView(ListView):
     template_name  = 'users/stransit/online_courses.html'
-    online_courses = OnlineCourses.objects.all()
+    model = OnlineCourses
+    context_object_name = 'online'
 
-    def get(self, request):
-
-        return render(request, self.template_name, {
-            'online' : self.online_courses,
-        })
 
 
 class IndustrialCourse(View):

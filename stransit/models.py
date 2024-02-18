@@ -19,8 +19,6 @@ class Contact(models.Model):
         verbose_name_plural = 'Новые заявки'
 
 
-
-
 class StransitCourse(models.Model):
 
     LESSON_TYPE = (
@@ -37,7 +35,6 @@ class StransitCourse(models.Model):
     class Meta:
         abstract = True  # Указываем, что это абстрактный класс
 
-# Теперь определяем ваши модели, наследующие от абстрактного класса Course:
 
 class IndustrialCourses(StransitCourse):
     pass
@@ -59,6 +56,7 @@ class AviationCourses(StransitCourse):
     class Meta:
         verbose_name = 'Авиционный курс'
         verbose_name_plural = 'Авиационные курсы'
+
 
 class OnlineCourses(StransitCourse):
     pass
