@@ -1,6 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import View
 from courses.models import Course
+from schedule.forms import ScheduleForm
 from schedule.models import Schedule
 from itertools import groupby
 
@@ -68,4 +70,25 @@ class StudentScheduleView(View):
 
 
 
+class AddScheduleView(View):
+    template_name = 'users/admin/add_schedule.html'
+
+    def get(self, request):
+        form = ScheduleForm()
+        courses = Course.objects.all()  # Получаем список всех курсов
+        return render(request, self.template_name, {'form': form, 'courses': courses})
+
+    def post(self, request):
+        form = ScheduleForm(request.POST)
+        if form.is_valid():
+            schedule = form.save(commit=False)  # Создаем объект расписания без сохранения в базу данных
+            schedule.course = form.cleaned_data['course']  # Устанавливаем курс из формы
+            schedule.save()  # Теперь сохраняем объект расписания
+
+            # Дополнительная обработка, если нужно
+
+            return render(request, self.template_name, {'form': form, 'course_added': True})
+        else:
+            courses = Course.objects.all()
+            return render(request, self.template_name, {'form': form, 'courses': courses})
 

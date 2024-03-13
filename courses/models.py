@@ -29,6 +29,7 @@ class Course(models.Model):
     course_type = models.ForeignKey(CourseType, on_delete=models.CASCADE, related_name='courses') # Связь с моделью "Course Type"
     curators = models.ManyToManyField(get_user_model())   # Связь с моделью "Curator"
     students = models.ManyToManyField(User, related_name='courses', blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def create_notification(self, message):
         notification = Notification(course=self, message=message)
@@ -51,7 +52,7 @@ class Module(models.Model):
     title = models.CharField(max_length=255)  # Название модуля
     description = models.TextField()  # Описание модуля
     order = models.PositiveIntegerField()  # Порядковый номер модуля
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')  # Связь с моделью "Course"
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules', blank=True, null=True)  # Связь с моделью "Course"
 
     def __str__(self):
         return self.title

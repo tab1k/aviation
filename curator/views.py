@@ -3,7 +3,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, RedirectView
 from administrator.forms import NotificationForm
 from courses.models import Course, CourseType, Notification
 from stransit.models import Contact
@@ -184,6 +184,47 @@ class NotificationCreateView(CreateView):
     def form_valid(self, form):
         messages.success(self.request, 'Уведомление успешно создано.')
         return super().form_valid(form)
+
+
+class PreviousLessonRedirectView(RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, *args, **kwargs):
+        current_lesson = get_object_or_404(Lesson, pk=self.kwargs['pk'])
+        all_lessons = Lesson.objects.filter(module=current_lesson.module).order_by('order')
+
+        current_lesson_index = None
+        for index, lesson in enumerate(all_lessons):
+            if lesson.id == current_lesson.id:
+                current_lesson_index = index
+                break
+
+        if current_lesson_index is not None and current_lesson_index > 0:
+            previous_lesson = all_lessons[current_lesson_index - 1]
+            return previous_lesson.get_absolute_url()  # Замените на ваш метод получения URL урока
+        else:
+            return current_lesson.get_absolute_url()
+
+
+class NextLessonRedirectView(RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, *args, **kwargs):
+        current_lesson = get_object_or_404(Lesson, pk=self.kwargs['pk'])
+        all_lessons = Lesson.objects.filter(module=current_lesson.module).order_by('order')
+
+        current_lesson_index = None
+        for index, lesson in enumerate(all_lessons):
+            if lesson.id == current_lesson.id:
+                current_lesson_index = index
+                break
+
+        if current_lesson_index is not None and current_lesson_index < len(all_lessons) - 1:
+            next_lesson = all_lessons[current_lesson_index + 1]
+            return next_lesson.get_absolute_url()  # Замените на ваш метод получения URL урока
+        else:
+            return current_lesson.get_absolute_url()
+
 
 
 class LogoutView(View):

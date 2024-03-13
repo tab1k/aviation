@@ -5,8 +5,8 @@ app_name = 'curator'
 
 urlpatterns = [
     path('', curator_view, name='curator'),
-    path('previous/<int:lesson_id>/', show_previous_lesson, name='previous_lesson'),
-    path('next/<int:lesson_id>/', show_next_lesson, name='next_lesson'),
+    path('lesson/<int:pk>/previous/', PreviousLessonRedirectView.as_view(), name='previous_lesson_redirect'),
+    path('lesson/<int:pk>/next/', NextLessonRedirectView.as_view(), name='next_lesson_redirect'),
     path('courses/', include('courses.urls')),
     path('profile/', include('profiles.urls', namespace='profile')),
     path('schedule/', include('schedule.urls')),

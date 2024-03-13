@@ -5,8 +5,11 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.timezone import localtime, now
 from django.http import JsonResponse, HttpResponseForbidden
+from django.views.generic import ListView, CreateView
+
 from comments.forms import CommentForm
 from comments.models import Comment
+from .forms import LessonCreationForm, CourseCreationForm
 from .models import Course, Module, CourseType, Lesson
 from django.views import View
 from users.models import User
@@ -60,39 +63,40 @@ class CoursesByType(LoginRequiredMixin, View):
         return render(request, template_name, {'course_type': course_type, 'courses': courses})
 
 
+class Courses(ListView):
+    model = Course
+    context_object_name = 'courses'
+    ordering = ['-created_at']
 
-class Courses(View):
+    def get_template_names(self):
+        if self.request.user.groups.filter(name='Администраторы').exists():
+            return ['users/admin/coursesAfterSignUpAdmin.html']
+        elif self.request.user.groups.filter(name='Кураторы').exists():
+            return ['users/curator/coursesAfterSignUpCurator.html']
+        return ['users/student/coursesAfterSignUp.html']
 
-    def get(self, request):
-        if request.user.groups.filter(name='Администраторы').exists():
-            template_name = 'users/admin/coursesAfterSignUpAdmin.html'
-            courses = Course.objects.all()
-        elif request.user.groups.filter(name='Кураторы').exists():
-            template_name = 'users/curator/coursesAfterSignUpCurator.html'
-            courses = Course.objects.all()
-        else:
-            template_name = 'users/student/coursesAfterSignUp.html'
-            courses = Course.objects.filter(students=request.user)
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Администраторы').exists() or self.request.user.groups.filter(
+                name='Кураторы').exists():
+            return super().get_queryset()
+        return Course.objects.filter(students=self.request.user)
 
-        # Get all comments (both student and curator comments) for the current user
-        all_comments = Comment.objects.filter(Q(user=request.user) | Q(curator=request.user))
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_time'] = localtime(now())
+        context['student_comments'], context['curator_comments'] = self.get_comments()
+        return context
 
-        # Separate student and curator comments
+    def get_comments(self):
+        all_comments = Comment.objects.filter(Q(user=self.request.user) | Q(curator=self.request.user))
         student_comments = all_comments.filter(is_student_comment=True)
         curator_comments = all_comments.filter(is_student_comment=False)
-
-        # Get the current date and time in the Asia/Almaty timezone
-        current_time = localtime(now())
-
-        return render(request, template_name, {
-            'courses': courses,
-            'current_time': current_time,
-            'student_comments': student_comments,
-            'curator_comments': curator_comments
-        })
+        return student_comments, curator_comments
 
 
-# Представление для отображения Модулей
+
+
+
 class Modules(View):
 
     def get(self, request, pk):
@@ -218,6 +222,35 @@ class LessonView(View):
         else:
             # Перенаправление на страницу входа
             return redirect(reverse('users:login'))
+
+
+class LessonCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'users/admin/create_lesson.html'
+    form_class = LessonCreationForm
+    model = Lesson
+
+    def form_valid(self, form):
+        lesson = form.save(commit=False)
+        lesson.save()
+        return redirect('users:admin:courses:lesson_view', lesson_id=lesson.id)
+
+    def form_invalid(self, form):
+        return render(self.request, self.template_name, {'form': form})
+
+
+class CourseCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'users/admin/create_course.html'
+    form_class = CourseCreationForm
+    model = Course
+
+    def form_valid(self, form):
+        course = form.save(commit=False)
+        course.save()
+        return redirect('users:admin:courses:courses')
+
+    def form_invalid(self, form):
+        return render(self.request, self.template_name, {'form': form})
+
 
 
 class AnswersView(View):

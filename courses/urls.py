@@ -12,6 +12,10 @@ urlpatterns = [
     path('lesson/view/<int:lesson_id>/', LessonView.as_view(), name='lesson_view'),
     path('lesson/answers/', AnswersView.as_view(), name='answers_view'),
 
+    path('create_course/', CourseCreateView.as_view(), name='create_course'),
+    path('create_lesson/', LessonCreateView.as_view(), name='create_lesson'),
+
+
     path('students/<int:student_id>/progress/', StudentProgressView.as_view(), name='student_progress'),
     path('passed-students/', PassedStudentsView.as_view(), name='passed_students'),
     path('generate-certificate/<int:student_id>/', CertificateView.as_view(), name='generate_certificate'),
