@@ -1,190 +1,981 @@
-{% extends 'users/stransit/base.html' %}
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="ru">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>{% block title %}СТАНДАРТ ТРАНЗИТ{% endblock %}</title>
-    {% block css %}
-        <link rel="stylesheet" href="{% static 'stransit/assets/bootstrap/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'stransit/assets/css/styles.min.css' %}">
-    {% endblock %}
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="images/8N4kGrRyCMvx.png" />
+
+    <link href="{% static 'stransit/css/agBmLZg4XvdE.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/rT83hV5Fo8Za.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/sVREbUiwQOYC.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/DVwob9oRzNVA.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/Z5DMAr41i25k.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/ItKKcMzmF6KQ.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/lWdFszuO73fq.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/pTsqCF0LuyWX.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/f6hMpVJr97F6.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/voIXSgwpb1xh.css' %}" rel="stylesheet" />
 </head>
 
 <body>
-    {% block li_active %}
-        <li class="nav-item"><a class="nav-link active" href="{% url 'stransit:index' %}">Главная</a></li>
-        <li class="nav-item"><a class="nav-link " href="{% url 'stransit:about' %}">О нас</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:all_courses' %}">Курсы</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:online_courses' %}">Онлайн курсы</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:certificates' %}">Сертификаты</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:contacts' %}">Контакты</a></li>
-    {% endblock %}
+<div class="preloader">
+    <div class="loader">
+        <div class="loader-box-1"></div>
+        <div class="loader-box-2"></div>
+    </div>
+</div>
 
-    {% block content %}
-        <header class="bg-primary-gradient">
-        <div class="col-md-8 col-xl-6 text-center text-md-start mx-auto">
-            <div class="text-center"></div>
-        </div><!-- Start: Hero Clean Reverse -->
-        <div class="container pt-4 pt-xl-5">
-            <!-- Start: Simple Slider -->
-            <div class="simple-slider">
-                <!-- Start: Slideshow -->
-                <div class="swiper-container">
-                    <!-- Start: Slide Wrapper -->
-                    <div class="swiper-wrapper">
-                        <!-- Start: Slide -->
-                        <div class="swiper-slide" style="border-radius: 20px; background: url({% static 'stransit/assets/img/products/standard.png' %}) center center / cover no-repeat;"></div><!-- End: Slide -->
-                        <!-- Start: Slide -->
-                        <div class="swiper-slide" style="border-radius: 20px;background: url({% static 'stransit/assets/img/products/photo_2023-07-28_21-08-23.jpg' %}) center center / cover no-repeat;"></div><!-- End: Slide -->
-                        <!-- Start: Slide -->
-                        <div class="swiper-slide" style="border-radius: 20px;background: url({% static 'stransit/assets/img/products/photo_2023-07-27_23-36-25.jpg' %}) center center / cover no-repeat;"></div><!-- End: Slide -->
-                    </div><!-- End: Slide Wrapper -->
-                    <!-- Start: Pagination -->
-                    <div class="swiper-pagination"></div><!-- End: Pagination -->
-                    <!-- Start: Previous -->
-                    <div class="swiper-button-prev"></div><!-- End: Previous -->
-                    <!-- Start: Next -->
-                    <div class="swiper-button-next"></div><!-- End: Next -->
-                </div><!-- End: Slideshow -->
-            </div><!-- End: Simple Slider -->
-            <div class="row pt-5">
-                <div class="col-md-8 col-xl-8 col-xxl-7 text-center text-md-start mx-auto" style="margin: 30px 0px 30px 0px;">
-                    <div class="text-center">
-                        <p class="fw-bold text-success mb-2"></p>
-                        <h1 class="fw-bold"><strong>Авиационный Учебный Центр «Стандарт Транзит»&nbsp;</strong></h1>
+<header class="header">
+    <div class="main-navigation">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container g-0">
+                <a class="navbar-brand" href="index.html" style="color: white;">
+                    <img style="height: 35px; width: 35px; margin-right: 5px;" src="{% static 'stransit/images/logo.png' %}" alt="thumb" />
+                    
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fal fa-bars"></i></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main_nav" style="border-radius: 5px;">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Главная</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'stransit:about' %}">О нас</a>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Курсы</a>
+                            <ul class="dropdown-menu fade-up">
+                                <li><a class="dropdown-item" href="{% url 'stransit:online_courses' %}">Онлайн курсы</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Курсы</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'stransit:industrial_course' %}">Промышленные курсы</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'stransit:aviation_course' %}">Авиационные курсы</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'stransit:certificates' %}">Сертификаты</a>
+                        </li>
+                        
+                        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:contacts' %}">Контакты</a></li>
+                        
+                        <li class="nav-item nav-item-mobile">
+                            {% if user.is_authenticated %}
+                                {% if user.role == "student" %}
+                                    <a href="{% url 'users:student:student' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет студента</a>
+                                {% elif user.role == "curator" %}
+                                    <a href="{% url 'users:curator:curator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет куратора</a>
+                                {% elif user.role == "admin" %}
+                                    <a href="{% url 'users:admin:administrator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет администратора</a>
+                                {% endif %}
+                            {% else %}    
+                                <a href="{% url 'users:login' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Войти</a>
+                            {% endif %}
+                        </li>
+                        <style>
+                            .nav-item-mobile {
+                                display: none; /* По умолчанию скрыт */
+                                justify-content: center; /* Центрирует содержимое по горизонтали */
+                                width: 100%; 
+                                padding: 5px;
+                            }
+                            
+                            /* Показываем элемент на экранах шире 768px и применяем flexbox для центрирования */
+                            @media (max-width: 768px) {
+                                .nav-item-mobile {
+                                    display: flex; /* Включаем flexbox */
+                                    justify-content: center; /* Центрируем содержимое по горизонтали */
+                                }
+                            }
+
+                        </style>
+                    </ul>
+                    
+                    <div class="header-btn">
+                        {% if user.is_authenticated %}
+                            {% if user.role == "student" %}
+                                <a href="{% url 'users:student:student' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет студента</a>
+                            {% elif user.role == "curator" %}
+                                <a href="{% url 'users:curator:curator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет куратора</a>
+                            {% elif user.role == "admin" %}
+                                <a href="{% url 'users:admin:administrator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет администратора</a>
+                            {% endif %}
+                        {% else %}    
+                            <a href="{% url 'users:login' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Войти</a>
+                        {% endif %}
                     </div>
                 </div>
-                <div class="col-12 col-lg-10 mx-auto">
-                    <div class="position-relative" style="display: flex;flex-wrap: wrap;justify-content: flex-end;">
-                        <div style="position: relative;flex: 0 0 45%;transform: translate3d(-15%, 35%, 0);"><img style="border-radius: 15px;" class="img-fluid" data-bss-parallax="" data-bss-parallax-speed="0.20" src="{% static 'stransit/images/spasanie.jpeg' %}"></div>
-                        <div style="position: relative;flex: 0 0 45%;transform: translate3d(-5%, 20%, 0);"><img style="border-radius: 15px;" class="img-fluid" data-bss-parallax="" data-bss-parallax-speed="0.20" src="{% static 'stransit/assets/img/products/photo_2023-07-27_23-37-59.jpg' %}"></div>
-                        <div style="position: relative;flex: 0 0 60%;transform: translate3d(0, 0%, 0);"><img style="border-radius: 15px;" class="img-fluid" data-bss-parallax="" data-bss-parallax-speed="0.20" src="{% static 'stransit/assets/img/products/photo_2023-07-27_23-37-05.jpg' %}"></div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main class="main">
+    <div class="hero-section">
+        <div class="hero-single hero-shape " style="padding-top: 200px;">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="hero-content">
+                            <h6 class="hero-sub-title wow animate__animated animate__fadeInUp" data-wow-duration="1s" data-wow-delay=".25s">Добро пожаловать!</h6>
+                            <h1 class="hero-title wow animate__animated animate__fadeInUp" data-wow-duration="1s" data-wow-delay=".50s">
+                                Авиационный Учебный Центр «Стандарт Транзит» 
+                            </h1>
+                            <p class="wow animate__animated animate__fadeInUp" data-wow-duration="1s" data-wow-delay=".75s">
+                                ТОО «Стандарт Транзит» основано в 2015 году, специализируется на обучающих программах, тренингах, курсах повышения квалификации.
+                            </p>
+                            <div class="hero-btn wow animate__animated animate__fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                                <a href="#target-block"" class="theme-btn">Связаться <i class="fas fa-arrow-right"></i></a>
+                                <a href="{% url 'stransit:about' %}" class="theme-btn border-btn">О нас <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-img">
+                            <img src="{% static 'stransit/images/uPovUeWsGa4p.png' %}" alt="" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div><!-- End: Hero Clean Reverse -->
-    </header>
-        <section class="py-5" style="margin: 30px;">
-            <div class="container text-center py-5">
-                <p class="mb-4" style="font-size: 32px;font-weight: bold;">Наши партнеры</p><a href="#"> <img class="m-3" src="{% static 'stransit/assets/img/brands/image.png' %}" width="107" height="107"></a>
-                <a href="#"> <img class="m-3" src="{% static 'stransit/assets/img/brands/logo.svg' %}"></a><a href="#">
-                <img class="m-3" src="{% static 'stransit/assets/img/brands/WhatsApp_Image_2023-07-27_at_18.53.09-removebg-preview.png' %}" width="195" height="83"></a><a href="#">
-                <img class="m-3" src="{% static 'stransit/assets/img/brands/output-onlinepngtools.png' %}" width="174" height="92"></a><a href="#">
-                <img class="m-3" src="{% static 'stransit/assets/img/brands/photo_2023-07-27_23-59-20.jpg' %}" width="274" height="49"></a>
+        </div>
+    </div>
+
+    <div class="search-area">
+        <div class="container" id="target-block">
+            <div class="search-form-wrapper">
+                <form class="p-3 p-xl-4" method="post">
+                    {% csrf_token %}
+                    <div class="row justify-content-center align-items-end">
+                        <div class="col-md-6 col-lg-3 search-input">
+                            <div class="form-group">
+                                <label>Имя</label>
+                                <input type="text" class="form-control" type="text" id="name-1" name="name">
+                                <div><i class="far fa-user"></i></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 search-input">
+                            <div class="form-group">
+                                <label>Почта</label>
+                                <input type="text" class="form-control" type="email" id="email-1" name="email">
+                                <div><i class="far fa-inbox"></i></div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-lg-3 search-input">
+                            <div class="form-group">
+                                <label>Номер телефона</label>
+                                <input type="text" class="form-control" type="tel" id="phone_number" name="phone_number">
+                                <div><i class="far fa-phone"></i></div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-lg-3 search-input">
+                            <div class="form-group">
+                                <label>Сообщение</label>
+                                <input type="text" class="form-control" id="message-1" name="message" rows="6">
+                                <div><i class="far fa-info"></i></div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 col-lg-2 pt-4 search-input">
+                            <button type="submit" class="search-btn"><i class="far fa-plane-departure"></i> Отправить</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </section>
-        <section class="py-5 mt-5" style="margin: 0px;">
-        <!-- Start: Testimonials -->
-        <div class="container py-5">
-            <div class="row mb-5">
-                <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <p class="fw-bold text-success mb-2">Отзывы</p>
-                    <h2 class="fw-bold"><strong>Отзывы от наших слушателей</strong></h2>
+        </div>
+    </div>
+
+    <div class="feature-area pt-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="site-heading text-center">
+                        <span class="site-title-tagline">Features</span>
+                        <h2 class="site-title">Top Features</h2>
+                        <p>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 d-sm-flex justify-content-sm-center">
-                <div class="col mb-4">
-                    <div class="d-flex flex-column align-items-center align-items-sm-start">
-                        <p class="bg-light border rounded border-light p-4">Все отлично! Мне понравилось!</p>
-                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{% static 'stransit/assets/img/team/img_avatar2.png' %}">
-                            <div>
-                                <p class="fw-bold text-primary mb-0">Аубикерова Нейля</p>
-                                <p class="text-muted mb-0">Слушатель</p>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-single">
+                        <div class="feature-icon">
+                            <i class="icon-luxury"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h5>Luxury And Comfort</h5>
+                            <p>Качественное обучение сегодня - гарантированный успех завтра!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-single">
+                        <div class="feature-icon">
+                            <i class="icon-from-airplane"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h5>Save And Secure</h5>
+                            <p>There are many variations of passages available the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-single">
+                        <div class="feature-icon">
+                            <i class="icon-all-around-globe"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h5>All Over The World</h5>
+                            <p>There are many variations of passages available the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-area py-120">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-left">
+                        <div class="about-img">
+                            <img class="about-img-1" src="{% static 'stransit/images/3hajizYlJuZ5.jpg' %}" alt="" />
+                            <img class="about-img-2" src="{% static 'stransit/images/1V1pEG6L0HVC.jpg' %}" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-right">
+                        <div class="site-header">
+                            <span class="site-title-tagline">About Us</span>
+                            <h2 class="site-title">We Are Here To Make Your Dreams Come True</h2>
+                        </div>
+                        <p class="about-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even.</p>
+                        <div class="about-list-wrapper">
+                            <ul class="about-list list-unstyled">
+                                <li>
+                                    <div class="icon"><span class="far fa-check-circle"></span></div>
+                                    <div class="text">
+                                        <p>Take a look at our round up of the best shows</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><span class="far fa-check-circle"></span></div>
+                                    <div class="text">
+                                        <p>It has survived not only five centuries</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon"><span class="far fa-check-circle"></span></div>
+                                    <div class="text">
+                                        <p>Lorem Ipsum has been the ndustry standard dummy text</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="about.html" class="theme-btn">Discover More <i class="far fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="service-area bg py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="site-heading text-center">
+                        <span class="site-title-tagline">Services</span>
+                        <h2 class="site-title">What We Offer</h2>
+                        <p>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="icon-business-jet-charter1"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4><a href="#">Luxury Travel</a></h4>
+                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
+                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="icon-schedule-1"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4><a href="#">Flexible Schedule</a></h4>
+                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
+                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="icon-money-1"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4><a href="#">Affordable Cost</a></h4>
+                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
+                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="icon-cabin-comfort"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4><a href="#">Comfort Travel</a></h4>
+                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
+                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="icon-private-helicoopter1"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4><a href="#">Easy Transport</a></h4>
+                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
+                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="icon-modern-aircrafts"></i>
+                        </div>
+                        <div class="service-content">
+                            <h4><a href="#">Fast Service</a></h4>
+                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
+                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="counter-area pt-40 pb-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="counter-box">
+                        <div class="icon"><i class="fal fa-smile"></i></div>
+                        <span class="counter" data-count="+" data-to="30" data-speed="3000">30</span>
+                        <h6 class="title">+ Happy Clients</h6>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="counter-box">
+                        <div class="icon"><i class="fal fa-user-tie"></i></div>
+                        <span class="counter" data-count="+" data-to="100" data-speed="3000">100</span>
+                        <h6 class="title">+ Expert Pilots</h6>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="counter-box">
+                        <div class="icon"><i class="fal fa-plane-departure"></i></div>
+                        <span class="counter" data-count="+" data-to="80" data-speed="3000">80</span>
+                        <h6 class="title">+ Jet Airplane</h6>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="counter-box">
+                        <div class="icon"><i class="fal fa-award"></i></div>
+                        <span class="counter" data-count="+" data-to="50" data-speed="3000">50</span>
+                        <h6 class="title">+ Win Awards</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+    <div class="package-area py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="site-heading text-center">
+                        <span class="site-title-tagline">Packages</span>
+                        <h2 class="site-title text-white">Tour Package For You</h2>
+                        <p class="text-white">
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="package-slider owl-carousel owl-theme">
+                <div class="package-item">
+                    <div class="package-img">
+                        <img src="{% static 'stransit/images/M7Ntx8ySTI6K.jpg' %}" alt="" />
+                        <a class="package-video popup-youtube" href="https://www.youtube.com/watch?v=ckHzmP1evNU"><i class="fas fa-play"></i></a>
+                    </div>
+                    <div class="package-content">
+                        <div class="package-title">
+                            <a href="#">
+                                <h4>The City Of Lights</h4>
+                            </a>
+                        </div>
+                        <div class="package-info">
+                            <ul>
+                                <li><i class="far fa-clock"></i>May 11, 2023</li>
+                                <li><i class="far fa-user"></i>8 Passenger</li>
+                            </ul>
+                        </div>
+                        <div class="package-bottom">
+                            <a href="#" class="package-btn"><span class="far fa-plane-departure"></span> Book Now</a>
+                            <div class="package-price">
+                                <span>$250</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col mb-4">
-                    <div class="d-flex flex-column align-items-center align-items-sm-start">
-                        <p class="bg-light border rounded border-light p-4">Все на должном уровне!</p>
-                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{% static 'stransit/assets/img/team/img_avatar2.png' %}">
-                            <div>
-                                <p class="fw-bold text-primary mb-0">Аблулла Динара</p>
-                                <p class="text-muted mb-0">Слушатель</p>
+                <div class="package-item">
+                    <div class="package-img">
+                        <img src="{% static 'stransit/images/ABUDHDiOIdIv.jpg' %}" alt="" />
+                        <a class="package-video popup-youtube" href="https://www.youtube.com/watch?v=ckHzmP1evNU"><i class="fas fa-play"></i></a>
+                    </div>
+                    <div class="package-content">
+                        <div class="package-title">
+                            <a href="#">
+                                <h4>The City Of Lights</h4>
+                            </a>
+                        </div>
+                        <div class="package-info">
+                            <ul>
+                                <li><i class="far fa-clock"></i>May 11, 2023</li>
+                                <li><i class="far fa-user"></i>8 Passenger</li>
+                            </ul>
+                        </div>
+                        <div class="package-bottom">
+                            <a href="#" class="package-btn"><span class="far fa-plane-departure"></span> Book Now</a>
+                            <div class="package-price">
+                                <span>$250</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col mb-4">
-                    <div class="d-flex flex-column align-items-center align-items-sm-start">
-                        <p class="bg-light border rounded border-light p-4">Все было хорошо, побольше бы видео!</p>
-                        <div class="d-flex"><img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="{% static 'stransit/assets/img/team/img_avatar2.png' %}">
-                            <div>
-                                <p class="fw-bold text-primary mb-0">Мустафина Динара</p>
-                                <p class="text-muted mb-0">Слушатель</p>
+                <div class="package-item">
+                    <div class="package-img">
+                        <img src="{% static 'stransit/images/4tmz96p3tlz7.jpg' %}" alt="" />
+                        <a class="package-video popup-youtube" href="https://www.youtube.com/watch?v=ckHzmP1evNU"><i class="fas fa-play"></i></a>
+                    </div>
+                    <div class="package-content">
+                        <div class="package-title">
+                            <a href="#">
+                                <h4>The City Of Lights</h4>
+                            </a>
+                        </div>
+                        <div class="package-info">
+                            <ul>
+                                <li><i class="far fa-clock"></i>May 11, 2023</li>
+                                <li><i class="far fa-user"></i>8 Passenger</li>
+                            </ul>
+                        </div>
+                        <div class="package-bottom">
+                            <a href="#" class="package-btn"><span class="far fa-plane-departure"></span> Book Now</a>
+                            <div class="package-price">
+                                <span>$250</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div><!-- End: Testimonials -->
-        <div class="container py-5">
-            <div class="row mb-5">
-                <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <p class="fw-bold text-success mb-2">Контакты</p>
-                    <h2 class="fw-bold">Обратная связь</h2>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center">
-                <div class="col-md-6 col-xl-4">
-                    <div>
-                        <form class="p-3 p-xl-4" method="post">
-                            {% csrf_token %}
-                            <!-- Start: Success Example -->
-                            <div class="mb-3"><input class="form-control" type="text" id="name-1" name="name" placeholder="Имя"></div><!-- End: Success Example -->
-                            <!-- Start: Error Example -->
-                            <div class="mb-3"><input class="form-control" type="email" id="email-1" name="email" placeholder="Почта"></div><!-- End: Error Example -->
-                            <!-- Start: Error Example -->
-                            <div class="mb-3"><input class="form-control" type="tel" id="phone_number" name="phone_number" placeholder="Номер телефона"></div><!-- End: Error Example -->
-                            <div class="mb-3"><textarea class="form-control" id="message-1" name="message" rows="6" placeholder="Сообщение"></textarea></div>
-                            <div><button class="btn btn-primary shadow d-block w-100" type="submit">Send </button></div><!-- Start: Error Example -->
-                            <div class="mb-3"></div><!-- End: Error Example -->
-                        </form>
+                <div class="package-item">
+                    <div class="package-img">
+                        <img src="{% static 'stransit/images/2DnR9bnysagv.jpg' %}" alt="" />
+                        <a class="package-video popup-youtube" href="https://www.youtube.com/watch?v=ckHzmP1evNU"><i class="fas fa-play"></i></a>
                     </div>
-                </div>
-                <div class="col-md-4 col-xl-4 d-flex justify-content-center justify-content-xl-start">
-                    <div class="d-flex flex-wrap flex-md-column justify-content-md-start align-items-md-start h-100">
-                        <div class="d-flex align-items-center p-3">
-                            <div class="bs-icon-md bs-icon-circle bs-icon-primary shadow d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon bs-icon-md"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-telephone">
-                                    <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"></path>
-                                </svg></div>
-                            <div class="px-2">
-                                <h6 class="fw-bold mb-0">Телефон</h6>
-                                <p class="text-muted mb-0"><a href="tel:+77015662361">+7 (701) 566-23-61</a></p>
-                            </div>
+                    <div class="package-content">
+                        <div class="package-title">
+                            <a href="#">
+                                <h4>The City Of Lights</h4>
+                            </a>
                         </div>
-                        <div class="d-flex align-items-center p-3">
-                            <div class="bs-icon-md bs-icon-circle bs-icon-primary shadow d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon bs-icon-md"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-envelope">
-                                    <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path>
-                                </svg></div>
-                            <div class="px-2">
-                                <h6 class="fw-bold mb-0">Почта</h6>
-                                <p class="text-muted mb-0"><a href="mailto:info@stransit.kz">info@stransit.kz</a></p>
-                            </div>
+                        <div class="package-info">
+                            <ul>
+                                <li><i class="far fa-clock"></i>May 11, 2023</li>
+                                <li><i class="far fa-user"></i>8 Passenger</li>
+                            </ul>
                         </div>
-                        <div class="d-flex align-items-center p-3">
-                            <div class="bs-icon-md bs-icon-circle bs-icon-primary shadow d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block bs-icon bs-icon-md"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-pin">
-                                    <path d="M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-.342 1.174-.646 1.479-.126.125-.25.224-.354.298v4.431l.078.048c.203.127.476.314.751.555C12.36 7.775 13 8.527 13 9.5a.5.5 0 0 1-.5.5h-4v4.5c0 .276-.224 1.5-.5 1.5s-.5-1.224-.5-1.5V10h-4a.5.5 0 0 1-.5-.5c0-.973.64-1.725 1.17-2.189A5.921 5.921 0 0 1 5 6.708V2.277a2.77 2.77 0 0 1-.354-.298C4.342 1.674 4 1.179 4 .5a.5.5 0 0 1 .146-.354zm1.58 1.408-.002-.001.002.001zm-.002-.001.002.001A.5.5 0 0 1 6 2v5a.5.5 0 0 1-.276.447h-.002l-.012.007-.054.03a4.922 4.922 0 0 0-.827.58c-.318.278-.585.596-.725.936h7.792c-.14-.34-.407-.658-.725-.936a4.915 4.915 0 0 0-.881-.61l-.012-.006h-.002A.5.5 0 0 1 10 7V2a.5.5 0 0 1 .295-.458 1.775 1.775 0 0 0 .351-.271c.08-.08.155-.17.214-.271H5.14c.06.1.133.191.214.271a1.78 1.78 0 0 0 .37.282z"></path>
-                                </svg></div>
-                            <div class="px-2">
-                                <h6 class="fw-bold mb-0">Локация</h6>
-                                <p class="text-muted mb-0">Казахстан, г. Атырау, ул. Адгама Каримова 70А, мкр. Самал</p>
+                        <div class="package-bottom">
+                            <a href="#" class="package-btn"><span class="far fa-plane-departure"></span> Book Now</a>
+                            <div class="package-price">
+                                <span>$250</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    {% endblock %}
+    </div>
 
+    <div class="team-area py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="site-heading text-center">
+                        <span class="site-title-tagline">Team</span>
+                        <h2 class="site-title">Meet Our Team</h2>
+                        <p>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-item">
+                        <img src="{% static 'stransit/images/1bu38twfICA8.jpg' %}" alt="thumb" />
+                        <div class="team-content">
+                            <div class="team-bio">
+                                <a href="#">Malissa Fierro</a>
+                                <p>Pilot</p>
+                            </div>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-item">
+                        <img src="{% static 'stransit/images/oGou0S9962Bh.jpg' %}" alt="thumb" />
+                        <div class="team-content">
+                            <div class="team-bio">
+                                <a href="#">Florence Long</a>
+                                <p>Pilot</p>
+                            </div>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-item active">
+                        <img src="{% static 'stransit/images/zmvbUnAihR0H.jpg' %}" alt="thumb" />
+                        <div class="team-content">
+                            <div class="team-bio">
+                                <a href="#">Melvin Castillo</a>
+                                <p>Pilot</p>
+                            </div>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="team-item">
+                        <img src="{% static 'stransit/images/8XfSbMmkBC4i.jpg' %}" alt="thumb" />
+                        <div class="team-content">
+                            <div class="team-bio">
+                                <a href="#">Johni Welsh</a>
+                                <p>Crew</p>
+                            </div>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="testimonial-area testimonial-bg py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="site-heading text-center">
+                        <span class="site-title-tagline">Testimonials</span>
+                        <h2 class="site-title text-white">What Client Say's</h2>
+                        <p class="text-white">
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-slider owl-carousel owl-theme">
+                <div class="testimonial-single">
+                    <div class="testimonial-quote">
+                        <span class="testimonial-quote-icon"><i class="icon-quote"></i></span>
+                        <div class="testimonial-rate">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                        </p>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-author-img">
+                            <img src="{% static 'stransit/images/zG317DnuJXcY.jpg' %}" alt="" />
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>Sylvia H Green</h4>
+                            <p>Client</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-single">
+                    <div class="testimonial-quote">
+                        <span class="testimonial-quote-icon"><i class="icon-quote"></i></span>
+                        <div class="testimonial-rate">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                        </p>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-author-img">
+                            <img src="{% static 'stransit/images/naLEYOaq8QUg.jpg' %}" alt="" />
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>Gordon D Novak</h4>
+                            <p>Client</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-single">
+                    <div class="testimonial-quote">
+                        <span class="testimonial-quote-icon"><i class="icon-quote"></i></span>
+                        <div class="testimonial-rate">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                        </p>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-author-img">
+                            <img src="{% static 'stransit/images/MTs3N7p2MXHr.jpg' %}" alt="" />
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>Reid E Butt</h4>
+                            <p>Client</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-single">
+                    <div class="testimonial-quote">
+                        <span class="testimonial-quote-icon"><i class="icon-quote"></i></span>
+                        <div class="testimonial-rate">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                        </p>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-author-img">
+                            <img src="{% static 'stransit/images/n0JrMblOQjKq.jpg' %}" alt="" />
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>Parker Jimenez</h4>
+                            <p>Client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'stransit/assets/js/script.min.js' %}"></script>
+    <div class="partner-area bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="site-heading text-center">
+                        <span class="site-title-tagline">Partners</span>
+                        <h2 class="site-title">Our Awesome Partners</h2>
+                        <p>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="partner-wrapper partner-slider owl-carousel owl-theme">
+                <div class="partner-item">
+                    <img src="{% static 'stransit/images/PRFbzQYxNS0E.png' %}" alt="thumb" />
+                </div>
+                <div class="partner-item">
+                    <img src="{% static 'stransit/images/vuEwYDhIieFA.png' %}" alt="thumb" />
+                </div>
+                <div class="partner-item">
+                    <img src="{% static 'stransit/images/RivjNBsVoNI7.png' %}" alt="thumb" />
+                </div>
+                <div class="partner-item">
+                    <img src="{% static 'stransit/images/grsGCRP8Q1bj.png' %}" alt="thumb" />
+                </div>
+                <div class="partner-item">
+                    <img src="{% static 'stransit/images/YYSrSHjD9uNU.png' %}" alt="thumb" />
+                </div>
+                <div class="partner-item">
+                    <img src="{% static 'stransit/images/2dUdv3OjskhB.png' %}" alt="thumb" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-area py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto">
+                    <div class="site-heading text-center">
+                        <span class="site-title-tagline">Our Blog</span>
+                        <h2 class="site-title">Latest News &amp; Blog</h2>
+                        <p>
+                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-item">
+                        <div class="blog-item-thumb">
+                            <img src="{% static 'stransit/images/fvPdgZWn6sk3.jpg' %}" alt="Thumb" />
+                        </div>
+                        <div class="blog-item-info">
+                            <div class="blog-item-meta">
+                                <ul>
+                                    <li><i class="far fa-user"></i> Nancy Castdo</li>
+                                    <li><i class="far fa-calendar-alt"></i> May 11, 2023</li>
+                                </ul>
+                            </div>
+                            <h5><a href="#" class="blog-item-title">There are many variations of passages available</a></h5>
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                            </p>
+                            <a class="blog-item-more" href="#">Read More <i class="far fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-item">
+                        <div class="blog-item-thumb">
+                            <img src="{% static 'stransit/images/18Hp9i2pZ05J.jpg' %}" alt="Thumb" />
+                        </div>
+                        <div class="blog-item-info">
+                            <div class="blog-item-meta">
+                                <ul>
+                                    <li><i class="far fa-user"></i> Nancy Castdo</li>
+                                    <li><i class="far fa-calendar-alt"></i> May 11, 2023</li>
+                                </ul>
+                            </div>
+                            <h5><a href="#" class="blog-item-title">There are many variations of passages available</a></h5>
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                            </p>
+                            <a class="blog-item-more" href="#">Read More <i class="far fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="blog-item">
+                        <div class="blog-item-thumb">
+                            <img src="{% static 'stransit/images/mZRfpgTBniZv.jpg' %}" alt="Thumb" />
+                        </div>
+                        <div class="blog-item-info">
+                            <div class="blog-item-meta">
+                                <ul>
+                                    <li><i class="far fa-user"></i> Nancy Castdo</li>
+                                    <li><i class="far fa-calendar-alt"></i> May 11, 2023</li>
+                                </ul>
+                            </div>
+                            <h5><a href="#" class="blog-item-title">There are many variations of passages available</a></h5>
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                            </p>
+                            <a class="blog-item-more" href="#">Read More <i class="far fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="subscribe-area pt-60 pb-60">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12 col-lg-6">
+                <div class="subscribe-content">
+                    <h4>Subscribe To Our Newsletter</h4>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="subscribe-form">
+                    <form action="#">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Enter Your Email" />
+                        </div>
+                        <button type="submit"><i class="far fa-paper-plane"></i>Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer-area pt-100">
+			<div class="footer-widget">
+				<div class="container">
+					<div class="row footer-widget-wrapper pb-50">
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box about-us">
+								<a href="#" class="footer-logo">
+									<img style="heigth: 60px; width: 60px;" src="{% static 'stransit/images/logo.png' %}" alt="" />
+								</a>
+								<p class="mb-20">
+									Качественное обучение сегодня - гарантированный успех завтра!
+								</p>
+								<ul class="footer-social">
+									<li>
+										<a href="#"><i class="fab fa-facebook-f"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-instagram"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-twitter"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-youtube"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box list">
+								<h4 class="footer-widget-title">Сектора тренингов</h4>
+								<ul class="footer-list">
+									<li><a href="#">Авиационный</a></li>
+									<li><a href="#">Промышленный</a></li>
+									<li><a href="#">Онлайн курсы</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box">
+								<h4 class="footer-widget-title">Карьера</h4>
+								<ul class="footer-list">
+									<li><a href="#">Вакансии</a></li>
+                                    <li><a href="#">Политика конфиденциальности</a></li>
+									<li><a href="#">Наши услуги</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box">
+								<h4 class="footer-widget-title">Контакты</h4>
+								<ul class="footer-contact">
+									<li><i class="far fa-map-marker-alt"></i>Казахстан, г. Атырау, ул. Адгама Каримова 70А, мкр. Самал</li>
+									<li>
+										<a href="tel:+21234566789"><i class="far fa-phone"></i>+7 (701) 566-23-61</a>
+									</li>
+									<li>
+										<a href="">
+											<i class="far fa-envelope"></i>info@stransit.kz
+										</a>
+									</li>
+									<li><i class="far fa-clock"></i>Пн - Пт (09:00 - 20:00)</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">
+                <div class="container">
+                    <p class="copyright-text">Copyrights ©2023 Standart Transit. Все права защищены. Создано <a href="https://workbench.kz/">WorkBench.</a></p>
+                </div>
+            </div>
+		</footer>
+
+<a href="#" id="scroll-top"><i class="far fa-angle-double-up"></i></a>
+
+<script data-cfasync="false" src="{% static 'stransit/js/IhELMEI3kZjD.js' %}"></script>
+<script src="{% static 'stransit/js/VNbjrvo6JK4E.js' %}"></script>
+<script src="{% static 'stransit/js/OBxwF9i4iHQe.js' %}"></script>
+<script src="{% static 'stransit/js/vPskdlSVQxFW.js' %}"></script>
+<script src="{% static 'stransit/js/RhXJd8sFNolm.js' %}"></script>
+<script src="{% static 'stransit/js/bI28vjHwmf94.js' %}"></script>
+<script src="{% static 'stransit/js/G6o6WjKiPtBE.js' %}"></script>
+<script src="{% static 'stransit/js/N007fv3az74m.js' %}"></script>
+<script src="{% static 'stransit/js/CyGxPQOuG52W.js' %}"></script>
+<script src="{% static 'stransit/js/pbFtLVi0XIZI.js' %}"></script>
+<script src="{% static 'stransit/js/rEKknpPvXUga.js' %}"></script>
+<script src="{% static 'stransit/js/hysEBYjlSg4R.js' %}"></script>
+<script src="{% static 'stransit/js/D5fyJD0lX1Ql.js' %}"></script>
+<script src="{% static 'stransit/js/kiMiL9FVB7ra.js' %}"></script>
+<script src="{% static 'stransit/js/McWB53lm2B3O.js' %}"></script>
 </body>
 
 </html>

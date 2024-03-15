@@ -1,120 +1,575 @@
-{% extends 'users/stransit/base.html' %}
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-
+{% load static %}
+<html lang="ru">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>{% block title %}О нас{% endblock %}</title>
-    {% block css %}
-        <link rel="stylesheet" href="{% static 'stransit/assets/bootstrap/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'stransit/assets/css/styles.min.css' %}">
-    {% endblock %}
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="images/8N4kGrRyCMvx.png" />
+
+    <link href="{% static 'stransit/css/agBmLZg4XvdE.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/rT83hV5Fo8Za.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/sVREbUiwQOYC.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/DVwob9oRzNVA.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/Z5DMAr41i25k.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/ItKKcMzmF6KQ.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/lWdFszuO73fq.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/pTsqCF0LuyWX.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/f6hMpVJr97F6.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/voIXSgwpb1xh.css' %}" rel="stylesheet" />
 </head>
+	<body>
+		<div class="preloader">
+			<div class="loader">
+				<div class="loader-box-1"></div>
+				<div class="loader-box-2"></div>
+			</div>
+		</div>
 
-<body>
-    {% block li_active %}
-        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:index' %}">Главная</a></li>
-        <li class="nav-item"><a class="nav-link active" href="{% url 'stransit:about' %}">О нас</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:all_courses' %}">Курсы</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:online_courses' %}">Онлайн курсы</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:certificates' %}">Сертификаты</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:contacts' %}">Контакты</a></li>
-    {% endblock %}
-    {% block content %}
-        <section class="py-5">
-        <!-- Start: Features Cards -->
-        <div class="container py-5">
-            <div class="row mb-4 mb-lg-5">
-                <div class="col-md-8 col-xl-9 text-center mx-auto">
-                    <h3 class="fw-bold" style="font-size: 30px;">&nbsp;О нас</h3>
-                </div>
-            </div>
-            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
-                <div class="col mb-5"><img class="rounded img-fluid shadow" src="{% static 'stransit/assets/img/products/standard.png' %}"></div>
-                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
-                    <div>
-                        <h5 class="fw-bold"><strong>АУЦ</strong>&nbsp;«Стандарт Транзит»&nbsp;</h5>
-                        <p class="text-muted mb-4">ТОО «Стандарт Транзит» основано в 2015 году, специализируется на обучающих программах, тренингах, курсах повышения квалификации.</p>
-                        <a href="{% url 'stransit:contacts' %}"><button class="btn btn-primary shadow" type="button"><strong>Связаться с нами</strong></button></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
-                <div class="col mb-5"><img class="rounded img-fluid shadow" src="{% static 'stransit/assets/img/products/photo_2023-07-27_23-19-06.jpg' %}"></div>
-                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
-                    <div>
-                        <h4 class="fw-bold">Журкабаева Динара</h4>
-                        <h6 class="fw-bold">Директор АУЦ "Стандарт Транзит"</h6>
-                        <p class="text-muted mb-4" style="text-align: justify;">Более 22 лет опыта в управлении в авиационной деятельности. Опыт работы также включает соответствие стандартам ИКАО и нефтегазовой отрасли (OGP). Работы в специальных проектах, включающих внедрение в стране западных вертолетов нового поколения, создание новых операционных баз для западных воздушных чартерных услуг, включая административные и логистические операции, а также создание различных программ обучения для иностранных и национальных пилотов и инженеров. Деятельность включала технические, эксплуатационные, коммерческие, финансовые и юридические аспекты и взаимодействие с исполнительными органами с предоставлением презентаций по сложным и специализированным авиационным, эксплуатационным и административным вопросам. Взаимодействие на регулярной основе с государственными органами РК по вопросам трудовых отношений, налоговым департаментом, таможенным комитетом, управлением миграции и департаментом экологии. Счастливо замужем и воспитывает троих детей.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-cols-1 row-cols-md-2 mx-auto" style="max-width: 900px;">
-                <div class="col mb-5" style="text-align: center;"><img style="height: 550px;" class="rounded img-fluid shadow" src="{% static 'stransit/assets/img/team/photo_2023-07-28_22-15-00.jpg' %}"></div>
-                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
-                    <div>
-                        <h4 class="fw-bold">Нсанбаева Назгуль</h4>
-                        <h6 class="fw-bold">Менеджер по обеспечению качества.</h6>
-                        <p class="text-muted mb-4" >С 14 летним опытом в авиационной деятельности, выбирает  правильные и профессиональные пути решения для улучшения качества обучения. Показательные знания поддерживают соответствие АУЦ с требуемыми нормативными документами. Чёткая проверка в обеспечении качества предоставляемых услуг. Проведение внешних и внутренних аудитов. Сертифицированный специалист по системе менеджмента качества, аудитор по международному стандарту качества . Также держит баланс в трудоемкой работе.  Часть руководящей команды и наша гордость.</p>
-                        <a href="{% url 'stransit:contacts' %}"><button href="{% url 'stransit:contacts' %}" class="btn btn-primary shadow" type="button">Связаться с нами</button></a>
-                    </div>
-                </div>
-            </div>
-        </div><!-- End: Features Cards -->
-    </section>
-        <div class="row mb-4 mb-lg-5">
-        <div class="col-md-8 col-xl-6 text-center mx-auto">
-            <h2 class="fw-bold">Наши инструктора</h2>
-            <p style="margin-top: 15px;">Накопленный опыт и профессионализм в области гражданской авиации наших инструкторов создают уникальную среду для эффективного обучения, усвоение знаний и навыков.</p>
-        </div>
-    </div>
-        <div class="row row-cols-1 row-cols-md-3 mx-auto" style="max-width: 700px;">
-        <div class="col mb-4">
-            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-55-35.jpg' %}">
-                <h5 class="fw-bold mb-0" style="text-align: center;"> Венгринюк Андрей<strong>&nbsp;</strong>Михайлович</h5>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-55-59.jpg' %}">
-                <h5 class="fw-bold mb-0">  Джумагельдин Ринат Маратович</h5>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-56-29.jpg' %}">
-                <h5 class="fw-bold mb-0">Ким Андрей Валерьевич</h5>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-56-57.jpg' %}">
-                <h5 class="fw-bold mb-0">Алимханов Эрлан Алтайханович</h5>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-57-55.jpg' %}">
-                <h5 class="fw-bold mb-0"> Алтанбеков Олжас Алтанбекулы</h5>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/photo_2023-07-28_20-58-19.jpg' %}">
-                <h5 class="fw-bold mb-0">Утешов Еркин Амангельдиевич</h5>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/erkin.jpg' %}">
-                <h5 class="fw-bold mb-0">Уташев Еркин Мендигалиевич</h5>
-            </div>
-        </div>
-        <div class="col mb-4">
-            <div class="text-center"><img class="rounded mb-3 fit-cover" width="150" height="150" src="{% static 'stransit/assets/img/team/aitolkyn.jpg' %}">
-                <h5 class="fw-bold mb-0">Есалиева Айтолкын Снаповна</h5>
-            </div>
-        </div>
-    </div>
-    {% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'stransit/assets/js/script.min.js' %}"></script>
-</body>
+		<header class="header">
+    <div class="main-navigation">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container g-0">
+                <a class="navbar-brand" href="index.html" style="color: white;">
+                    <img style="height: 35px; width: 35px; margin-right: 5px;" src="{% static 'stransit/images/logo.png' %}" alt="thumb" />
+                    
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fal fa-bars"></i></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main_nav" style="border-radius: 5px;">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Главная</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'stransit:about' %}">О нас</a>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Курсы</a>
+                            <ul class="dropdown-menu fade-up">
+                                <li><a class="dropdown-item" href="{% url 'stransit:online_courses' %}">Онлайн курсы</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Курсы</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'stransit:industrial_course' %}">Промышленные курсы</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'stransit:aviation_course' %}">Авиационные курсы</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'stransit:certificates' %}">Сертификаты</a>
+                        </li>
+                        
+                        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:contacts' %}">Контакты</a></li>
+                        
+                        <li class="nav-item nav-item-mobile">
+                            {% if user.is_authenticated %}
+                                {% if user.role == "student" %}
+                                    <a href="{% url 'users:student:student' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет студента</a>
+                                {% elif user.role == "curator" %}
+                                    <a href="{% url 'users:curator:curator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет куратора</a>
+                                {% elif user.role == "admin" %}
+                                    <a href="{% url 'users:admin:administrator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет администратора</a>
+                                {% endif %}
+                            {% else %}    
+                                <a href="{% url 'users:login' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Войти</a>
+                            {% endif %}
+                        </li>
+                        <style>
+                            .nav-item-mobile {
+                                display: none; /* По умолчанию скрыт */
+                                justify-content: center; /* Центрирует содержимое по горизонтали */
+                                width: 100%; 
+                                padding: 5px;
+                            }
+                            
+                            /* Показываем элемент на экранах шире 768px и применяем flexbox для центрирования */
+                            @media (max-width: 768px) {
+                                .nav-item-mobile {
+                                    display: flex; /* Включаем flexbox */
+                                    justify-content: center; /* Центрируем содержимое по горизонтали */
+                                }
+                            }
 
+                        </style>
+                    </ul>
+                    
+                    <div class="header-btn">
+                        {% if user.is_authenticated %}
+                            {% if user.role == "student" %}
+                                <a href="{% url 'users:student:student' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет студента</a>
+                            {% elif user.role == "curator" %}
+                                <a href="{% url 'users:curator:curator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет куратора</a>
+                            {% elif user.role == "admin" %}
+                                <a href="{% url 'users:admin:administrator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет администратора</a>
+                            {% endif %}
+                        {% else %}    
+                            <a href="{% url 'users:login' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Войти</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+		<main class="main">
+			<div class="site-breadcrumb" style="background: url({% static 'stransit/images/DlJE8bqe3YJD.jpg' %})">
+				<div class="container">
+					<h2 class="breadcrumb-title">О нас</h2>
+					<ul class="breadcrumb-menu">
+						<li><a href="{% url 'stransit:index' %}">Главная</a></li>
+						<li class="active">О нас</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="about-area py-120">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6">
+							<div class="about-left">
+								<div class="about-img">
+									<img class="about-img-1" src="{% static 'stransit/images/ZkBywNLqpqqf.jpg' %}" alt="" />
+									<img class="about-img-2" src="{% static 'stransit/images/83VXG5NQkwbT.jpg' %}" alt="" />
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="about-right">
+								<div class="site-header">
+									<span class="site-title-tagline">О нас</span>
+									<h2 class="site-title">We Are Here To Make Your Dreams Come True</h2>
+								</div>
+								<p class="about-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even.</p>
+								<div class="about-list-wrapper">
+									<ul class="about-list list-unstyled">
+										<li>
+											<div class="icon"><span class="far fa-check-circle"></span></div>
+											<div class="text">
+												<p>Take a look at our round up of the best shows</p>
+											</div>
+										</li>
+										<li>
+											<div class="icon"><span class="far fa-check-circle"></span></div>
+											<div class="text">
+												<p>It has survived not only five centuries</p>
+											</div>
+										</li>
+										<li>
+											<div class="icon"><span class="far fa-check-circle"></span></div>
+											<div class="text">
+												<p>Lorem Ipsum has been the ndustry standard dummy text</p>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<a href="about.html" class="theme-btn">Discover More <i class="far fa-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="counter-area pt-40 pb-40">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-sm-6">
+							<div class="counter-box">
+								<div class="icon"><i class="fal fa-smile"></i></div>
+								<span class="counter" data-count="+" data-to="30" data-speed="3000">30</span>
+								<h6 class="title">+ Happy Clients</h6>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="counter-box">
+								<div class="icon"><i class="fal fa-user-tie"></i></div>
+								<span class="counter" data-count="+" data-to="100" data-speed="3000">100</span>
+								<h6 class="title">+ Expert Pilots</h6>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="counter-box">
+								<div class="icon"><i class="fal fa-plane-departure"></i></div>
+								<span class="counter" data-count="+" data-to="80" data-speed="3000">80</span>
+								<h6 class="title">+ Jet Airplane</h6>
+							</div>
+						</div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="counter-box">
+								<div class="icon"><i class="fal fa-award"></i></div>
+								<span class="counter" data-count="+" data-to="50" data-speed="3000">50</span>
+								<h6 class="title">+ Win Awards</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="team-area py-120">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6 mx-auto">
+							<div class="site-heading text-center">
+								<span class="site-title-tagline">Team</span>
+								<h2 class="site-title">Meet Our Team</h2>
+								<p>
+									It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-lg-3">
+							<div class="team-item">
+								<img src="{% static 'stransit/images/Yj8txOvDVwCF.jpg' %}" alt="thumb" />
+								<div class="team-content">
+									<div class="team-bio">
+										<a href="#">Malissa Fierro</a>
+										<p>Pilot</p>
+									</div>
+									<div class="team-social">
+										<a href="#"><i class="fab fa-facebook-f"></i></a>
+										<a href="#"><i class="fab fa-twitter"></i></a>
+										<a href="#"><i class="fab fa-instagram"></i></a>
+										<a href="#"><i class="fab fa-linkedin"></i></a>
+										<a href="#"><i class="fab fa-youtube"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="team-item">
+								<img src="{% static 'stransit/images/LhuzgVN0s9W5.jpg' %}" alt="thumb" />
+								<div class="team-content">
+									<div class="team-bio">
+										<a href="#">Florence Long</a>
+										<p>Pilot</p>
+									</div>
+									<div class="team-social">
+										<a href="#"><i class="fab fa-facebook-f"></i></a>
+										<a href="#"><i class="fab fa-twitter"></i></a>
+										<a href="#"><i class="fab fa-instagram"></i></a>
+										<a href="#"><i class="fab fa-linkedin"></i></a>
+										<a href="#"><i class="fab fa-youtube"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="team-item active">
+								<img src="{% static 'stransit/images/AO9LmQWbBFbQ.jpg' %}" alt="thumb" />
+								<div class="team-content">
+									<div class="team-bio">
+										<a href="#">Melvin Castillo</a>
+										<p>Pilot</p>
+									</div>
+									<div class="team-social">
+										<a href="#"><i class="fab fa-facebook-f"></i></a>
+										<a href="#"><i class="fab fa-twitter"></i></a>
+										<a href="#"><i class="fab fa-instagram"></i></a>
+										<a href="#"><i class="fab fa-linkedin"></i></a>
+										<a href="#"><i class="fab fa-youtube"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="team-item">
+								<img src="{% static 'stransit/images/POjY12lB2mEd.jpg' %}" alt="thumb" />
+								<div class="team-content">
+									<div class="team-bio">
+										<a href="#">Johni Welsh</a>
+										<p>Crew</p>
+									</div>
+									<div class="team-social">
+										<a href="#"><i class="fab fa-facebook-f"></i></a>
+										<a href="#"><i class="fab fa-twitter"></i></a>
+										<a href="#"><i class="fab fa-instagram"></i></a>
+										<a href="#"><i class="fab fa-linkedin"></i></a>
+										<a href="#"><i class="fab fa-youtube"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="testimonial-area testimonial-bg py-120">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6 mx-auto">
+							<div class="site-heading text-center">
+								<span class="site-title-tagline">Testimonials</span>
+								<h2 class="site-title text-white">What Client Say's</h2>
+								<p class="text-white">
+									It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="testimonial-slider owl-carousel owl-theme">
+						<div class="testimonial-single">
+							<div class="testimonial-quote">
+								<span class="testimonial-quote-icon"><i class="icon-quote"></i></span>
+								<div class="testimonial-rate">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>
+									There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+								</p>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-author-img">
+									<img src="images/CcuPe9WYy6FT.jpg" alt="" />
+								</div>
+								<div class="testimonial-author-info">
+									<h4>Sylvia H Green</h4>
+									<p>Client</p>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-single">
+							<div class="testimonial-quote">
+								<span class="testimonial-quote-icon"><i class="icon-quote"></i></span>
+								<div class="testimonial-rate">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>
+									There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+								</p>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-author-img">
+									<img src="images/V0yW8GC2ILFm.jpg" alt="" />
+								</div>
+								<div class="testimonial-author-info">
+									<h4>Gordon D Novak</h4>
+									<p>Client</p>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-single">
+							<div class="testimonial-quote">
+								<span class="testimonial-quote-icon"><i class="icon-quote"></i></span>
+								<div class="testimonial-rate">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>
+									There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+								</p>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-author-img">
+									<img src="images/OUk7R81QtcRF.jpg" alt="" />
+								</div>
+								<div class="testimonial-author-info">
+									<h4>Reid E Butt</h4>
+									<p>Client</p>
+								</div>
+							</div>
+						</div>
+						<div class="testimonial-single">
+							<div class="testimonial-quote">
+								<span class="testimonial-quote-icon"><i class="icon-quote"></i></span>
+								<div class="testimonial-rate">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>
+									There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+								</p>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-author-img">
+									<img src="images/lqxZz9S6C4Eq.jpg" alt="" />
+								</div>
+								<div class="testimonial-author-info">
+									<h4>Parker Jimenez</h4>
+									<p>Client</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="partner-area bg">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6 mx-auto">
+							<div class="site-heading text-center">
+								<span class="site-title-tagline">Partners</span>
+								<h2 class="site-title">Our Awesome Partners</h2>
+								<p>
+									It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="partner-wrapper partner-slider owl-carousel owl-theme">
+						<div class="partner-item">
+							<img src="images/NaJypbYwjQj2.png" alt="thumb" />
+						</div>
+						<div class="partner-item">
+							<img src="images/vNLqBCq600BL.png" alt="thumb" />
+						</div>
+						<div class="partner-item">
+							<img src="images/ok79buRYs5aT.png" alt="thumb" />
+						</div>
+						<div class="partner-item">
+							<img src="images/PpxeBqylMA3q.png" alt="thumb" />
+						</div>
+						<div class="partner-item">
+							<img src="images/azfOaKwKcIA9.png" alt="thumb" />
+						</div>
+						<div class="partner-item">
+							<img src="images/5QKcB7JXrxRc.png" alt="thumb" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<div class="subscribe-area pt-60 pb-60">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-12 col-lg-6">
+						<div class="subscribe-content">
+							<h4>Subscribe To Our Newsletter</h4>
+							<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+						</div>
+					</div>
+					<div class="col-md-12 col-lg-6">
+						<div class="subscribe-form">
+							<form action="#">
+								<div class="form-group">
+									<input type="email" class="form-control" placeholder="Enter Your Email" />
+								</div>
+								<button type="submit"><i class="far fa-paper-plane"></i>Subscribe</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer-area pt-100">
+			<div class="footer-widget">
+				<div class="container">
+					<div class="row footer-widget-wrapper pb-50">
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box about-us">
+								<a href="#" class="footer-logo">
+									<img style="heigth: 60px; width: 60px;" src="{% static 'stransit/images/logo.png' %}" alt="" />
+								</a>
+								<p class="mb-20">
+									Качественное обучение сегодня - гарантированный успех завтра!
+								</p>
+								<ul class="footer-social">
+									<li>
+										<a href="#"><i class="fab fa-facebook-f"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-instagram"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-twitter"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-youtube"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box list">
+								<h4 class="footer-widget-title">Сектора тренингов</h4>
+								<ul class="footer-list">
+									<li><a href="#">Авиационный</a></li>
+									<li><a href="#">Промышленный</a></li>
+									<li><a href="#">Онлайн курсы</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box">
+								<h4 class="footer-widget-title">Карьера</h4>
+								<ul class="footer-list">
+									<li><a href="#">Вакансии</a></li>
+                                    <li><a href="#">Политика конфиденциальности</a></li>
+									<li><a href="#">Наши услуги</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box">
+								<h4 class="footer-widget-title">Контакты</h4>
+								<ul class="footer-contact">
+									<li><i class="far fa-map-marker-alt"></i>Казахстан, г. Атырау, ул. Адгама Каримова 70А, мкр. Самал</li>
+									<li>
+										<a href="tel:+21234566789"><i class="far fa-phone"></i>+7 (701) 566-23-61</a>
+									</li>
+									<li>
+										<a href="">
+											<i class="far fa-envelope"></i>info@stransit.kz
+										</a>
+									</li>
+									<li><i class="far fa-clock"></i>Пн - Пт (09:00 - 20:00)</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">
+                <div class="container">
+                    <p class="copyright-text">Copyrights ©2023 Standart Transit. Все права защищены. Создано <a href="https://workbench.kz/">WorkBench.</a></p>
+                </div>
+            </div>
+		</footer>
+
+		<a href="#" id="scroll-top"><i class="far fa-angle-double-up"></i></a>
+
+        <script data-cfasync="false" src="{% static 'stransit/js/IhELMEI3kZjD.js' %}"></script>
+        <script src="{% static 'stransit/js/VNbjrvo6JK4E.js' %}"></script>
+        <script src="{% static 'stransit/js/OBxwF9i4iHQe.js' %}"></script>
+        <script src="{% static 'stransit/js/vPskdlSVQxFW.js' %}"></script>
+        <script src="{% static 'stransit/js/RhXJd8sFNolm.js' %}"></script>
+        <script src="{% static 'stransit/js/bI28vjHwmf94.js' %}"></script>
+        <script src="{% static 'stransit/js/G6o6WjKiPtBE.js' %}"></script>
+        <script src="{% static 'stransit/js/N007fv3az74m.js' %}"></script>
+        <script src="{% static 'stransit/js/CyGxPQOuG52W.js' %}"></script>
+        <script src="{% static 'stransit/js/pbFtLVi0XIZI.js' %}"></script>
+        <script src="{% static 'stransit/js/rEKknpPvXUga.js' %}"></script>
+        <script src="{% static 'stransit/js/hysEBYjlSg4R.js' %}"></script>
+        <script src="{% static 'stransit/js/D5fyJD0lX1Ql.js' %}"></script>
+        <script src="{% static 'stransit/js/kiMiL9FVB7ra.js' %}"></script>
+        <script src="{% static 'stransit/js/McWB53lm2B3O.js' %}"></script>
+	</body>
 </html>

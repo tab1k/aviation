@@ -31,6 +31,10 @@ class StransitCourse(models.Model):
     type = models.CharField(max_length=10,choices=LESSON_TYPE, blank=True, null=True, default='offline', verbose_name='Формат обучения')
     title = models.CharField(max_length=1000, verbose_name='Название курса')
     about_course = models.TextField(max_length=1100, verbose_name='О курсе')
+    time = models.CharField(max_length=255, blank=True, null=True ,verbose_name='Продолжительность курса')
+
+    def get_course_type(self):
+        return self.get_type_display()
 
     class Meta:
         abstract = True  # Указываем, что это абстрактный класс
@@ -60,6 +64,7 @@ class AviationCourses(StransitCourse):
 
 class OnlineCourses(StransitCourse):
     pass
+
 
     def __str__(self):
         return self.title

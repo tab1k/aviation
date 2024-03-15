@@ -94,18 +94,18 @@ WSGI_APPLICATION = "aviation.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # }
     "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            'NAME': os.getenv('DB_NAME', 'aviation_db'),
-            'USER': os.getenv('DB_USER', 'tab1k'),
-            'PASSWORD': os.getenv('DB_PASSWORD', 'TOBI8585'),
-            'HOST': os.getenv('DB_HOST', 'db'),
-            'PORT': os.getenv('DB_PORT', 5432),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
+    # "default": {
+    #         "ENGINE": "django.db.backends.postgresql",
+    #         'NAME': os.getenv('DB_NAME', 'aviation_db'),
+    #         'USER': os.getenv('DB_USER', 'tab1k'),
+    #         'PASSWORD': os.getenv('DB_PASSWORD', 'TOBI8585'),
+    #         'HOST': os.getenv('DB_HOST', 'db'),
+    #         'PORT': os.getenv('DB_PORT', 5432),
+    # }
 }
 
 
@@ -173,10 +173,10 @@ JAZZMIN_SETTINGS = {
     "site_brand": "STANDARD TRANSIT",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "admin/img/photo_2023-07-28_21-16-53.jpg",
+    "site_logo": "admin/img/logo.jpg",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": 'admin/img/photo_2023-07-28_21-16-53.jpg',
+    "login_logo": 'admin/img/logo.jpg',
 
     # Logo to use for login form in dark themes (defaults to login_logo)
     "login_logo_dark": None,

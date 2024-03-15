@@ -1,0 +1,235 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/S6iHT1zT2bFV.eot');
+  src:  url('../fonts/S6iHT1zT2bFV.eot#iefix') format('embedded-opentype'),
+    url('../fonts/Yd6dPvgj1ofj.ttf') format('truetype'),
+    url('../fonts/vgKp8Gopv77L.woff') format('woff'),
+    url('../images/6QByzqydWjVY.svg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+.icon-coolest-job:before {
+  content: "\e91d";
+}
+.icon-private-helicoopter1:before {
+  content: "\e91e";
+}
+.icon-red-light:before {
+  content: "\e90b";
+}
+.icon-from-airplane:before {
+  content: "\e900";
+}
+.icon-quote:before {
+  content: "\e901";
+}
+.icon-title:before {
+  content: "\e90f";
+}
+.icon-aircraft-speed:before {
+  content: "\e903";
+}
+.icon-all-around-globe:before {
+  content: "\e904";
+}
+.icon-anywhere:before {
+  content: "\e905";
+}
+.icon-arrow-down:before {
+  content: "\e907";
+}
+.icon-arrow-left:before {
+  content: "\e908";
+}
+.icon-arrow-left:before {
+  content: "\e909";
+}
+.icon-to-airplane:before {
+  content: "\e902";
+}
+.icon-air-ambulance:before {
+  content: "\e906";
+}
+.icon-business-jet-charter1:before {
+  content: "\e90e";
+}
+.icon-wifi:before {
+  content: "\e912";
+}
+.icon-benefits-of-training:before {
+  content: "\e90a";
+}
+.icon-btn:before {
+  content: "\e90c";
+}
+.icon-btn-1:before {
+  content: "\e90d";
+}
+.icon-cabin-comfort:before {
+  content: "\e913";
+}
+.icon-call:before {
+  content: "\e914";
+}
+.icon-call-1:before {
+  content: "\e915";
+}
+.icon-create-password:before {
+  content: "\e922";
+}
+.icon-date:before {
+  content: "\e923";
+}
+.icon-group-1:before {
+  content: "\e93a";
+}
+.icon-high-salary-bonus:before {
+  content: "\e93b";
+}
+.icon-instagram:before {
+  content: "\e93d";
+}
+.icon-level:before {
+  content: "\e93e";
+}
+.icon-location:before {
+  content: "\e93f";
+}
+.icon-luxury:before {
+  content: "\e940";
+}
+.icon-mail:before {
+  content: "\e941";
+}
+.icon-massage:before {
+  content: "\e942";
+}
+.icon-direction-path1:before {
+  content: "\e924";
+}
+.icon-direction-path2:before {
+  content: "\e925";
+}
+.icon-duration:before {
+  content: "\e926";
+}
+.icon-experience:before {
+  content: "\e92f";
+}
+.icon-experienced-crew:before {
+  content: "\e930";
+}
+.icon-facebook:before {
+  content: "\e931";
+}
+.icon-fees:before {
+  content: "\e932";
+}
+.icon-flexible-private:before {
+  content: "\e939";
+}
+.icon-max-passenger:before {
+  content: "\e943";
+}
+.icon-max-range:before {
+  content: "\e944";
+}
+.icon-memories:before {
+  content: "\e945";
+}
+.icon-minus:before {
+  content: "\e946";
+}
+.icon-modern-aircrafts:before {
+  content: "\e947";
+}
+.icon-name:before {
+  content: "\e948";
+}
+.icon-schedule-1:before {
+  content: "\e952";
+}
+.icon-search-1:before {
+  content: "\e953";
+}
+.icon-twitter:before {
+  content: "\e954";
+}
+.icon-start-from:before {
+  content: "\e955";
+}
+.icon-tags-menu:before {
+  content: "\e956";
+}
+.icon-take-off-distance:before {
+  content: "\e957";
+}
+.icon-twitter-1:before {
+  content: "\e959";
+}
+.icon-video-button:before {
+  content: "\e95a";
+}
+.icon-group-2:before {
+  content: "\e911";
+}
+.icon-next:before {
+  content: "\e949";
+}
+.icon-path-1:before {
+  content: "\e94a";
+}
+.icon-person:before {
+  content: "\e94b";
+}
+.icon-plus:before {
+  content: "\e94c";
+}
+.icon-private-jet-charter:before {
+  content: "\e94d";
+}
+.icon-producing:before {
+  content: "\e94e";
+}
+.icon-quality-services:before {
+  content: "\e94f";
+}
+.icon-read-more:before {
+  content: "\e950";
+}
+.icon-safety:before {
+  content: "\e951";
+}
+.icon-arrow-right-01:before {
+  content: "\e910";
+}
+.icon-job-announcement:before {
+  content: "\e918";
+}
+.icon-note:before {
+  content: "\e919";
+}
+.icon-money-1:before {
+  content: "\e91a";
+}
+.icon-world-1:before {
+  content: "\e91b";
+}
+.icon-briefcase:before {
+  content: "\e91c";
+}
