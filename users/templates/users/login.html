@@ -3,52 +3,267 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Вход</title>
-    <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="images/8N4kGrRyCMvx.png" />
+
+    <link href="{% static 'stransit/css/agBmLZg4XvdE.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/rT83hV5Fo8Za.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/sVREbUiwQOYC.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/DVwob9oRzNVA.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/Z5DMAr41i25k.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/ItKKcMzmF6KQ.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/lWdFszuO73fq.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/pTsqCF0LuyWX.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/f6hMpVJr97F6.css' %}" rel="stylesheet" />
+    <link href="{% static 'stransit/css/voIXSgwpb1xh.css' %}" rel="stylesheet" />
 </head>
+	<body>
+		<div class="preloader">
+			<div class="loader">
+				<div class="loader-box-1"></div>
+				<div class="loader-box-2"></div>
+			</div>
+		</div>
 
-<body class="bg-gradient-primary">
-    <div class="container" >
-        <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-12 col-xl-10">
-                <div class="card shadow-lg o-hidden border-0 my-5">
-                    <div class="card-body p-0">
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-flex">
-                              <div class="flex-grow-1 bg-login-image" style="background-image: url('{% static "stransit/assets/img/airbus.jpg" %}');"></div>
+		<header class="header">
+    <div class="main-navigation">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container g-0">
+                <a class="navbar-brand" href="index.html" style="color: white;">
+                    <img style="height: 35px; width: 35px; margin-right: 5px;" src="{% static 'stransit/images/logo.png' %}" alt="thumb" />
+                    
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fal fa-bars"></i></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main_nav" style="border-radius: 5px;">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Главная</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'stransit:about' %}">О нас</a>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Курсы</a>
+                            <ul class="dropdown-menu fade-up">
+                                <li><a class="dropdown-item" href="{% url 'stransit:online_courses' %}">Онлайн курсы</a></li>
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Курсы</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'stransit:industrial_course' %}">Промышленные курсы</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'stransit:aviation_course' %}">Авиационные курсы</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'stransit:certificates' %}">Сертификаты</a>
+                        </li>
+                        
+                        <li class="nav-item"><a class="nav-link" href="{% url 'stransit:contacts' %}">Контакты</a></li>
+                        
+                        <li class="nav-item nav-item-mobile">
+                            {% if user.is_authenticated %}
+                                {% if user.role == "student" %}
+                                    <a href="{% url 'users:student:student' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет студента</a>
+                                {% elif user.role == "curator" %}
+                                    <a href="{% url 'users:curator:curator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет куратора</a>
+                                {% elif user.role == "admin" %}
+                                    <a href="{% url 'users:admin:administrator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет администратора</a>
+                                {% endif %}
+                            {% else %}    
+                                <a href="{% url 'users:login' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Войти</a>
+                            {% endif %}
+                        </li>
+                        <style>
+                            .nav-item-mobile {
+                                display: none; /* По умолчанию скрыт */
+                                justify-content: center; /* Центрирует содержимое по горизонтали */
+                                width: 100%; 
+                                padding: 5px;
+                            }
+                            
+                            /* Показываем элемент на экранах шире 768px и применяем flexbox для центрирования */
+                            @media (max-width: 768px) {
+                                .nav-item-mobile {
+                                    display: flex; /* Включаем flexbox */
+                                    justify-content: center; /* Центрируем содержимое по горизонтали */
+                                }
+                            }
 
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h4 class="text-dark mb-4">Добро пожаловать!</h4>
-                                    </div>
-                                    <form class="user" method="post">
-                                      {% csrf_token %}
-                                        <div class="mb-3"><input class="form-control form-control-user" type="text" placeholder="user" id="username" aria-describedby="emailHelp" name="username" required></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" placeholder="12345"  type="password" id="password" name="password" required></div>
-                                        <div class="mb-3">
-                                            <div class="custom-control custom-checkbox small">
-                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Запомнить меня</label></div>
-                                            </div>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit" style="background: #22549E;">Войти</button>
-
-                                    </form>
-                                    <div class="text-center"><a class="small" href="{% url 'stransit:index' %}">На сайт</a></div>
-                                </div>
-                            </div>
-                        </div>
+                        </style>
+                    </ul>
+                    
+                    <div class="header-btn">
+                        {% if user.is_authenticated %}
+                            {% if user.role == "student" %}
+                                <a href="{% url 'users:student:student' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет студента</a>
+                            {% elif user.role == "curator" %}
+                                <a href="{% url 'users:curator:curator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет куратора</a>
+                            {% elif user.role == "admin" %}
+                                <a href="{% url 'users:admin:administrator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет администратора</a>
+                            {% endif %}
+                        {% else %}    
+                            <a href="{% url 'users:login' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Войти</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
+        </nav>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'admin/js/script.min.js' %}"></script>
-</body>
+</header>
 
+		<main class="main">
+			<div class="site-breadcrumb" style="background: url({% static 'stransit/images/WvQ8qUtd4MDP.jpg' %})">
+				<div class="container">
+					<h2 class="breadcrumb-title">Вход</h2>
+					<ul class="breadcrumb-menu">
+						<li><a href="{% url 'stransit:index' %}">Главная</a></li>
+						<li class="active">Вход</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="login-area py-120">
+				<div class="container">
+					<div class="col-md-5 mx-auto">
+						<div class="login-form">
+							<div class="login-header">
+								<img src="{% static 'stransit/images/logo.png' %}" style="heigth: 100px; width: 100px;" alt="" />
+								<p>Войдите с аккаунтом Standart Transit</p>
+							</div>
+							<form method="post">
+                                {% csrf_token %}
+								<div class="form-group">
+									<label>Логин</label>
+									<input class="form-control form-control-user" type="text" placeholder="user" id="username" aria-describedby="emailHelp" name="username" required>
+								</div>
+								<div class="form-group">
+									<label>Пароль</label>
+									<input class="form-control form-control-user" placeholder="12345"  type="password" id="password" name="password" required>
+								</div>
+								<div class="d-flex justify-content-between mb-4">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="remember" />
+										<label class="form-check-label" for="remember">
+											Запомнить меня
+										</label>
+									</div>
+									<a href="" class="forgot-pass">Забыли пароль?</a>
+								</div>
+								<div class="d-flex align-items-center">
+									<button type="submit" class="login-btn"><i class="far fa-sign-in"></i> Войти</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+        
+
+		<footer class="footer-area pt-100">
+			<div class="footer-widget">
+				<div class="container">
+					<div class="row footer-widget-wrapper pb-50">
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box about-us">
+								<a href="#" class="footer-logo">
+									<img style="heigth: 60px; width: 60px;" src="{% static 'stransit/images/logo.png' %}" alt="" />
+								</a>
+								<p class="mb-20">
+									Качественное обучение сегодня - гарантированный успех завтра!
+								</p>
+								<ul class="footer-social">
+									<li>
+										<a href="#"><i class="fab fa-facebook-f"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-instagram"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-twitter"></i></a>
+									</li>
+									<li>
+										<a href="#"><i class="fab fa-youtube"></i></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box list">
+								<h4 class="footer-widget-title">Сектора тренингов</h4>
+								<ul class="footer-list">
+									<li><a href="#">Авиационный</a></li>
+									<li><a href="#">Промышленный</a></li>
+									<li><a href="#">Онлайн курсы</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box">
+								<h4 class="footer-widget-title">Карьера</h4>
+								<ul class="footer-list">
+									<li><a href="#">Вакансии</a></li>
+                                    <li><a href="#">Политика конфиденциальности</a></li>
+									<li><a href="#">Наши услуги</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="footer-widget-box">
+								<h4 class="footer-widget-title">Контакты</h4>
+								<ul class="footer-contact">
+									<li><i class="far fa-map-marker-alt"></i>Казахстан, г. Атырау, ул. Адгама Каримова 70А, мкр. Самал</li>
+									<li>
+										<a href="tel:+21234566789"><i class="far fa-phone"></i>+7 (701) 566-23-61</a>
+									</li>
+									<li>
+										<a href="">
+											<i class="far fa-envelope"></i>info@stransit.kz
+										</a>
+									</li>
+									<li><i class="far fa-clock"></i>Пн - Пт (09:00 - 20:00)</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">
+                <div class="container">
+                    <p class="copyright-text">Copyrights ©2023 Standart Transit. Все права защищены. Создано <a href="https://workbench.kz/">WorkBench.</a></p>
+                </div>
+            </div>
+		</footer>
+
+        <a href="#" id="scroll-top"><i class="far fa-angle-double-up"></i></a>
+        
+        <script data-cfasync="false" src="{% static 'stransit/js/IhELMEI3kZjD.js' %}"></script>
+        <script src="{% static 'stransit/js/VNbjrvo6JK4E.js' %}"></script>
+        <script src="{% static 'stransit/js/OBxwF9i4iHQe.js' %}"></script>
+        <script src="{% static 'stransit/js/vPskdlSVQxFW.js' %}"></script>
+        <script src="{% static 'stransit/js/RhXJd8sFNolm.js' %}"></script>
+        <script src="{% static 'stransit/js/bI28vjHwmf94.js' %}"></script>
+        <script src="{% static 'stransit/js/G6o6WjKiPtBE.js' %}"></script>
+        <script src="{% static 'stransit/js/N007fv3az74m.js' %}"></script>
+        <script src="{% static 'stransit/js/CyGxPQOuG52W.js' %}"></script>
+        <script src="{% static 'stransit/js/pbFtLVi0XIZI.js' %}"></script>
+        <script src="{% static 'stransit/js/rEKknpPvXUga.js' %}"></script>
+        <script src="{% static 'stransit/js/hysEBYjlSg4R.js' %}"></script>
+        <script src="{% static 'stransit/js/D5fyJD0lX1Ql.js' %}"></script>
+        <script src="{% static 'stransit/js/kiMiL9FVB7ra.js' %}"></script>
+        <script src="{% static 'stransit/js/McWB53lm2B3O.js' %}"></script>
+	</body>
 </html>
+

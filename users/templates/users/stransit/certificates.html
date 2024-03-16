@@ -36,7 +36,7 @@
             <div class="container g-0">
                 <a class="navbar-brand" href="index.html" style="color: white;">
                     <img style="height: 35px; width: 35px; margin-right: 5px;" src="{% static 'stransit/images/logo.png' %}" alt="thumb" />
-                    
+
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"><i class="fal fa-bars"></i></span>
@@ -46,11 +46,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/">Главная</a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'stransit:about' %}">О нас</a>
                         </li>
-                        
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Курсы</a>
                             <ul class="dropdown-menu fade-up">
@@ -64,13 +64,13 @@
                                 </li>
                             </ul>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'stransit:certificates' %}">Сертификаты</a>
                         </li>
-                        
+
                         <li class="nav-item"><a class="nav-link" href="{% url 'stransit:contacts' %}">Контакты</a></li>
-                        
+
                         <li class="nav-item nav-item-mobile">
                             {% if user.is_authenticated %}
                                 {% if user.role == "student" %}
@@ -80,7 +80,7 @@
                                 {% elif user.role == "admin" %}
                                     <a href="{% url 'users:admin:administrator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет администратора</a>
                                 {% endif %}
-                            {% else %}    
+                            {% else %}
                                 <a href="{% url 'users:login' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Войти</a>
                             {% endif %}
                         </li>
@@ -88,10 +88,10 @@
                             .nav-item-mobile {
                                 display: none; /* По умолчанию скрыт */
                                 justify-content: center; /* Центрирует содержимое по горизонтали */
-                                width: 100%; 
+                                width: 100%;
                                 padding: 5px;
                             }
-                            
+
                             /* Показываем элемент на экранах шире 768px и применяем flexbox для центрирования */
                             @media (max-width: 768px) {
                                 .nav-item-mobile {
@@ -102,7 +102,7 @@
 
                         </style>
                     </ul>
-                    
+
                     <div class="header-btn">
                         {% if user.is_authenticated %}
                             {% if user.role == "student" %}
@@ -112,7 +112,7 @@
                             {% elif user.role == "admin" %}
                                 <a href="{% url 'users:admin:administrator' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Кабинет администратора</a>
                             {% endif %}
-                        {% else %}    
+                        {% else %}
                             <a href="{% url 'users:login' %}" class="theme-btn"><span class="far fa-plane-departure"></span> Войти</a>
                         {% endif %}
                     </div>
@@ -222,7 +222,7 @@
 			</div>
 		</main>
 
-		
+
 
 		<footer class="footer-area pt-100">
 			<div class="footer-widget">
