@@ -9,7 +9,7 @@
 
     <title>{% block title %}{% endblock %}</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'stransit/images/8N4kGrRyCMvx.png' %}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'stransit/images/logo.png' %}" />
 
     <link href="{% static 'stransit/css/agBmLZg4XvdE.css' %}" rel="stylesheet" />
     <link href="{% static 'stransit/css/rT83hV5Fo8Za.css' %}" rel="stylesheet" />
@@ -150,71 +150,60 @@
 										</div>
 									</div>
 									<div class="widget service-download">
-										<h4 class="widget-title">Скачать</h4>
-										<a href="#"><i class="far fa-file-pdf"></i>Сертификат авиационного учебного центра </a>
-										<a href="#"><i class="far fa-file-alt"></i>Политика в области качества</a>
-									</div>
+                                        <h4 class="widget-title">Скачать</h4>
+                                        <a href="{% static 'stransit/aviat_cert.docx' %}" download><i class="far fa-file-pdf"></i> Сертификат студента</a>
+                                        <a href="{% static 'stransit/cert_cert.pdf' %}" download><i class="far fa-file-pdf"></i> СERT INTERNATIONAL</a>
+                                        <a href="{% static 'stransit/autz.pdf' %}" download><i class="far fa-file-pdf"></i> Сертификат авиационного учебного центра</a>
+                                        <a href="#" download><i class="far fa-file-alt"></i> Политика в области качества</a>
+                                    </div>
 								</div>
 							</div>
 							<div class="col-xl-8 col-lg-8">
 								<div class="service-details">
-									<div class="service-details-img mb-30">
-										<img src="images/v26AlTjp9QQL.jpg" alt="thumb" />
-									</div>
-									<div class="service-details">
-										<h4 class="mb-30">Luxury Travel</h4>
-										<p class="mb-20">
-											Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
-											dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-											quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et.
-										</p>
-										<p class="mb-20">
-											But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the
-											great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue
-											pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because
-											occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example
-										</p>
-										<div class="row">
-											<div class="col-md-6 mb-20">
-												<img src="images/ddjyy41ZGyAg.jpg" alt="" />
-											</div>
-											<div class="col-md-6 mb-20">
-												<img src="images/mmUSfZj8BuXM.jpg" alt="" />
-											</div>
-										</div>
-										<p class="mb-20">
-											Power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to
-											the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to
-											this principle of selection.
-										</p>
-										<div class="my-4">
-											<div class="mb-3">
-												<h4 class="mb-3">Our Service Process</h4>
-												<p>
-													Aliquam facilisis rhoncus nunc, non vestibulum mauris volutpat non. Vivamus tincidunt accumsan urna, vel aliquet nunc commodo tristique. Nulla facilisi. Phasellus vel ex nulla. Nunc
-													tristique sapien id mauris efficitur, porta scelerisque nisl dignissim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed at mollis tellus. Proin
-													consequat, orci nec bibendum viverra, ante orci suscipit dolor, et condimentum felis dolor ac lectus.
-												</p>
-											</div>
-											<ul class="service-single-list">
-												<li><i class="far fa-check"></i>Fusce justo risus placerat in risus eget tincidunt consequat elit.</li>
-												<li><i class="far fa-check"></i>Nunc fermentum sem sit amet dolor laoreet placerat.</li>
-												<li><i class="far fa-check"></i>Nullam rhoncus dictum diam quis ultrices.</li>
-												<li><i class="far fa-check"></i>Integer quis lorem est uspendisse eu augue porta ullamcorper dictum.</li>
-												<li><i class="far fa-check"></i>Quisque tristique neque arcu ut venenatis felis malesuada et.</li>
-											</ul>
-										</div>
-										<div class="my-4">
-											<h4 class="mb-3">Why Choose Our Services ?</h4>
-											<p>
-												Quisque a nisl id sem sollicitudin volutpat. Cras et commodo quam, vel congue ligula. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras quis venenatis
-												neque. Donec volutpat tellus lobortis mi ornare eleifend. Fusce eu nisl ut diam ultricies accumsan. Integer lobortis vestibulum nunc id porta. Curabitur aliquam arcu sed ex dictum, a facilisis
-												urna porttitor. Fusce et mattis nisl. Sed iaculis libero consequat justo auctor iaculis. Vestibulum sed ex et magna tristique bibendum. Sed hendrerit neque nec est suscipit, id faucibus dolor
-												convallis.
-											</p>
-										</div>
-									</div>
-								</div>
+                                    <h4 class="mb-30">Наши Сертификаты</h4>
+                                    <p class="mb-20">
+                                        Авиационный учебный центр 'Стандард Транзит' гордится своими достижениями и профессиональными сертификатами, которые подтверждают наш высокий уровень компетенции и приверженность качеству. Мы сертифицированы ведущими международными и национальными организациями в области авиационного обучения, что гарантирует соответствие нашим программам самым строгим стандартам. Каждый сертификат, полученный нашим центром, свидетельствует о нашем постоянном стремлении к совершенству и безопасности в авиационной сфере.
+                                    </p>
+                                    <p class="mb-20">
+                                        Наши сертификаты включают аккредитацию таких организаций, как Международная организация гражданской авиации (ICAO), Европейское агентство по авиационной безопасности (EASA), а также национальные сертификационные органы. Эти сертификаты свидетельствуют о том, что наш учебный центр соответствует требованиям безопасности и качества, что позволяет нам предоставлять первоклассное обучение для наших студентов. Мы также активно участвуем в программах повышения квалификации и профессионального развития наших инструкторов, чтобы обеспечить им доступ к самым последним знаниям и методикам обучения.
+                                    </p>
+                                    <p class="mb-20">
+                                        Помимо международных сертификатов, мы также гордимся нашими внутренними наградами и признанием со стороны авиационной отрасли. Это подтверждает наш статус одного из ведущих учебных центров в регионе. Мы регулярно проходим аудит и инспекции, чтобы подтвердить нашу приверженность стандартам и обеспечить непрерывное улучшение качества обучения.
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-20">
+                                            <img src="images/certificate1.jpg" alt="Сертификат ICAO" />
+                                        </div>
+                                        <div class="col-md-6 mb-20">
+                                            <img src="images/certificate2.jpg" alt="Сертификат EASA" />
+                                        </div>
+                                    </div>
+                                    <p class="mb-20">
+                                        Мы продолжаем совершенствоваться и стремимся к постоянному улучшению наших программ обучения, что подтверждается регулярным обновлением наших сертификатов. Выбирая 'Стандард Транзит', вы можете быть уверены в высоком уровне профессионализма и надежности нашего учебного центра. Наши студенты получают не только теоретические знания, но и практические навыки, необходимые для успешной карьеры в авиации.
+                                    </p>
+                                    <div class="my-4">
+                                        <h4 class="mb-3">Наш Процесс Сертификации</h4>
+                                        <p>
+                                            Процесс получения сертификатов включает несколько этапов, каждый из которых направлен на обеспечение качества и безопасности обучения. Мы тщательно подходим к выбору программ обучения и их аккредитации, чтобы соответствовать международным стандартам. Наши инструкторы проходят строгий отбор и регулярное обучение, что позволяет им оставаться в курсе последних изменений и требований в авиационной отрасли.
+                                        </p>
+                                        <ul class="service-single-list">
+                                            <li><i class="far fa-check"></i>Строгий отбор и подготовка инструкторов.</li>
+                                            <li><i class="far fa-check"></i>Постоянное обновление программ обучения.</li>
+                                            <li><i class="far fa-check"></i>Регулярные аудиты и инспекции.</li>
+                                            <li><i class="far fa-check"></i>Соответствие международным стандартам безопасности и качества.</li>
+                                            <li><i class="far fa-check"></i>Активное участие в профессиональных ассоциациях и конференциях.</li>
+                                        </ul>
+                                    </div>
+                                    <div class="my-4">
+                                        <h4 class="mb-3">Почему выбирают нас?</h4>
+                                        <p>
+                                            Наш центр предлагает широкий спектр программ обучения, ориентированных на повышение квалификации и профессионального роста. Мы используем современные методы обучения и обеспечиваем индивидуальный подход к каждому студенту. Наша команда состоит из опытных и квалифицированных инструкторов, которые готовы поделиться своими знаниями и опытом. Наши выпускники востребованы на рынке труда благодаря высокому уровню подготовки и приобретенным навыкам.
+                                        </p>
+                                        <p>
+                                            Мы гордимся нашими достижениями и стремимся к постоянному совершенствованию, чтобы наши студенты могли получить наилучшее образование и профессиональные навыки. Присоединяйтесь к 'Стандард Транзит' и убедитесь в нашем высоком уровне качества и профессионализма.
+                                        </p>
+                                    </div>
+                                </div>
 							</div>
 						</div>
 					</div>
