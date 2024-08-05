@@ -142,7 +142,11 @@
 							<div class="plane-item">
 								<div class="plane-img">
 									<span class="plane-badge">{{ i.get_course_type }}</span>
+									{% if i.photo %}
 									<img src="{{ i.photo.url }}" alt="" />
+                                    {% else %}
+                                    <img src="{% static 'stransit/images/2dfGAvVrPkhN.jpg' %}" alt="" />
+                                    {% endif %}
 								</div>
 								<div class="plane-content">
 									<div class="plane-title-info">
