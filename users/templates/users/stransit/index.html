@@ -205,10 +205,10 @@
             <div class="row">
                 <div class="col-lg-6 mx-auto">
                     <div class="site-heading text-center">
-                        <span class="site-title-tagline">Features</span>
-                        <h2 class="site-title">Top Features</h2>
+                        <span class="site-title-tagline">Наши услуги</span>
+                        <h2 class="site-title">Что мы предлагаем?</h2>
                         <p>
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                            Мы предлагаем широкий спектр услуг, направленных на повышение квалификации и профессионального уровня специалистов авиационной отрасли. 
                         </p>
                     </div>
                 </div>
@@ -220,8 +220,8 @@
                             <i class="icon-luxury"></i>
                         </div>
                         <div class="feature-info">
-                            <h5>Luxury And Comfort</h5>
-                            <p>Качественное обучение сегодня - гарантированный успех завтра!</p>
+                            <h5>Обучающие программы</h5>
+                            <p>Курсы и тренинги по различным аспектам авиационной деятельности.</p>
                         </div>
                     </div>
                 </div>
@@ -231,8 +231,8 @@
                             <i class="icon-from-airplane"></i>
                         </div>
                         <div class="feature-info">
-                            <h5>Save And Secure</h5>
-                            <p>There are many variations of passages available the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.</p>
+                            <h5>Повышение квалификации</h5>
+                            <p>Программы для повышения профессионального уровня и квалификации специалистов.</p>
                         </div>
                     </div>
                 </div>
@@ -242,14 +242,15 @@
                             <i class="icon-all-around-globe"></i>
                         </div>
                         <div class="feature-info">
-                            <h5>All Over The World</h5>
-                            <p>There are many variations of passages available the majority have suffered alteration in some form by injected humour or randomised words which don't look even slightly believable.</p>
+                            <h5>Консультационные услуги</h5>
+                            <p>Консультации по вопросам авиационной безопасности и управления.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="about-area py-120">
         <div class="container">
@@ -257,56 +258,57 @@
                 <div class="col-lg-6">
                     <div class="about-left">
                         <div class="about-img">
-                            <img class="about-img-1" src="{% static 'stransit/images/3hajizYlJuZ5.jpg' %}" alt="" />
-                            <img class="about-img-2" src="{% static 'stransit/images/1V1pEG6L0HVC.jpg' %}" alt="" />
+                            <img class="about-img-1" src="{% static 'stransit/images/3hajizYlJuZ5.jpg' %}" alt="Обучение" />
+                            <img class="about-img-2" src="{% static 'stransit/images/1V1pEG6L0HVC.jpg' %}" alt="Тренинг" />
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="about-right">
                         <div class="site-header">
-                            <span class="site-title-tagline">About Us</span>
-                            <h2 class="site-title">We Are Here To Make Your Dreams Come True</h2>
+                            <span class="site-title-tagline">О нас</span>
+                            <h2 class="site-title">Мы здесь, чтобы воплотить ваши мечты в реальность</h2>
                         </div>
-                        <p class="about-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even.</p>
+                        <p class="about-text">ТОО «Стандарт Транзит» предлагает разнообразные обучающие программы и тренинги, которые помогут вам достигнуть новых высот в карьере и профессиональной деятельности.</p>
                         <div class="about-list-wrapper">
                             <ul class="about-list list-unstyled">
                                 <li>
                                     <div class="icon"><span class="far fa-check-circle"></span></div>
                                     <div class="text">
-                                        <p>Take a look at our round up of the best shows</p>
+                                        <p>Ознакомьтесь с нашими лучшими <a href="{% url 'stransit:online_courses' %}"><b>программами.</b></a></p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="icon"><span class="far fa-check-circle"></span></div>
                                     <div class="text">
-                                        <p>It has survived not only five centuries</p>
+                                        <p>Наша история успеха насчитывает более <b>5 лет.</b></p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="icon"><span class="far fa-check-circle"></span></div>
                                     <div class="text">
-                                        <p>Lorem Ipsum has been the ndustry standard dummy text</p>
+                                        <p>«<b>Стандарт Транзит</b>» - ваш стандарт качества в обучении!</p>
                                     </div>
                                 </li>
                             </ul>
                         </div>
-                        <a href="about.html" class="theme-btn">Discover More <i class="far fa-arrow-right"></i></a>
+                        <a href="{% url 'stransit:about' %}" class="theme-btn">Узнать больше <i class="far fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+
     <div class="service-area bg py-120">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mx-auto">
                     <div class="site-heading text-center">
-                        <span class="site-title-tagline">Services</span>
-                        <h2 class="site-title">What We Offer</h2>
+                        <span class="site-title-tagline">Услуги</span>
+                        <h2 class="site-title">Что мы предлагаем</h2>
                         <p>
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                            В Авиационном Учебном Центре «Стандарт Транзит» мы предлагаем разнообразные курсы и тренинги, направленные на повышение квалификации и профессиональные навыки в авиационной отрасли.
                         </p>
                     </div>
                 </div>
@@ -318,9 +320,9 @@
                             <i class="icon-business-jet-charter1"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Luxury Travel</a></h4>
-                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
-                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                            <h4><a href="#">Курсы повышения квалификации</a></h4>
+                            <p>Мы предлагаем курсы повышения квалификации для пилотов, бортпроводников и инженеров по техническому обслуживанию воздушных судов.</p>
+                            <a href="tel:+77015662361" class="theme-btn">Узнать больше <i class="far fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -330,9 +332,9 @@
                             <i class="icon-schedule-1"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Flexible Schedule</a></h4>
-                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
-                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                            <h4><a href="#">Гибкий график обучения</a></h4>
+                            <p>Наши курсы и тренинги доступны в удобное для вас время, что позволяет сочетать обучение с рабочими обязанностями.</p>
+                            <a href="tel:+77015662361" class="theme-btn">Узнать больше <i class="far fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -342,9 +344,9 @@
                             <i class="icon-money-1"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Affordable Cost</a></h4>
-                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
-                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                            <h4><a href="#">Доступные цены</a></h4>
+                            <p>Мы предлагаем конкурентоспособные цены на все наши обучающие программы, делая их доступными для широкого круга специалистов.</p>
+                            <a href="tel:+77015662361" class="theme-btn">Узнать больше <i class="far fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -354,9 +356,9 @@
                             <i class="icon-cabin-comfort"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Comfort Travel</a></h4>
-                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
-                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                            <h4><a href="#">Комфортные условия обучения</a></h4>
+                            <p>Наши учебные классы оснащены всем необходимым для комфортного и эффективного обучения.</p>
+                            <a href="tel:+77015662361" class="theme-btn">Узнать больше <i class="far fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -366,9 +368,9 @@
                             <i class="icon-private-helicoopter1"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Easy Transport</a></h4>
-                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
-                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                            <h4><a href="#">Современные тренажеры</a></h4>
+                            <p>Мы используем современные авиационные тренажеры для практической подготовки пилотов и бортпроводников.</p>
+                            <a href="tel:+77015662361" class="theme-btn">Узнать больше <i class="far fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -378,15 +380,16 @@
                             <i class="icon-modern-aircrafts"></i>
                         </div>
                         <div class="service-content">
-                            <h4><a href="#">Fast Service</a></h4>
-                            <p>There are many variations of passages available but the majority have suffered alteration in some for injected humour or randomised words which don't look even slightly believable.</p>
-                            <a href="#" class="theme-btn">Learn More <i class="far fa-arrow-right"></i></a>
+                            <h4><a href="#">Квалифицированные преподаватели</a></h4>
+                            <p>Наши курсы ведут опытные специалисты с многолетним опытом работы в авиационной отрасли.</p>
+                            <a href="tel:+77015662361" class="theme-btn">Узнать больше <i class="far fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="counter-area pt-40 pb-40">
 				<div class="container">
@@ -422,127 +425,10 @@
 					</div>
 				</div>
 			</div>
- 
+    
 
-    <div class="package-area py-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <div class="site-heading text-center">
-                        <span class="site-title-tagline">Packages</span>
-                        <h2 class="site-title text-white">Tour Package For You</h2>
-                        <p class="text-white">
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="package-slider owl-carousel owl-theme">
-                <div class="package-item">
-                    <div class="package-img">
-                        <img src="{% static 'stransit/images/M7Ntx8ySTI6K.jpg' %}" alt="" />
-                        <a class="package-video popup-youtube" href="https://www.youtube.com/watch?v=ckHzmP1evNU"><i class="fas fa-play"></i></a>
-                    </div>
-                    <div class="package-content">
-                        <div class="package-title">
-                            <a href="#">
-                                <h4>The City Of Lights</h4>
-                            </a>
-                        </div>
-                        <div class="package-info">
-                            <ul>
-                                <li><i class="far fa-clock"></i>May 11, 2023</li>
-                                <li><i class="far fa-user"></i>8 Passenger</li>
-                            </ul>
-                        </div>
-                        <div class="package-bottom">
-                            <a href="#" class="package-btn"><span class="far fa-plane-departure"></span> Book Now</a>
-                            <div class="package-price">
-                                <span>$250</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="package-item">
-                    <div class="package-img">
-                        <img src="{% static 'stransit/images/ABUDHDiOIdIv.jpg' %}" alt="" />
-                        <a class="package-video popup-youtube" href="https://www.youtube.com/watch?v=ckHzmP1evNU"><i class="fas fa-play"></i></a>
-                    </div>
-                    <div class="package-content">
-                        <div class="package-title">
-                            <a href="#">
-                                <h4>The City Of Lights</h4>
-                            </a>
-                        </div>
-                        <div class="package-info">
-                            <ul>
-                                <li><i class="far fa-clock"></i>May 11, 2023</li>
-                                <li><i class="far fa-user"></i>8 Passenger</li>
-                            </ul>
-                        </div>
-                        <div class="package-bottom">
-                            <a href="#" class="package-btn"><span class="far fa-plane-departure"></span> Book Now</a>
-                            <div class="package-price">
-                                <span>$250</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="package-item">
-                    <div class="package-img">
-                        <img src="{% static 'stransit/images/4tmz96p3tlz7.jpg' %}" alt="" />
-                        <a class="package-video popup-youtube" href="https://www.youtube.com/watch?v=ckHzmP1evNU"><i class="fas fa-play"></i></a>
-                    </div>
-                    <div class="package-content">
-                        <div class="package-title">
-                            <a href="#">
-                                <h4>The City Of Lights</h4>
-                            </a>
-                        </div>
-                        <div class="package-info">
-                            <ul>
-                                <li><i class="far fa-clock"></i>May 11, 2023</li>
-                                <li><i class="far fa-user"></i>8 Passenger</li>
-                            </ul>
-                        </div>
-                        <div class="package-bottom">
-                            <a href="#" class="package-btn"><span class="far fa-plane-departure"></span> Book Now</a>
-                            <div class="package-price">
-                                <span>$250</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="package-item">
-                    <div class="package-img">
-                        <img src="{% static 'stransit/images/2DnR9bnysagv.jpg' %}" alt="" />
-                        <a class="package-video popup-youtube" href="https://www.youtube.com/watch?v=ckHzmP1evNU"><i class="fas fa-play"></i></a>
-                    </div>
-                    <div class="package-content">
-                        <div class="package-title">
-                            <a href="#">
-                                <h4>The City Of Lights</h4>
-                            </a>
-                        </div>
-                        <div class="package-info">
-                            <ul>
-                                <li><i class="far fa-clock"></i>May 11, 2023</li>
-                                <li><i class="far fa-user"></i>8 Passenger</li>
-                            </ul>
-                        </div>
-                        <div class="package-bottom">
-                            <a href="#" class="package-btn"><span class="far fa-plane-departure"></span> Book Now</a>
-                            <div class="package-price">
-                                <span>$250</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="team-area py-120">
+            <div class="team-area py-120">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-6 mx-auto">
@@ -707,7 +593,7 @@
 				</div>
 			</div>
 
-    <div class="testimonial-area testimonial-bg py-120">
+            <div class="testimonial-area testimonial-bg py-120">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-6 mx-auto">
@@ -794,7 +680,7 @@
 				</div>
 			</div>
 
-    <div class="partner-area bg">
+            <div class="partner-area bg">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-6 mx-auto">
@@ -827,83 +713,83 @@
 				</div>
 			</div>
 
-    <div class="blog-area py-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <div class="site-heading text-center">
-                        <span class="site-title-tagline">Our Blog</span>
-                        <h2 class="site-title">Latest News &amp; Blog</h2>
-                        <p>
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="blog-item">
-                        <div class="blog-item-thumb">
-                            <img src="{% static 'stransit/images/fvPdgZWn6sk3.jpg' %}" alt="Thumb" />
-                        </div>
-                        <div class="blog-item-info">
-                            <div class="blog-item-meta">
-                                <ul>
-                                    <li><i class="far fa-user"></i> Nancy Castdo</li>
-                                    <li><i class="far fa-calendar-alt"></i> May 11, 2023</li>
-                                </ul>
-                            </div>
-                            <h5><a href="#" class="blog-item-title">There are many variations of passages available</a></h5>
-                            <p>
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                            </p>
-                            <a class="blog-item-more" href="#">Read More <i class="far fa-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="blog-item">
-                        <div class="blog-item-thumb">
-                            <img src="{% static 'stransit/images/18Hp9i2pZ05J.jpg' %}" alt="Thumb" />
-                        </div>
-                        <div class="blog-item-info">
-                            <div class="blog-item-meta">
-                                <ul>
-                                    <li><i class="far fa-user"></i> Nancy Castdo</li>
-                                    <li><i class="far fa-calendar-alt"></i> May 11, 2023</li>
-                                </ul>
-                            </div>
-                            <h5><a href="#" class="blog-item-title">There are many variations of passages available</a></h5>
-                            <p>
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                            </p>
-                            <a class="blog-item-more" href="#">Read More <i class="far fa-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="blog-item">
-                        <div class="blog-item-thumb">
-                            <img src="{% static 'stransit/images/mZRfpgTBniZv.jpg' %}" alt="Thumb" />
-                        </div>
-                        <div class="blog-item-info">
-                            <div class="blog-item-meta">
-                                <ul>
-                                    <li><i class="far fa-user"></i> Nancy Castdo</li>
-                                    <li><i class="far fa-calendar-alt"></i> May 11, 2023</li>
-                                </ul>
-                            </div>
-                            <h5><a href="#" class="blog-item-title">There are many variations of passages available</a></h5>
-                            <p>
-                                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                            </p>
-                            <a class="blog-item-more" href="#">Read More <i class="far fa-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{#            <div class="blog-area py-120">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{#                        <div class="col-lg-6 mx-auto">#}
+{#                            <div class="site-heading text-center">#}
+{#                                <span class="site-title-tagline">Our Blog</span>#}
+{#                                <h2 class="site-title">Latest News &amp; Blog</h2>#}
+{#                                <p>#}
+{#                                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.#}
+{#                                </p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row">#}
+{#                        <div class="col-md-6 col-lg-4">#}
+{#                            <div class="blog-item">#}
+{#                                <div class="blog-item-thumb">#}
+{#                                    <img src="{% static 'stransit/images/fvPdgZWn6sk3.jpg' %}" alt="Thumb" />#}
+{#                                </div>#}
+{#                                <div class="blog-item-info">#}
+{#                                    <div class="blog-item-meta">#}
+{#                                        <ul>#}
+{#                                            <li><i class="far fa-user"></i> Nancy Castdo</li>#}
+{#                                            <li><i class="far fa-calendar-alt"></i> May 11, 2023</li>#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                    <h5><a href="#" class="blog-item-title">There are many variations of passages available</a></h5>#}
+{#                                    <p>#}
+{#                                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.#}
+{#                                    </p>#}
+{#                                    <a class="blog-item-more" href="#">Read More <i class="far fa-long-arrow-right"></i></a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-6 col-lg-4">#}
+{#                            <div class="blog-item">#}
+{#                                <div class="blog-item-thumb">#}
+{#                                    <img src="{% static 'stransit/images/18Hp9i2pZ05J.jpg' %}" alt="Thumb" />#}
+{#                                </div>#}
+{#                                <div class="blog-item-info">#}
+{#                                    <div class="blog-item-meta">#}
+{#                                        <ul>#}
+{#                                            <li><i class="far fa-user"></i> Nancy Castdo</li>#}
+{#                                            <li><i class="far fa-calendar-alt"></i> May 11, 2023</li>#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                    <h5><a href="#" class="blog-item-title">There are many variations of passages available</a></h5>#}
+{#                                    <p>#}
+{#                                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.#}
+{#                                    </p>#}
+{#                                    <a class="blog-item-more" href="#">Read More <i class="far fa-long-arrow-right"></i></a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-6 col-lg-4">#}
+{#                            <div class="blog-item">#}
+{#                                <div class="blog-item-thumb">#}
+{#                                    <img src="{% static 'stransit/images/mZRfpgTBniZv.jpg' %}" alt="Thumb" />#}
+{#                                </div>#}
+{#                                <div class="blog-item-info">#}
+{#                                    <div class="blog-item-meta">#}
+{#                                        <ul>#}
+{#                                            <li><i class="far fa-user"></i> Nancy Castdo</li>#}
+{#                                            <li><i class="far fa-calendar-alt"></i> May 11, 2023</li>#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                    <h5><a href="#" class="blog-item-title">There are many variations of passages available</a></h5>#}
+{#                                    <p>#}
+{#                                        It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.#}
+{#                                    </p>#}
+{#                                    <a class="blog-item-more" href="#">Read More <i class="far fa-long-arrow-right"></i></a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
 </main>
 
 <div class="subscribe-area pt-60 pb-60">
@@ -911,17 +797,16 @@
         <div class="row align-items-center">
             <div class="col-md-12 col-lg-6">
                 <div class="subscribe-content">
-                    <h4>Subscribe To Our Newsletter</h4>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                    <h4><b>Подписывайтесь на нашу новостную рассылку</b></h4>
                 </div>
             </div>
             <div class="col-md-12 col-lg-6">
                 <div class="subscribe-form">
                     <form action="#">
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Enter Your Email" />
+                            <input type="email" class="form-control" placeholder="Введите ваш email" />
                         </div>
-                        <button type="submit"><i class="far fa-paper-plane"></i>Subscribe</button>
+                        <button type="submit"><i class="far fa-paper-plane"></i>Отправить</button>
                     </form>
                 </div>
             </div>

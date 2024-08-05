@@ -8,7 +8,7 @@ class CourseType(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
     description = models.CharField(max_length=155, null=True, blank=True)
     time = models.PositiveIntegerField(default=90, null=True, blank=True)
-    photo = models.ImageField(upload_to='course_type_images', null=True, blank=True)
+    photo = models.ImageField(upload_to='course_type_images', null=False, blank=False)
 
     def __str__(self):
         return self.title
@@ -25,10 +25,10 @@ class Course(models.Model):
     title = models.CharField(max_length=1000)  # Название курса
     description = models.TextField()  # Описание курса
     duration = models.PositiveIntegerField()  # Продолжительность курса
-    image = models.ImageField(upload_to='course_images', null=True, blank=True)
+    image = models.ImageField(upload_to='course_images', null=False, blank=False)
     course_type = models.ForeignKey(CourseType, on_delete=models.CASCADE, related_name='courses') # Связь с моделью "Course Type"
     curators = models.ManyToManyField(get_user_model())   # Связь с моделью "Curator"
-    students = models.ManyToManyField(User, related_name='courses', blank=True)
+    students = models.ManyToManyField(User, related_name='courses', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def create_notification(self, message):

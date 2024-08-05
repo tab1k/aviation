@@ -26,5 +26,4 @@ urlpatterns = [
     path('search/', SearchView.as_view(), name='search'),
     path('lesson/<int:pk>/previous/', PreviousLessonRedirectView.as_view(), name='previous_lesson_redirect'),
     path('lesson/<int:pk>/next/', NextLessonRedirectView.as_view(), name='next_lesson_redirect'),
-
 ]

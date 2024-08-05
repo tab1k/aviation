@@ -1,23 +1,17 @@
 {% extends 'users/admin/base.html' %}
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="ru" dir="ltr">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     {% block title %}<title>Главная</title>{% endblock %}
-    {% block css %}
-        <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-        <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-        <script src="{% static 'admin/js/script.min.js' %}"></script>
-    {% endblock %}
-    <script src="{% static 'admin/js/script.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    {% block css %} {% endblock %}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
     <style>
         .course-card {
@@ -33,7 +27,10 @@
             <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                    <div class="container-fluid">
+                        <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button">
+                            <i class="fas fa-bars"></i>
+                        </button>
                         <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" action="{% url 'users:admin:search' %}" method="get">
                             <div class="input-group">
                                 <input class="bg-light form-control border-0 small" type="text" name="q" placeholder="Искать...">
@@ -169,11 +166,6 @@
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Standart Transit</span></div>
-                </div>
-            </footer>
         </div>
             <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
         {% endblock %}

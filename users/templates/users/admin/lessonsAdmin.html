@@ -66,7 +66,7 @@
                     <div class="mb-4 mt-4">
                                 <select id="action-select" class="custom-select form-select form-select-sm">
                                   <option value="" selected>Выберите действие</option>
-                                  <option value="{% url 'users:admin:courses:create_lesson' %}">Добавить урок к модулю</option>
+                                  <option value="{% url 'users:admin:courses:lesson_create' %}">Добавить урок к модулю</option>
                                   <option value="#">Добавить модуль к курсу</option>
                                 </select>
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -116,20 +116,13 @@
                                         </div>
                                     {% endfor %}
                                 </div>
-                                <a href="" class="d-flex justify-content-center mt-3">
-                                    <img class="back" src="{% static 'admin/img/next-button.svg' %}" alt="">
-                                </a>
+                            
                             </div>
                         </div>
 
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Standart Transit</span></div>
-                </div>
-            </footer>
         </div>
             <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
         {% endblock %}

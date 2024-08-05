@@ -2,14 +2,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.timezone import localtime, now
 from django.http import JsonResponse, HttpResponseForbidden
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 
 from comments.forms import CommentForm
 from comments.models import Comment
-from .forms import LessonCreationForm, CourseCreationForm
+from .forms import CourseForm, CourseTypeForm, ModuleForm, LessonForm
 from .models import Course, Module, CourseType, Lesson
 from django.views import View
 from users.models import User
@@ -35,29 +35,28 @@ from urllib.request import urlopen
 from users.models import User
 
 
-
-
-# Представление для отображения типов курсов
-
 class CoursesByType(LoginRequiredMixin, View):
     login_url = 'users:login'
 
     def get(self, request, type_id):
-        # Получаем тип курса по type_id
+        # Получаем тип курса по type_id или возвращаем 404, если не найден
         course_type = get_object_or_404(CourseType, id=type_id)
 
         # Получаем все курсы, относящиеся к данному типу курса
         courses = Course.objects.filter(course_type=course_type)
 
-        # Определение шаблона в зависимости от роли пользователя
-        if request.user.groups.filter(name='Студенты').exists():
-            template_name = 'users/student/courses_by_type.html'
-        elif request.user.groups.filter(name='Кураторы').exists():
-            template_name = 'users/curator/courses_by_type.html'
-        elif request.user.groups.filter(name='Администраторы').exists():
-            template_name = 'users/admin/courses_by_type.html'
-        else:
-            # Если пользователь не принадлежит ни к одной из групп или не аутентифицирован, перенаправляем его на страницу входа
+        # Определяем шаблон в зависимости от роли пользователя
+        user_group = request.user.groups.first()
+        role_templates = {
+            'Студенты': 'users/student/courses_by_type.html',
+            'Кураторы': 'users/curator/courses_by_type.html',
+            'Администраторы': 'users/admin/courses_by_type.html',
+        }
+        template_name = role_templates.get(user_group.name) if user_group else None
+
+        # Если пользователь не аутентифицирован или не принадлежит ни к одной из групп,
+        # перенаправляем его на страницу входа
+        if not template_name:
             return redirect('users:login')
 
         return render(request, template_name, {'course_type': course_type, 'courses': courses})
@@ -94,32 +93,31 @@ class Courses(ListView):
         return student_comments, curator_comments
 
 
-
-
-
 class Modules(View):
-
     def get(self, request, pk):
+        # Получаем модули для курса с заданным pk
+        modules = Module.objects.filter(course__pk=pk)
 
-        if request.user.groups.filter(name='Администраторы').exists():
-            module = Module.objects.filter(course__pk=pk)
-            return render(request, 'users/admin/module.html', {'modules': module})
+        # Определяем шаблон в зависимости от роли пользователя
+        user_group = request.user.groups.first()
+        role_templates = {
+            'Администраторы': 'users/admin/module.html',
+            'Кураторы': 'users/curator/moduleAdmin.html',
+            # Если пользователь не принадлежит ни к одной из групп, используем шаблон для студентов
+            'default': 'users/student/module.html',
+        }
+        template_name = role_templates.get(user_group.name, role_templates['default'])
 
-        elif request.user.groups.filter(name='Кураторы').exists():
-            module = Module.objects.filter(course__pk=pk, course__curators=request.user)
-            return render(request, 'users/curator/moduleAdmin.html', {'modules': module})
+        # Фильтруем модули в зависимости от роли пользователя
+        if user_group:
+            if user_group.name == 'Кураторы':
+                modules = modules.filter(course__curators=request.user)
+            elif user_group.name != 'Администраторы':
+                modules = modules.filter(course__students=request.user)
 
-        else:
-            module = Module.objects.filter(course__pk=pk, course__students=request.user)
-            return render(request, 'users/student/module.html', {'modules': module})
+        # Рендерим страницу с переданными в шаблон данными
+        return render(request, template_name, {'modules': modules})
 
-
-# Представление для отображения
-class CourseDetailView(View):
-
-    def get(self, request, course_id):
-        course = get_object_or_404(Course, id=course_id)
-        return render(request, 'users/admin/detail.html', {'course': course})
 
 
 # Представление для отображения уроков в модуле
@@ -224,33 +222,54 @@ class LessonView(View):
             return redirect(reverse('users:login'))
 
 
-class LessonCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'users/admin/create_lesson.html'
-    form_class = LessonCreationForm
-    model = Lesson
-
-    def form_valid(self, form):
-        lesson = form.save(commit=False)
-        lesson.save()
-        return redirect('users:admin:courses:lesson_view', lesson_id=lesson.id)
-
-    def form_invalid(self, form):
-        return render(self.request, self.template_name, {'form': form})
+# Представления для CourseType
+class CourseTypeCreateView(CreateView):
+    model = CourseType
+    form_class = CourseTypeForm
+    template_name = 'users/admin/create/course_type_form.html'
+    success_url = reverse_lazy('users:admin:courses:courses')
 
 
-class CourseCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'users/admin/create_course.html'
-    form_class = CourseCreationForm
+# Представления для Course
+class CourseCreateView(CreateView):
     model = Course
+    form_class = CourseForm  # Используем нашу кастомную форму
+    template_name = 'users/admin/create/course_form.html'
+    success_url = reverse_lazy('users:admin:courses:courses')
 
-    def form_valid(self, form):
-        course = form.save(commit=False)
-        course.save()
-        return redirect('users:admin:courses:courses')
 
-    def form_invalid(self, form):
-        return render(self.request, self.template_name, {'form': form})
+# Представления для Module
 
+class ModuleCreateView(CreateView):
+    model = Module
+    form_class = ModuleForm  # Используем нашу кастомную форму
+    template_name = 'users/admin/create/module_form.html'
+
+    def get_initial(self):
+        initial = super().get_initial()
+        course_id = self.kwargs.get('course_id')
+        if course_id:
+            initial['course'] = course_id
+        return initial
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if self.kwargs.get('course_id'):
+            kwargs['initial']['course'] = self.kwargs['course_id']
+            kwargs['empty_label'] = None
+        return kwargs
+
+    def get_success_url(self):
+        return reverse_lazy('users:admin:courses:modules', kwargs={'pk': self.object.course.pk})
+
+
+
+# Представления для Lesson
+class LessonCreateView(CreateView):
+    model = Lesson
+    form_class = LessonForm
+    template_name = 'users/admin/create/lesson_form.html'
+    success_url = reverse_lazy('users:admin:courses:courses')
 
 
 class AnswersView(View):

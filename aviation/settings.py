@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-5i(815(8*cc8i9^$e1oe_+_a77p24vjbccdk6l_yvpfkzxxy=b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'www.stransit.kz', 'stransit.kz', '94.247.128.242']
+ALLOWED_HOSTS = ['*', 'www.stransit.kz', 'stransit.kz', '94.247.128.242', '0.0.0.0:8000']
 
 TELEGRAM_BOT_TOKEN = '6430829618:AAFkAYmcOeu_oROGyDp2irSUGZZNIx60pR8'
 TELEGRAM_CHAT_ID = '-1001976653807'
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "stransit.apps.StransitConfig",
     'django_extensions',
     'embed_video',
+    'django_select2',
 ]
 
 MIDDLEWARE = [
@@ -94,18 +95,18 @@ WSGI_APPLICATION = "aviation.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     "NAME": BASE_DIR / "db.sqlite3",
-    # }
     "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            'NAME': os.getenv('DB_NAME', 'aviation_db'),
-            'USER': os.getenv('DB_USER', 'tab1k'),
-            'PASSWORD': os.getenv('DB_PASSWORD', 'TOBI8585'),
-            'HOST': os.getenv('DB_HOST', 'db'),
-            'PORT': os.getenv('DB_PORT', 5432),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
+    # "default": {
+    #         "ENGINE": "django.db.backends.postgresql",
+    #         'NAME': os.getenv('DB_NAME', 'aviation_db'),
+    #         'USER': os.getenv('DB_USER', 'tab1k'),
+    #         'PASSWORD': os.getenv('DB_PASSWORD', 'TOBI8585'),
+    #         'HOST': os.getenv('DB_HOST', 'db'),
+    #         'PORT': os.getenv('DB_PORT', 5432),
+    # }
 }
 
 
