@@ -1,7 +1,7 @@
 {% extends 'users/student/base.html' %}
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="ru" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -10,83 +10,26 @@
     <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    {% block css %} {% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .course-card {
+            height: 400px; /* Задайте желаемую высоту */
+        }
+    </style>
 </head>
 
 <body id="page-top">
-    <div id="wrapper">
-        {% block content %}
+<div id="wrapper">
+    {% block content %}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-{#                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" action="{% url 'search' %}" method="get">#}
-{#                            <div class="input-group">#}
-{#                                <input class="bg-light form-control border-0 small" type="text" placeholder="Искать...">#}
-{#                                <button class="btn btn-primary py-0" type="button" style="background: #22549E;">#}
-{#                                    <i class="fas fa-search"></i></button>#}
-{#                            </div>#}
-{#                        </form>#}
+                    <div class="container-fluid"><button style="margin: 0px;" class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+
                         <ul class="navbar-nav flex-nowrap ms-auto">
-                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                                    <form class="me-auto navbar-search w-100">
-                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Искать...">
-                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="nav-item dropdown no-arrow">
-                                    <div class="nav-item dropdown no-arrow">
-                                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                                            <span class="badge bg-danger badge-counter">{{ curator_comments.count }}</span>
-                                            <i class="fas fa-envelope fa-fw"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                            <h6 class="dropdown-header">Новые сообщения</h6>
-                                            {% for comment in curator_comments %}
-                                                <a class="dropdown-item d-flex align-items-center" href="{% url 'users:student:student_messages' %}">
-                                                    <div class="dropdown-list-image me-3">
-                                                        <img class="rounded-circle" src="{% static 'admin/img/avatars/avatar5.jpeg' %}">
-                                                        <div class="bg-success status-indicator"></div>
-                                                    </div>
-                                                    <div class="fw-bold">
-                                                        <div class="text-truncate"><span>{{ comment.curator.get_full_name }}</span></div>
-                                                        <p class="small text-gray-500 mb-0">{{ comment.curator_response|truncatechars:15 }}... - {{ comment.timestamp }}</p>
-                                                    </div>
-                                                </a>
-                                            {% endfor %}
-                                            <a class="dropdown-item text-center small text-gray-500" href="{% url 'users:student:student_messages' %}">Показать все сообщения</a>
-                                        </div>
-                                    </div>
-                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="">
-                                        <span class="badge bg-danger badge-counter">{{ notifications.count }}</span>
-                                        <i class="fas fa-bell fa-fw"></i>
-                                    </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">Новые уведомления</h6>
-                                        {% for notification in notifications %}
-                                        <a class="dropdown-item d-flex align-items-center" href="{% url 'users:student:student_notifications' %}">
-                                            <div class="me-3">
-                                                <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                                            </div>
-                                            <div>
-                                                <span class="small text-gray-500">{{ notification.timestamp }}</span>
-                                                <p>{{ notification.message }}</p>
-                                            </div>
-                                        </a>
-                                        {% endfor %}
-                                        <a class="dropdown-item text-center small text-gray-500" href="{% url 'users:student:student_notifications' %}">Показать все уведомления</a>
-                                    </div>
-
-                            </li>
-
-
 
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">

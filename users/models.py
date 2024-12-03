@@ -3,7 +3,6 @@ from django.db import models
 
 
 class User(AbstractUser):
-
     ROLE_CHOICES = (
         ('student', 'Студент'),
         ('curator', 'Куратор'),
@@ -12,7 +11,6 @@ class User(AbstractUser):
     image = models.ImageField(upload_to='users_images', null=True, blank=True)
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
     stream = models.ForeignKey('Stream', on_delete=models.SET_NULL, null=True, blank=True)
-
 
     def __str__(self):
         return self.username

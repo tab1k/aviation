@@ -26,8 +26,9 @@ class Course(models.Model):
     description = models.TextField()  # Описание курса
     duration = models.PositiveIntegerField()  # Продолжительность курса
     image = models.ImageField(upload_to='course_images', null=False, blank=False)
-    course_type = models.ForeignKey(CourseType, on_delete=models.CASCADE, related_name='courses') # Связь с моделью "Course Type"
-    curators = models.ManyToManyField(get_user_model())   # Связь с моделью "Curator"
+    course_type = models.ForeignKey(CourseType, on_delete=models.CASCADE,
+                                    related_name='courses')  # Связь с моделью "Course Type"
+    curators = models.ManyToManyField(get_user_model())  # Связь с моделью "Curator"
     students = models.ManyToManyField(User, related_name='courses', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
@@ -38,7 +39,6 @@ class Course(models.Model):
 
     def get_unread_notifications(self):
         return Notification.objects.filter(course=self, read=False)
-
 
     def __str__(self):
         return self.title
@@ -52,7 +52,8 @@ class Module(models.Model):
     title = models.CharField(max_length=255)  # Название модуля
     description = models.TextField()  # Описание модуля
     order = models.PositiveIntegerField()  # Порядковый номер модуля
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules', blank=True, null=True)  # Связь с моделью "Course"
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules', blank=True,
+                               null=True)  # Связь с моделью "Course"
 
     def __str__(self):
         return self.title
@@ -67,10 +68,9 @@ class Lesson(models.Model):
     description = models.TextField()  # Описание урока
     zoom_link = models.URLField(blank=True, null=True)
     start_datetime = models.DateTimeField(blank=True, null=True)
-    video = EmbedVideoField(blank=True, null=True) # Видео
+    video = EmbedVideoField(blank=True, null=True)  # Видео
     learn_documentation = models.FileField(blank=True, null=True)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return self.title
@@ -78,7 +78,6 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = 'Урок'
         verbose_name_plural = 'Уроки'
-
 
 
 class Notification(models.Model):
@@ -92,10 +91,6 @@ class Notification(models.Model):
     def __str__(self):
         return self.message
 
-
     class Meta:
         verbose_name = 'Объявление курсу'
         verbose_name_plural = 'Объявление курсам'
-
-
-

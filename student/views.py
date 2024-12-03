@@ -6,6 +6,7 @@ from django.views.generic import ListView, RedirectView
 from comments.models import Comment
 from courses.models import *
 
+
 @login_required(login_url='users:login')
 def dashboard_view(request):
     student = request.user
@@ -24,30 +25,32 @@ def dashboard_view(request):
             'course_type': course_type,
             'student': student,
             'notifications': notifications,
-            'curator_comments': curator_comments  # Передача сообщений куратора в контекст
+            'curator_comments': curator_comments,  # Передача сообщений куратора в контекст
+
+
         })
     else:
         return redirect('users:login')
 
 
-
-
-
 def back_to_home(request):
     if request.user.is_authenticated:
         if request.user.role == 'admin':
-            return redirect('users:admin:admin')  # Замените 'admin_home' на имя URL-шаблона главной страницы администратора
+            return redirect(
+                'users:admin:admin')  # Замените 'admin_home' на имя URL-шаблона главной страницы администратора
         elif request.user.role == 'curator':
-            return redirect('users:curator:curator')  # Замените 'curator_home' на имя URL-шаблона главной страницы куратора
+            return redirect(
+                'users:curator:curator')  # Замените 'curator_home' на имя URL-шаблона главной страницы куратора
         else:
-            return redirect('users:student:student')  # Замените 'student_home' на имя URL-шаблона главной страницы студента
+            return redirect(
+                'users:student:student')  # Замените 'student_home' на имя URL-шаблона главной страницы студента
     else:
         return redirect('login')  # Замените 'login' на имя URL-шаблона страницы входа
 
 
-
 from django.shortcuts import render, get_object_or_404, redirect
 from courses.models import Lesson
+
 
 def show_previous_lesson(request, lesson_id):
     current_lesson = get_object_or_404(Lesson, pk=lesson_id)
@@ -94,20 +97,17 @@ class StudentNotificationListView(ListView):
         return Notification.objects.filter(course__students__in=[student])
 
 
-
-
 from django.views.generic import ListView
 from comments.models import Comment
+
 
 class StudentMessagesListView(ListView):
     template_name = 'users/student/student_messages.html'
 
     def get(self, request):
-
         student = request.user
         course_type = CourseType.objects.filter(courses__students=student).distinct()
         courses = Course.objects.filter(students=student)
-
 
         # Получите сообщения куратора только для текущего студента
         curator_comments = Comment.objects.filter(lesson__module__course__in=courses, is_student_comment=False,
@@ -125,6 +125,7 @@ class StudentMessagesListView(ListView):
 from django.shortcuts import redirect, get_object_or_404
 from django.views import View
 
+
 class SendResponseView(View):
     def post(self, request, comment_id):
         comment = get_object_or_404(Comment, pk=comment_id)
@@ -133,7 +134,6 @@ class SendResponseView(View):
             comment.student_response = student_response
             comment.save()
         return redirect('users:student:student_messages')  # Перенаправьте, куда вам нужно
-
 
 
 class PreviousLessonRedirectView(RedirectView):
@@ -174,8 +174,6 @@ class NextLessonRedirectView(RedirectView):
             return next_lesson.get_absolute_url()  # Замените на ваш метод получения URL урока
         else:
             return current_lesson.get_absolute_url()
-
-
 
 
 class LogoutView(View):

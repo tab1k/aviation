@@ -13,7 +13,11 @@ class EssaySubmissionView(View):
 
     def get(self, request, lesson_id):
         lesson = Lesson.objects.get(pk=lesson_id)
-        essay = Essay.objects.get(lesson_id=lesson_id)
+        essay = Essay.objects.filter(lesson_id=lesson_id).first()
+        if not essay:
+            messages.error(request, "Эссе для этого урока не найдено.")
+            return redirect('/')
+
         context = {
             'lesson': lesson,
             'essay' : essay,

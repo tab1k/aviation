@@ -1,235 +1,263 @@
 {% extends 'users/admin/base.html' %}
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="ru" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
-  <title></title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% block title %}<title>Главная</title>{% endblock %}
+    <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">  
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    {% block css %} {% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .course-card {
+            height: 400px; /* Задайте желаемую высоту */
+        }
+    </style>
 </head>
 
 <body id="page-top">
-    <div id="wrapper">
-        {% block content %}
-            <div class="d-flex flex-column" id="content-wrapper">
-                <div id="content">
-                    <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                        <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                            <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" action="{% url 'users:admin:search' %}" method="get">
-                                <div class="input-group">
-                                    <input class="bg-light form-control border-0 small" type="text" name="q" placeholder="Искать...">
-                                    <button class="btn btn-primary py-0" type="submit" style="background: #22549E;"><i class="fas fa-search"></i></button>
-                                </div>
-                            </form>
-                            <ul class="navbar-nav flex-nowrap ms-auto">
-                                <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                                        <form class="me-auto navbar-search w-100">
-                                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
-                                                <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
-                                            </div>
-                                        </form>
+<div id="wrapper">
+    {% block content %}
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid">
+                        <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"
+                                style="margin: 0px;">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search"
+                              action="{% url 'users:admin:search' %}" method="get">
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="text" name="q"
+                                       placeholder="Искать...">
+                                <button class="btn btn-primary py-0" type="submit" style="background: #22549E;"><i
+                                        class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            
+
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
+                                                                           aria-expanded="false"
+                                                                           data-bs-toggle="dropdown" href="#"><span
+                                        class="d-none d-lg-inline me-2 text-gray-600 small">{{ user.first_name }} {{ user.last_name }}</span><img
+                                        class="border rounded-circle img-profile" src="
+
+                                        
+                                        {% if user.image and user.image.url %}{{ user.image.url }}{% else %}{% static 'student/img/profile.png' %}{% endif %}"></a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        <a class="dropdown-item" href="{% url 'users:admin:profile:profile' %}">
+                                            <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400">
+
+                                            </i>&nbsp;Настройки
+                                        </a>
+                                        <a class="dropdown-item" href="{% url 'users:admin:courses:passed_students' %}"><i
+                                                class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Выпускники</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{% url 'users:admin:logout' %}"><i
+                                                class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Выйти</a>
                                     </div>
-                                </li>
-
-                                <div class="d-none d-sm-block topbar-divider"></div>
-                                <li class="nav-item dropdown no-arrow">
-                                    <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">{{ user.first_name}} {{ user.last_name }}</span><img class="border rounded-circle img-profile" src="{% if user.image and user.image.url %}{{ user.image.url }}{% else %}{% static 'student/img/profile.png' %}{% endif %}"></a>
-                                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                            <a class="dropdown-item" href="{% url 'users:admin:profile:profile' %}">
-                                                <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400">
-
-                                                </i>&nbsp;Настройки
-                                            </a>
-                                            <a class="dropdown-item" href="{% url 'users:admin:courses:passed_students' %}"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Выпускники</a>
-                                            <div class="dropdown-divider"></div><a class="dropdown-item" href="{% url 'users:admin:logout' %}"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Выйти</a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-md-8">
-                                <div class="py-4">
-                                    <h2 class="my-courses-h2 text-center">Лента ответов</h2>
                                 </div>
-                                <div class="answers">
-                                    <form id="filter-form">
-                                        <select id="courseFilter" name="course_filter" class="form-select mb-3">
-                                            <option value="">Все курсы</option>
-                                            {% for course in all_courses %}
-                                                <option value="{{ course.id }}" {% if selected_course and selected_course.id == course.id %}selected{% endif %}>{{ course.title }}</option>
-                                            {% endfor %}
-                                        </select>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="py-4">
+                                <h2 class="my-courses-h2 text-center">Лента ответов</h2>
+                            </div>
+                            <div class="answers">
+                                <form id="filter-form">
+                                    <select id="courseFilter" name="course_filter" class="form-select mb-3">
+                                        <option value="">Все курсы</option>
+                                        {% for course in all_courses %}
+                                            <option value="{{ course.id }}"
+                                                    {% if selected_course and selected_course.id == course.id %}selected{% endif %}>{{ course.title }}</option>
+                                        {% endfor %}
+                                    </select>
 
-                                        <div style="display: flex; justify-content: space-around">
-                                            {% if selected_course %}
-                                                <select style="width: 45%" id="studentFilter" name="student_filter" class="form-select mb-3">
-                                                    <option value="">Все студенты</option>
-                                                    {% for student in all_students %}
-                                                        <option value="{{ student.id }}">{{ student.get_full_name }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            {% endif %}
+                                    <div style="display: flex; justify-content: space-around">
+                                        {% if selected_course %}
+                                            <select style="width: 45%" id="studentFilter" name="student_filter"
+                                                    class="form-select mb-3">
+                                                <option value="">Все студенты</option>
+                                                {% for student in all_students %}
+                                                    <option value="{{ student.id }}">{{ student.get_full_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        {% endif %}
 
-                                            {% if selected_course %}
-                                                <select style="width: 45%" id="moduleFilter" name="module_filter" class="form-select mb-3">
-                                                    <option value="">Все модули</option>
-                                                    {% for module in selected_course.modules.all %}
-                                                        <option value="{{ module.id }}" {% if selected_module and selected_module.id == module.id %}selected{% endif %}>{{ module.title }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            {% endif %}
-                                        </div>
+                                        {% if selected_course %}
+                                            <select style="width: 45%" id="moduleFilter" name="module_filter"
+                                                    class="form-select mb-3">
+                                                <option value="">Все модули</option>
+                                                {% for module in selected_course.modules.all %}
+                                                    <option value="{{ module.id }}"
+                                                            {% if selected_module and selected_module.id == module.id %}selected{% endif %}>{{ module.title }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        {% endif %}
+                                    </div>
 
-                                        {% if selected_module %}
+                                    {% if selected_module %}
                                         <select id="lessonFilter" name="lesson_filter" class="form-select mb-3">
                                             <option value="">Все уроки</option>
                                             {% for lesson in selected_module.lessons.all %}
-                                                <option value="{{ lesson.id }}" {% if selected_lesson and selected_lesson.id == lesson.id %}selected{% endif %}>{{ lesson.title }}</option>
+                                                <option value="{{ lesson.id }}"
+                                                        {% if selected_lesson and selected_lesson.id == lesson.id %}selected{% endif %}>{{ lesson.title }}</option>
                                             {% endfor %}
                                         </select>
-                                        {% endif %}
+                                    {% endif %}
 
 
-                                        <button type="submit" class="btn btn-primary">Применить фильтр</button>
-                                    </form>
+                                    <button type="submit" class="btn btn-primary">Применить фильтр</button>
+                                </form>
 
-                                    {% for comment in comments %}
+                                {% for comment in comments %}
                                     <div class="answer card mb-4">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center mb-3">
                                                 <div class="user-avatar mr-3">
-                                                    <img style="border-radius: 10% !important;" width="40px" src="{% if comment.user.image and comment.user.image.url %}{{ comment.user.image.url }}{% else %}{% static 'path_to_default_image.png' %}{% endif %}" alt="{% if comment.user.image and comment.user.image.url %}{{ comment.user.get_full_name }}{% else %}Нет фото{% endif %}">
+                                                    <img style="border-radius: 10% !important;" width="40px" src="
+
+                                                            
+                                                            {% if comment.user.image and comment.user.image.url %}{{ comment.user.image.url }}{% else %}{% static 'path_to_default_image.png' %}{% endif %}"
+                                                         alt="
+
+                                                                 
+                                                                 {% if comment.user.image and comment.user.image.url %}{{ comment.user.get_full_name }}{% else %}Нет фото{% endif %}">
                                                 </div>
                                                 <div style="padding-left: 15px;">
                                                     <p class="mb-1">{{ comment.lesson.module.course }}. {{ comment.lesson.module }}. {{ comment.lesson }}</p>
-                                                    <p class="mb-0"><strong>{{ comment.user.get_full_name }}</strong></p>
+                                                    <p class="mb-0"><strong>{{ comment.user.get_full_name }}</strong>
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <div class="comment-text mb-3" style="border: #858796 1px solid; border-radius: 5px;">
+                                            <div class="comment-text mb-3"
+                                                 style="border: #858796 1px solid; border-radius: 5px;">
                                                 <p class="mb-0" style="padding: 10px;">{{ comment.text }}</p>
                                             </div>
                                             {% if not comment.is_student_comment %}
-                                            <!-- Здесь может быть код для отображения ответов куратора на комментарии студентов, если это необходимо -->
+                                                <!-- Здесь может быть код для отображения ответов куратора на комментарии студентов, если это необходимо -->
                                             {% endif %}
                                             <div class="reply">
                                                 <form method="post" action="">
                                                     {% csrf_token %}
                                                     <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                                                    <textarea name="curator_response" class="form-control mb-2" rows="3" placeholder="Добавить комментарий к ответу..."></textarea>
-                                                    <button class="btn btn-primary btn-sm" type="submit" style="width: 80px; margin-top: 10px;">Ответить</button>
+                                                    <textarea name="curator_response" class="form-control mb-2" rows="3"
+                                                              placeholder="Добавить комментарий к ответу..."></textarea>
+                                                    <button class="btn btn-primary btn-sm" type="submit"
+                                                            style="width: 80px; margin-top: 10px;">Ответить
+                                                    </button>
                                                 </form>
                                                 <!-- Запрос на удаление -->
                                                 <form method="post" action="">
                                                     {% csrf_token %}
                                                     <input type="hidden" name="delete_comment" value="true">
                                                     <input type="hidden" name="comment_id" value="{{ comment.id }}">
-                                                    <button class="btn btn-danger btn-sm" type="submit" style="width: 80px;">
+                                                    <button class="btn btn-danger btn-sm" type="submit"
+                                                            style="width: 80px;">
                                                         Удалить
                                                     </button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-                                    {% endfor %}
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
-
-                </div>
             </div>
 
-        {% endblock %}
-    </div>
+        </div>
+        </div>
 
-  <script src="{% static 'admin/js/side-bar.js' %}"></script>
-  <script src="{% static 'admin/js/answerVerify.js' %}"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    {% endblock %}
+</div>
 
-        $(document).ready(function() {
-            const lessonFilter = $('#lessonFilter');
-            const sortOrder = $('#sortOrder');
-            const commentStatus = $('#commentStatus');
-            const answersDiv = $('.answers');
+<script src="{% static 'admin/js/side-bar.js' %}"></script>
+<script src="{% static 'admin/js/answerVerify.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
 
-            function updateLessonFilterOptions() {
-                $.get('/path/to/course-options/', function(data) {
-                    lessonFilter.empty().append($('<option>', {
-                        value: 'all',
-                        text: 'Все курсы'
+    $(document).ready(function () {
+        const lessonFilter = $('#lessonFilter');
+        const sortOrder = $('#sortOrder');
+        const commentStatus = $('#commentStatus');
+        const answersDiv = $('.answers');
+
+        function updateLessonFilterOptions() {
+            $.get('/path/to/course-options/', function (data) {
+                lessonFilter.empty().append($('<option>', {
+                    value: 'all',
+                    text: 'Все курсы'
+                }));
+
+                $.each(data.course_options, function (index, option) {
+                    lessonFilter.append($('<option>', {
+                        value: option.value,
+                        text: option.label
                     }));
-
-                    $.each(data.course_options, function(index, option) {
-                        lessonFilter.append($('<option>', {
-                            value: option.value,
-                            text: option.label
-                        }));
-                    });
-                });
-            }
-
-
-            function updateComments() {
-                const selectedLessonFilter = lessonFilter.val();
-                const selectedSortOrder = sortOrder.val();
-                const selectedCommentStatus = commentStatus.val();
-
-                const url = `/path/to/comments/?lesson_filter=${selectedLessonFilter}&sort_order=${selectedSortOrder}&comment_status=${selectedCommentStatus}`;
-
-                answersDiv.html('<p>Loading...</p>');
-
-                $.get(url, function(data) {
-                    answersDiv.html(data.comments_html);
-                });
-            }
-
-            lessonFilter.on('change', updateComments);
-            sortOrder.on('change', updateComments);
-            commentStatus.on('change', updateComments);
-
-            updateLessonFilterOptions();
-            updateComments();
-        });
-    </script>
-    <!-- ... Ваш код ... -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            const filterForm = $('#filter-form');
-            const answersDiv = $('.answers');
-
-            filterForm.on('submit', function(event) {
-                event.preventDefault();
-
-                const selectedLessonFilter = $('#lessonFilter').val();
-
-                $.get(`/path/to/get-filtered-comments/?lesson_filter=${selectedLessonFilter}`, function(data) {
-                    answersDiv.html(data.comments_html);
                 });
             });
+        }
+
+
+        function updateComments() {
+            const selectedLessonFilter = lessonFilter.val();
+            const selectedSortOrder = sortOrder.val();
+            const selectedCommentStatus = commentStatus.val();
+
+            const url = `/path/to/comments/?lesson_filter=${selectedLessonFilter}&sort_order=${selectedSortOrder}&comment_status=${selectedCommentStatus}`;
+
+            answersDiv.html('<p>Loading...</p>');
+
+            $.get(url, function (data) {
+                answersDiv.html(data.comments_html);
+            });
+        }
+
+        lessonFilter.on('change', updateComments);
+        sortOrder.on('change', updateComments);
+        commentStatus.on('change', updateComments);
+
+        updateLessonFilterOptions();
+        updateComments();
+    });
+</script>
+<!-- ... Ваш код ... -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        const filterForm = $('#filter-form');
+        const answersDiv = $('.answers');
+
+        filterForm.on('submit', function (event) {
+            event.preventDefault();
+
+            const selectedLessonFilter = $('#lessonFilter').val();
+
+            $.get(`/path/to/get-filtered-comments/?lesson_filter=${selectedLessonFilter}`, function (data) {
+                answersDiv.html(data.comments_html);
+            });
         });
-    </script>
-
-
+    });
+</script>
 
 
 </body>

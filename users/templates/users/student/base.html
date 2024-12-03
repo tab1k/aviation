@@ -4,43 +4,96 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="{% static 'logo.png' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     {% block title %}{% endblock %}
     <link rel="stylesheet" href="{% static 'admin/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="{% static 'admin/css/styles.min.css' %}">
-    {% block css %} {% endblock %}
+
+    {% block css %}
+        <script src="{% static 'admin/js/script.min.js' %}"></script>
+    {% endblock %}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .card a {
+            text-decoration: none !important;
+        }
+
+        .course-card a {
+            text-decoration: none !important;
+        }
+    </style>
 </head>
 
 <body id="page-top">
-    <div id="wrapper">
-        {% block sidebar %}
-            <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="height: 1551px;width: 104px;background: #22549E;">
-            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-                    <div class="sidebar-brand-text mx-3"><span style="font-size: 13px;">STANDART TRANSIT</span></div>
-                </a>
+<div id="wrapper">
+    {% block sidebar %}
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
+             style="height: 1551px;width: 104px;background: #22549E; border-radius: 0px 25px 0px 0px;">
+            <div class="container-fluid d-flex flex-column p-0"><a
+                    class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                <div class="sidebar-brand-text mx-3"><span style="font-size: 13px;">STANDART TRANSIT</span></div>
+            </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link active" href="{% url 'users:student:student' %}"><i class="fas fa-store-alt"></i><span>Главная</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'users:student:courses:courses' %}"><i class="fas fa-clipboard-check"></i><span>Курсы</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'users:student:schedule:student_schedule' %}"><i class="fas fa-table"></i><span>Расписание</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'users:student:profile:profile' %}"><i class="far fa-sun"></i><span>Настройки</span></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/users/student/' %}active{% endif %}"
+                           href="{% url 'users:student:student' %}">
+                            <i class="fas fa-store-alt"></i>
+                            <span>Главная</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/users/student/courses/' %}active{% endif %}"
+                           href="{% url 'users:student:courses:courses' %}">
+                            <i class="fas fa-clipboard-check"></i>
+                            <span>Курсы</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/users/student/schedule/' %}active{% endif %}"
+                           href="{% url 'users:student:schedule:student_schedule' %}">
+                            <i class="fas fa-table"></i>
+                            <span>Расписание</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/users/student/profile/' %}active{% endif %}"
+                           href="{% url 'users:student:profile:profile' %}">
+                            <i class="far fa-sun"></i>
+                            <span>Настройки</span>
+                        </a>
+                    </li>
                 </ul>
-                <div class="text-center d-none d-md-inline"><a href="{% url 'stransit:index' %}"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></a></div>
+
+                <div class="text-center d-none d-md-inline"><a href="{% url 'stransit:index' %}">
+                    <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+                </a></div>
             </div>
         </nav>
-        {% endblock %}
+    {% endblock %}
 
 
-        {% block content %}
-            <script src="{% static 'admin/js/script.min.js' %}"></script>
-        {% endblock %}
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-    <script src="{% static 'admin/js/script.min.js' %}"></script>
+    {% block content %}
+        <script src="{% static 'admin/js/script.min.js' %}"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const sidebarToggle = document.getElementById("sidebarToggle");
+                const sidebar = document.getElementById("sidebar");
+
+                sidebarToggle.addEventListener("click", function () {
+                    sidebar.classList.toggle("collapsed");
+                });
+            });
+        </script>
+    {% endblock %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script src="{% static 'admin/js/script.min.js' %}"></script>
 
 </body>
 
