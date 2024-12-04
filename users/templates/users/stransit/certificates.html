@@ -34,7 +34,7 @@
     <div class="main-navigation">
         <nav class="navbar navbar-expand-lg">
             <div class="container g-0">
-                <a class="navbar-brand" href="index.html" style="color: white;">
+                <a class="navbar-brand" href="/" style="color: white;">
                     <img style="height: 35px; width: 35px; margin-right: 5px;" src="{% static 'stransit/images/logo.png' %}" alt="thumb" />
 
                 </a>
@@ -149,18 +149,11 @@
 											<a href="#"><i class="far fa-angle-double-right"></i>Руководство по тестированию авиационного персонала</a>
 										</div>
 									</div>
-									<div class="widget service-download">
-                                        <h4 class="widget-title">Скачать</h4>
-                                        <a href="{% static 'stransit/aviat_cert.docx' %}" download><i class="far fa-file-pdf"></i> Сертификат студента</a>
-                                        <a href="{% static 'stransit/cert_cert.pdf' %}" download><i class="far fa-file-pdf"></i> СERT INTERNATIONAL</a>
-                                        <a href="{% static 'stransit/autz.pdf' %}" download><i class="far fa-file-pdf"></i> Сертификат авиационного учебного центра</a>
-                                        <a href="#" download><i class="far fa-file-alt"></i> Политика в области качества</a>
-                                    </div>
 								</div>
 							</div>
 							<div class="col-xl-8 col-lg-8">
 								<div class="service-details">
-                                    <h4 class="mb-30">Наши Сертификаты</h4>
+                                    <h3 class="mb-30">Наши Сертификаты</h3>
                                     <p class="mb-20">
                                         Авиационный учебный центр 'Стандард Транзит' гордится своими достижениями и профессиональными сертификатами, которые подтверждают наш высокий уровень компетенции и приверженность качеству. Мы сертифицированы ведущими международными и национальными организациями в области авиационного обучения, что гарантирует соответствие нашим программам самым строгим стандартам. Каждый сертификат, полученный нашим центром, свидетельствует о нашем постоянном стремлении к совершенству и безопасности в авиационной сфере.
                                     </p>
@@ -172,10 +165,10 @@
                                     </p>
                                     <div class="row">
                                         <div class="col-md-6 mb-20">
-                                            <img src="images/certificate1.jpg" alt="Сертификат ICAO" />
+                                            <img src="{% static 'stransit/certificate.png' %}" alt="CERT INTERNTAIONAL" />
                                         </div>
                                         <div class="col-md-6 mb-20">
-                                            <img src="images/certificate2.jpg" alt="Сертификат EASA" />
+                                            <img src="{% static 'stransit/certificate2.png' %}" alt="Сертификат АУЦ" />
                                         </div>
                                     </div>
                                     <p class="mb-20">
